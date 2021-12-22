@@ -1,6 +1,7 @@
 package main.tower;
 
 import main.DoubleCoord;
+import main.Game;
 import main.Map;
 import main.enemy.Enemy;
 
@@ -22,6 +23,9 @@ public class Projectile {
 
     public void update() {
         this.move();
+        if(position.x < 0 || position.x >= Game.WIDTH || position.y < 0 || position.y >= Game.HEIGHT){
+            this.active = false;
+        }
     }
 
     public void move() {

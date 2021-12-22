@@ -31,8 +31,7 @@ public class Tower {
         if(timer <= 0) {
             for (Enemy enemy : enemies) {
                 if (this.collision(enemy)) {
-                    Projectile project = new Projectile(10, this.getCenter(), 5, enemy.getCenter());
-                    projectiles.add(project);
+                    this.fireProjectile(enemy);
                     break;
                 }
             }
@@ -60,6 +59,10 @@ public class Tower {
 
     public void paint(Graphics2D g) {
         double offset = Map.TILE_SIZE / 2.0 - this.range;
+        for (Projectile projectile : projectiles) {
+            projectile.paint(g);
+        }
+
         Ellipse2D circle = new Ellipse2D.Double(this.tileLocation.x * Map.TILE_SIZE + offset, this.tileLocation.y * Map.TILE_SIZE + offset, this.range * 2, this.range * 2);
         Color rangeColor = new Color(0.4f,0.4f,0.4f,.3f );
         g.setPaint(rangeColor);
@@ -71,9 +74,11 @@ public class Tower {
         g.draw(rect);
         g.fill(rect);
 
-        for (Projectile projectile : projectiles) {
-            projectile.paint(g);
-        }
+    }
+
+    protected void fireProjectile(Enemy enemy) {
+        Projectile project = new Projectile(20, this.getCenter(), 5, enemy.getCenter());
+        projectiles.add(project);
     }
 
     private DoubleCoord getCenter(){
