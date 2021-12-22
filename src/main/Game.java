@@ -35,7 +35,7 @@ public class Game extends JPanel implements ActionListener, KeyListener, MouseLi
 
     private void init() {
         try {
-            this.map.loadMap("AdvMap");
+            this.map.loadMap("EasyMap1");
         } catch (IOException e) {
             e.printStackTrace();
         }

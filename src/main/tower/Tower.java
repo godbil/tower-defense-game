@@ -16,20 +16,24 @@ public class Tower {
     private int fireRate;
     private int timer;
     private IntCoord tileLocation;
+    private final ArrayList<Projectile> projectiles;
 
     public Tower(int damage, int range, int fireRate, IntCoord tileLocation) {
         this.damage = damage;
         this.range = 4 * Map.TILE_SIZE;
         this.fireRate = fireRate;
-        this.timer = fireRate;
+        this.timer = 0;
         this.tileLocation = tileLocation;
+        this.projectiles = new ArrayList<>();
     }
 
     public void update(ArrayList<Enemy> enemies) {
         if(timer <= 0) {
             for (Enemy enemy : enemies) {
                 if (this.collision(enemy)) {
-                    enemy.takeDamage(this.damage);
+                    Projectile project = new Projectile(10, this.getCenter(), 5, enemy.getCenter());
+                    projectiles.add(project);
+                    break;
                 }
             }
             timer = this.fireRate;
@@ -37,6 +41,16 @@ public class Tower {
         else{
             timer--;
         }
+        for (Projectile projectile : projectiles) {
+            projectile.update();
+            for(Enemy enemy : enemies) {
+                if (projectile.collision(enemy)) {
+                    enemy.takeDamage(this.damage);
+                    projectile.hit();
+                }
+            }
+        }
+        projectiles.removeIf(projectile -> !projectile.isActive());
     }
 
     public boolean collision(Enemy enemy) {
@@ -56,6 +70,10 @@ public class Tower {
         g.setPaint(Color.BLUE);
         g.draw(rect);
         g.fill(rect);
+
+        for (Projectile projectile : projectiles) {
+            projectile.paint(g);
+        }
     }
 
     private DoubleCoord getCenter(){

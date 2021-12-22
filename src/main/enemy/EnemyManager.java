@@ -46,7 +46,7 @@ public class EnemyManager {
         }
 
         for(int i = 0; i < this.startPos.size() && i < this.startDirs.size(); i++) {
-            Enemy zombie = new Enemy(10000,2, this.startPos.get(i), this.startDirs.get(i), Map.TILE_SIZE / 2);
+            Enemy zombie = new Enemy(10,2, this.startPos.get(i), this.startDirs.get(i), Map.TILE_SIZE / 2);
             enemies.add(zombie);
         }
     }

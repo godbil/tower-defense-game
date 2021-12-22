@@ -34,7 +34,7 @@ public class TowerManager {
         int y = p.y / Map.TILE_SIZE;
         if(x >= 0 && x < Map.MAP_WIDTH && y >= 0 && y < Map.MAP_HEIGHT && map[x][y] == Map.PLACEABLE){
             map[x][y] = Map.TOWER;
-            Tower tower = new Tower(1, 2, 1, new IntCoord(x, y));
+            Tower tower = new Tower(1, 2, 60, new IntCoord(x, y));
             towers.add(tower);
         }
     }
