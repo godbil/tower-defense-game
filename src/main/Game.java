@@ -12,7 +12,7 @@ import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 import java.io.IOException;
 
-public class Game extends JPanel implements ActionListener, KeyListener, MouseListener {
+public class Game extends JPanel implements ActionListener, KeyListener {
     public static final int WIDTH = Map.MAP_WIDTH * Map.TILE_SIZE + UI.UI_WIDTH;
     public static final int HEIGHT = Math.max(Map.MAP_HEIGHT * Map.TILE_SIZE, UI.UI_HEIGHT);
 
@@ -22,6 +22,7 @@ public class Game extends JPanel implements ActionListener, KeyListener, MouseLi
     private Map map;
     private EnemyManager enemyManager;
     private TowerManager towerManager;
+    private UI ui;
 
     public Game(){
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -31,6 +32,7 @@ public class Game extends JPanel implements ActionListener, KeyListener, MouseLi
         this.map = new Map();
         this.enemyManager = new EnemyManager();
         this.towerManager = new TowerManager();
+        this.ui = new UI(this.map, this.towerManager);
     }
 
     private void init() {
@@ -47,7 +49,7 @@ public class Game extends JPanel implements ActionListener, KeyListener, MouseLi
         super.addNotify();
 
         this.addKeyListener(this);
-        this.addMouseListener(this);
+        this.ui.addNotify(this);
 
         // Initialize a timer which calls actionPerformed method every TIMER amount of milliseconds
         Timer timer = new Timer(TIMER, this);
@@ -82,6 +84,7 @@ public class Game extends JPanel implements ActionListener, KeyListener, MouseLi
         map.paint(g2);
         towerManager.paint(g2);
         enemyManager.paint(g2);
+        ui.paint(g2);
     }
 
     @Override
@@ -106,28 +109,4 @@ public class Game extends JPanel implements ActionListener, KeyListener, MouseLi
 
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-        towerManager.place(map.getMap(), e);
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
 }

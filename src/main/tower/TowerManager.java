@@ -28,13 +28,9 @@ public class TowerManager {
         }
     }
 
-    public void place(int[][] map, MouseEvent e){
-        Point p = e.getPoint();
-        int x = p.x / Map.TILE_SIZE;
-        int y = p.y / Map.TILE_SIZE;
-        if(x >= 0 && x < Map.MAP_WIDTH && y >= 0 && y < Map.MAP_HEIGHT && map[x][y] == Map.PLACEABLE){
-            map[x][y] = Map.TOWER;
-            Tower tower = new Tower(1, 2, 120, new IntCoord(x, y));
+    public void place(int[][] map, Tower tower){
+        if(tower.getTileLocation().x >= 0 && tower.getTileLocation().x < Map.MAP_WIDTH && tower.getTileLocation().y >= 0 && tower.getTileLocation().y < Map.MAP_HEIGHT && map[tower.getTileLocation().x][tower.getTileLocation().y] == Map.PLACEABLE){
+            map[tower.getTileLocation().x][tower.getTileLocation().y] = Map.TOWER;
             towers.add(tower);
         }
     }

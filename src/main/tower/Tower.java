@@ -16,7 +16,7 @@ public class Tower {
     private int fireRate;
     private int timer;
     private IntCoord tileLocation;
-    private final ArrayList<Projectile> projectiles;
+    protected final ArrayList<Projectile> projectiles;
 
     public Tower(int damage, int range, int fireRate, IntCoord tileLocation) {
         this.damage = damage;
@@ -31,8 +31,9 @@ public class Tower {
         if(timer <= 0) {
             for (Enemy enemy : enemies) {
                 if (this.collision(enemy)) {
-                    this.fireProjectile(enemy);
-                    break;
+                    if(this.fireProjectile(enemy)) {
+                        break;
+                    }
                 }
             }
             timer = this.fireRate;
@@ -58,30 +59,49 @@ public class Tower {
     }
 
     public void paint(Graphics2D g) {
+        paint(g, false, false);
+    }
+
+    public void paint(Graphics2D g, boolean isValid, boolean isRange) {
         double offset = Map.TILE_SIZE / 2.0 - this.range;
         for (Projectile projectile : projectiles) {
             projectile.paint(g);
         }
-
-        Ellipse2D circle = new Ellipse2D.Double(this.tileLocation.x * Map.TILE_SIZE + offset, this.tileLocation.y * Map.TILE_SIZE + offset, this.range * 2, this.range * 2);
-        Color rangeColor = new Color(0.4f,0.4f,0.4f,.3f );
-        g.setPaint(rangeColor);
-        g.draw(circle);
-        g.fill(circle);
-
         Rectangle2D rect = new Rectangle(this.tileLocation.x * Map.TILE_SIZE, this.tileLocation.y * Map.TILE_SIZE, Map.TILE_SIZE, Map.TILE_SIZE);
         g.setPaint(Color.BLUE);
         g.draw(rect);
         g.fill(rect);
 
+        if(isRange) {
+            Ellipse2D circle = new Ellipse2D.Double(this.tileLocation.x * Map.TILE_SIZE + offset, this.tileLocation.y * Map.TILE_SIZE + offset, this.range * 2, this.range * 2);
+            Color rangeColor;
+            if(isValid) {
+                rangeColor = new Color(0.4f, 0.4f, 0.4f, .3f);
+            }
+            else{
+                rangeColor = new Color(1f, 0.0f, 0.0f, .3f);
+            }
+            g.setPaint(rangeColor);
+            g.draw(circle);
+            g.fill(circle);
+        }
     }
 
-    protected void fireProjectile(Enemy enemy) {
+    public void setTileLocation(IntCoord tileLocation) {
+        this.tileLocation = tileLocation;
+    }
+
+    public IntCoord getTileLocation() {
+        return this.tileLocation;
+    }
+
+    protected boolean fireProjectile(Enemy enemy) {
         Projectile project = new Projectile(20, this.getCenter(), 5, enemy.getCenter());
         projectiles.add(project);
+        return true;
     }
 
-    private DoubleCoord getCenter(){
+    protected DoubleCoord getCenter(){
         return new DoubleCoord(this.tileLocation.x * Map.TILE_SIZE + Map.TILE_SIZE / 2.0, this.tileLocation.y * Map.TILE_SIZE + Map.TILE_SIZE / 2.0);
     }
 
