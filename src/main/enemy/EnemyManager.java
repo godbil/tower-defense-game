@@ -1,10 +1,15 @@
 package main.enemy;
 
 import main.DoubleCoord;
+import main.Game;
 import main.IntCoord;
 import main.Map;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class EnemyManager {
@@ -12,10 +17,29 @@ public class EnemyManager {
     private final ArrayList<Direction> startDirs;
     private final ArrayList<Enemy> enemies;
 
+    private int timer;
+    private int enemyQuota;
+    private int wave;
+    public final int MAX_WAVE = 10;
+
+    private BufferedImage smallGoblin;
+    private BufferedImage largeGoblin;
+
     public EnemyManager(){
         enemies = new ArrayList<>();
         startPos = new ArrayList<>();
         startDirs = new ArrayList<>();
+
+        this.timer = 0;
+        this.wave = 1;
+        this.enemyQuota = wave * 10;
+
+        try {
+            smallGoblin = ImageIO.read(new File("assets/goblin1.png"));
+            largeGoblin = ImageIO.read(new File("assets/goblin2.png"));
+        }
+        catch (IOException ignored) {
+        }
     }
 
     public void init(int[][] map) {
@@ -45,23 +69,53 @@ public class EnemyManager {
             this.startPos.add(new DoubleCoord(startTile.x * Map.TILE_SIZE, startTile.y * Map.TILE_SIZE));
         }
 
-        for(int i = 0; i < this.startPos.size() && i < this.startDirs.size(); i++) {
-            Enemy zombie = new Enemy(10,2, this.startPos.get(i), this.startDirs.get(i), Map.TILE_SIZE / 2);
-            enemies.add(zombie);
-        }
     }
 
     public void update(int[][] map){
-        for(Enemy enemy : enemies){
+        for (Enemy enemy : enemies) {
             enemy.move(map);
         }
         enemies.removeIf(enemy -> !enemy.isActive());
+
+        if(enemyQuota > 0) {
+            if (timer <= 0) {
+                spawn();
+                timer = (int) (Math.random() * Game.FPS);
+                enemyQuota--;
+            }
+            else {
+                timer--;
+            }
+        }
+
+        if(enemyQuota == 0 && enemies.size() == 0 && wave < MAX_WAVE){
+            wave++;
+            enemyQuota = wave * 10;
+        }
     }
 
     public void paint(Graphics2D g){
         for(Enemy enemy : enemies){
             enemy.paint(g);
         }
+    }
+
+    public void spawn() {
+        for(int i = 0; i < this.startPos.size() && i < this.startDirs.size(); i++) {
+            int random = (int)(Math.random()*2+1);
+            if(random == 1) {
+                Enemy smallGoblin = new Enemy(3, 4, this.startPos.get(i), this.startDirs.get(i), Map.TILE_SIZE / 2, this.smallGoblin);
+                enemies.add(smallGoblin);
+            }
+            else if(random == 2) {
+                Enemy largeGoblin = new Enemy(10, 2, this.startPos.get(i), this.startDirs.get(i), Map.TILE_SIZE, this.largeGoblin);
+                enemies.add(largeGoblin);
+            }
+        }
+    }
+
+    public int getWave() {
+        return wave;
     }
 
     public ArrayList<Enemy> getEnemies(){

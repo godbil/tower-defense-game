@@ -1,8 +1,6 @@
 package main;
 
-import main.enemy.Enemy;
 import main.enemy.EnemyManager;
-import main.tower.Tower;
 import main.tower.TowerManager;
 
 import javax.swing.*;
@@ -16,8 +14,8 @@ public class Game extends JPanel implements ActionListener, KeyListener {
     public static final int WIDTH = Map.MAP_WIDTH * Map.TILE_SIZE + UI.UI_WIDTH;
     public static final int HEIGHT = Math.max(Map.MAP_HEIGHT * Map.TILE_SIZE, UI.UI_HEIGHT);
 
-    private static final int FPS = 60;
-    private static final int TIMER = 1000 / FPS;
+    public static final int FPS = 60;
+    public static final int TIMER = 1000 / FPS;
 
     private Map map;
     private EnemyManager enemyManager;
@@ -32,7 +30,7 @@ public class Game extends JPanel implements ActionListener, KeyListener {
         this.map = new Map();
         this.enemyManager = new EnemyManager();
         this.towerManager = new TowerManager();
-        this.ui = new UI(this.map, this.towerManager);
+        this.ui = new UI(this.map, this.towerManager, enemyManager);
     }
 
     private void init() {

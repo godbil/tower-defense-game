@@ -1,19 +1,29 @@
 package main.tower;
 
-import main.DoubleCoord;
 import main.IntCoord;
 import main.Map;
 import main.enemy.Enemy;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class TowerManager {
     private final ArrayList<Tower> towers;
 
+    BufferedImage attackMage;
+
     public TowerManager(){
         towers = new ArrayList<>();
+
+        try {
+            attackMage = ImageIO.read(new File("assets/attackmage1.png"));
+        }
+        catch (IOException ex) {
+        }
     }
 
     public void update(int[][] map, ArrayList<Enemy> enemies){
@@ -33,6 +43,19 @@ public class TowerManager {
             map[tower.getTileLocation().x][tower.getTileLocation().y] = Map.TOWER;
             towers.add(tower);
         }
+    }
+
+    public Tower findSelectedTower(IntCoord selectedPosition) {
+        for(Tower tower : towers) {
+            if(tower.getTileLocation().equals(selectedPosition)){
+                return tower;
+            }
+        }
+        return null;
+    }
+
+    public BufferedImage getImage() {
+        return attackMage;
     }
 
 }

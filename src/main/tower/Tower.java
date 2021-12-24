@@ -5,26 +5,42 @@ import main.IntCoord;
 import main.Map;
 import main.enemy.Enemy;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Tower {
+
+
     private int damage;
     private int range;
+
     private int fireRate;
     private int timer;
+
     private IntCoord tileLocation;
+
     protected final ArrayList<Projectile> projectiles;
 
-    public Tower(int damage, int range, int fireRate, IntCoord tileLocation) {
+    private BufferedImage image;
+    private ImageObserver comp;
+
+    public Tower(int damage, int range, int fireRate, IntCoord tileLocation, BufferedImage image) {
         this.damage = damage;
         this.range = 4 * Map.TILE_SIZE;
         this.fireRate = fireRate;
         this.timer = 0;
         this.tileLocation = tileLocation;
         this.projectiles = new ArrayList<>();
+
+        this.image = image;
+        comp = new JComponent() {};
     }
 
     public void update(ArrayList<Enemy> enemies) {
@@ -67,10 +83,7 @@ public class Tower {
         for (Projectile projectile : projectiles) {
             projectile.paint(g);
         }
-        Rectangle2D rect = new Rectangle(this.tileLocation.x * Map.TILE_SIZE, this.tileLocation.y * Map.TILE_SIZE, Map.TILE_SIZE, Map.TILE_SIZE);
-        g.setPaint(Color.BLUE);
-        g.draw(rect);
-        g.fill(rect);
+        g.drawImage(image, this.tileLocation.x * Map.TILE_SIZE, this.tileLocation.y * Map.TILE_SIZE, comp);
 
         if(isRange) {
             Ellipse2D circle = new Ellipse2D.Double(this.tileLocation.x * Map.TILE_SIZE + offset, this.tileLocation.y * Map.TILE_SIZE + offset, this.range * 2, this.range * 2);

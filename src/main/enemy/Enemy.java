@@ -4,9 +4,14 @@ import main.DoubleCoord;
 import main.IntCoord;
 import main.Map;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
+import java.io.File;
+import java.io.IOException;
 
 public class Enemy {
     private static final Direction[][] DIRECTION_CHOICE = {
@@ -30,7 +35,10 @@ public class Enemy {
 
     private Direction direction;
 
-    public Enemy(int maxHealth, double movementSpeed, DoubleCoord position, Direction direction, int size) {
+    private BufferedImage image;
+    private ImageObserver comp;
+
+    public Enemy(int maxHealth, double movementSpeed, DoubleCoord position, Direction direction, int size, BufferedImage image) {
         this.maxHealth = maxHealth;
         this.health = maxHealth;
         this.movementSpeed = movementSpeed;
@@ -39,6 +47,9 @@ public class Enemy {
         this.size = size;
 
         this.active = true;
+
+        this.image = image;
+        comp = new JComponent() {};
     }
 
     public void takeDamage(int damage){
@@ -72,10 +83,7 @@ public class Enemy {
         if(this.active) {
             double offset = Map.TILE_SIZE / 2.0 - this.size / 2.0;
 
-            Rectangle2D rect = new Rectangle((int) Math.round(position.x + offset), (int) Math.round(position.y + offset), this.size, this.size);
-            g.setPaint(Color.MAGENTA);
-            g.draw(rect);
-            g.fill(rect);
+            g.drawImage(this.image, (int) Math.round(position.x + offset), (int) Math.round(position.y + offset), comp);
 
             Rectangle2D rect2 = new Rectangle((int) Math.round(position.x), (int) Math.round(position.y - HEALTH_OFFSET + offset), Map.TILE_SIZE, HEALTH_HEIGHT);
             g.setPaint(Color.red);
