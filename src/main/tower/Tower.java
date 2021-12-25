@@ -18,13 +18,13 @@ import java.util.ArrayList;
 public class Tower {
 
 
-    private int damage;
-    private int range;
+    protected int damage;
+    protected int range;
 
-    private int fireRate;
-    private int timer;
+    protected int fireRate;
+    protected int timer;
 
-    private IntCoord tileLocation;
+    protected IntCoord tileLocation;
 
     protected final ArrayList<Projectile> projectiles;
 
@@ -33,7 +33,7 @@ public class Tower {
 
     public Tower(int damage, int range, int fireRate, IntCoord tileLocation, BufferedImage image) {
         this.damage = damage;
-        this.range = 4 * Map.TILE_SIZE;
+        this.range = range;
         this.fireRate = fireRate;
         this.timer = 0;
         this.tileLocation = tileLocation;
@@ -44,6 +44,20 @@ public class Tower {
     }
 
     public void update(ArrayList<Enemy> enemies) {
+        fire(enemies);
+        for (Projectile projectile : projectiles) {
+            projectile.update();
+            for(Enemy enemy : enemies) {
+                if (projectile.collision(enemy)) {
+                    enemy.takeDamage(this.damage);
+                    projectile.hit();
+                }
+            }
+        }
+        projectiles.removeIf(projectile -> !projectile.isActive());
+    }
+
+    public void fire(ArrayList<Enemy> enemies) {
         if(timer <= 0) {
             for (Enemy enemy : enemies) {
                 if (this.collision(enemy)) {
@@ -57,16 +71,6 @@ public class Tower {
         else{
             timer--;
         }
-        for (Projectile projectile : projectiles) {
-            projectile.update();
-            for(Enemy enemy : enemies) {
-                if (projectile.collision(enemy)) {
-                    enemy.takeDamage(this.damage);
-                    projectile.hit();
-                }
-            }
-        }
-        projectiles.removeIf(projectile -> !projectile.isActive());
     }
 
     public boolean collision(Enemy enemy) {
@@ -89,10 +93,10 @@ public class Tower {
             Ellipse2D circle = new Ellipse2D.Double(this.tileLocation.x * Map.TILE_SIZE + offset, this.tileLocation.y * Map.TILE_SIZE + offset, this.range * 2, this.range * 2);
             Color rangeColor;
             if(isValid) {
-                rangeColor = new Color(0.4f, 0.4f, 0.4f, .3f);
+                rangeColor = new Color(0.6f, 0.6f, 0.6f, .4f);
             }
             else{
-                rangeColor = new Color(1f, 0.0f, 0.0f, .3f);
+                rangeColor = new Color(1f, 0.0f, 0.0f, .4f);
             }
             g.setPaint(rangeColor);
             g.draw(circle);

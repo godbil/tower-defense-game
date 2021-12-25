@@ -1,6 +1,7 @@
 package main;
 
 import main.enemy.EnemyManager;
+import main.tower.ExampleTower;
 import main.tower.Tower;
 import main.tower.TowerManager;
 
@@ -35,7 +36,7 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
         this.enemyManager = enemyManager;
         this.map = map;
 
-        this.health = 150;
+        this.health = 50;
         this.money = 650;
 
         this.button = new JButton();
@@ -96,6 +97,9 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
         if (e.getX() / Map.TILE_SIZE >= 0 && e.getX() / Map.TILE_SIZE < Map.MAP_WIDTH && e.getY() / Map.TILE_SIZE >= 0 && e.getY() / Map.TILE_SIZE < Map.MAP_HEIGHT && this.displayTower == null) {
             selectedTower = towerManager.findSelectedTower(new IntCoord(e.getX() / Map.TILE_SIZE, e.getY() / Map.TILE_SIZE));
         }
+        if(e.getButton() == MouseEvent.BUTTON3) {
+            displayTower = null;
+        }
     }
 
     @Override
@@ -119,7 +123,7 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.button) {
-            this.displayTower = new Tower(1, 2, 30, new IntCoord(Map.MAP_WIDTH * Map.TILE_SIZE, 0), towerManager.getImage());
+            this.displayTower = new ExampleTower(1, 160, 30, new IntCoord(Map.MAP_WIDTH * Map.TILE_SIZE, 0), towerManager.getImage());
         }
     }
 }

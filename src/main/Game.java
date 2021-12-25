@@ -3,11 +3,15 @@ package main;
 import main.enemy.EnemyManager;
 import main.tower.TowerManager;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
+import java.io.File;
 import java.io.IOException;
 
 public class Game extends JPanel implements ActionListener, KeyListener {
@@ -22,6 +26,9 @@ public class Game extends JPanel implements ActionListener, KeyListener {
     private TowerManager towerManager;
     private UI ui;
 
+    private ImageObserver comp;
+    private BufferedImage rock;
+
     public Game(){
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.setFocusable(true);
@@ -31,6 +38,14 @@ public class Game extends JPanel implements ActionListener, KeyListener {
         this.enemyManager = new EnemyManager();
         this.towerManager = new TowerManager();
         this.ui = new UI(this.map, this.towerManager, enemyManager);
+
+        try {
+            rock = ImageIO.read(new File("assets/rock.png"));
+        }
+        catch (IOException ex) {
+        }
+
+        comp = new JComponent() {};
     }
 
     private void init() {
@@ -67,22 +82,13 @@ public class Game extends JPanel implements ActionListener, KeyListener {
     @Override
     public void paintComponent(Graphics g){
         Graphics2D g2 = (Graphics2D) g;
-        Rectangle2D.Double background = new Rectangle2D.Double(0, 0, 1344, HEIGHT);
-        g2.draw(background);
-        g2.setPaint(Color.black);
-        g2.fill(background);
-        for(int i = 0; i < 1600; i += 64){
-            Line2D.Double line = new Line2D.Double(i, 0, i, 832);
-            Line2D.Double line2 = new Line2D.Double(0, i, 1600, i);
-            g2.setPaint(Color.white);
-            g2.draw(line);
-            g2.draw(line2);
-        }
 
         map.paint(g2);
         towerManager.paint(g2);
         enemyManager.paint(g2);
         ui.paint(g2);
+
+        g.drawImage(rock, -10, 3 * Map.TILE_SIZE, comp);
     }
 
     @Override

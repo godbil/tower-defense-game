@@ -1,7 +1,11 @@
 package main;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -18,11 +22,23 @@ public class Map {
     public static final int PATH = 1;
     public static final int START = 2;
     public static final int TOWER = 3;
+    public static final int OBSTACLE = 4;
+
+    private ImageObserver comp;
+    private BufferedImage EasyMap1;
 
     private int[][] map;
 
     public Map(){
         this.map = new int[MAP_WIDTH][MAP_HEIGHT];
+
+        try {
+            EasyMap1 = ImageIO.read(new File("assets/easymap1.png"));
+        }
+        catch (IOException ex) {
+        }
+
+        comp = new JComponent() {};
     }
 
     public void loadMap(String path) throws IOException {
@@ -37,22 +53,7 @@ public class Map {
     }
 
     public void paint(Graphics2D g){
-        for(int i = 0; i < map.length; i++){
-            for(int j = 0; j < map[0].length; j++){
-                if(map[i][j] == PATH){
-                    Rectangle2D rect = new Rectangle(i * TILE_SIZE, j * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-                    g.setPaint(Color.white);
-                    g.draw(rect);
-                    g.fill(rect);
-                }
-                else if(map[i][j] == START){
-                    Rectangle2D rect = new Rectangle(i * TILE_SIZE, j * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-                    g.setPaint(Color.red);
-                    g.draw(rect);
-                    g.fill(rect);
-                }
-            }
-        }
+        g.drawImage(EasyMap1, 0, 0, comp);
     }
 
     public int[][] getMap() {
