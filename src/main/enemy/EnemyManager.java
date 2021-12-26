@@ -1,9 +1,6 @@
 package main.enemy;
 
-import main.DoubleCoord;
-import main.Game;
-import main.IntCoord;
-import main.Map;
+import main.*;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -19,20 +16,18 @@ public class EnemyManager {
 
     private int timer;
     private int enemyQuota;
-    private int wave;
-    public final int MAX_WAVE = 10;
 
     private BufferedImage smallGoblin;
     private BufferedImage largeGoblin;
 
-    public EnemyManager(){
+    private final GameState gameState;
+
+    public EnemyManager(GameState gameState){
         enemies = new ArrayList<>();
         startPos = new ArrayList<>();
         startDirs = new ArrayList<>();
 
-        this.timer = 0;
-        this.wave = 1;
-        this.enemyQuota = wave * 10;
+        this.gameState = gameState;
 
         try {
             smallGoblin = ImageIO.read(new File("assets/goblin1.png"));
@@ -69,13 +64,29 @@ public class EnemyManager {
             this.startPos.add(new DoubleCoord(startTile.x * Map.TILE_SIZE, startTile.y * Map.TILE_SIZE));
         }
 
+        this.timer = 0;
+        this.enemyQuota = this.gameState.getWave() * 10;
+        this.enemies.clear();
     }
 
     public void update(int[][] map){
         for (Enemy enemy : enemies) {
             enemy.move(map);
         }
-        enemies.removeIf(enemy -> !enemy.isActive());
+        enemies.removeIf(enemy -> {
+            if(!enemy.isActive()) {
+                if(enemy.getHealth() <= 0) {
+                    this.gameState.addMoney(this.gameState.getWave() * 20);
+                }
+                else {
+                    gameState.subtractHealth(enemy.getHealth());
+                }
+                return true;
+            }
+            else {
+                return false;
+            }
+        });
 
         if(enemyQuota > 0) {
             if (timer <= 0) {
@@ -88,9 +99,10 @@ public class EnemyManager {
             }
         }
 
-        if(enemyQuota == 0 && enemies.size() == 0 && wave < MAX_WAVE){
-            wave++;
-            enemyQuota = wave * 10;
+        if(enemyQuota == 0 && enemies.size() == 0 && this.gameState.getWave() < this.gameState.MAX_WAVE){
+            this.gameState.nextWave();
+            enemyQuota = this.gameState.getWave() * 10;
+            this.gameState.addMoney(this.gameState.getWave() * 120);
         }
     }
 
@@ -112,10 +124,6 @@ public class EnemyManager {
                 enemies.add(largeGoblin);
             }
         }
-    }
-
-    public int getWave() {
-        return wave;
     }
 
     public ArrayList<Enemy> getEnemies(){

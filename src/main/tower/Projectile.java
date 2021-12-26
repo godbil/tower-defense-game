@@ -2,7 +2,6 @@ package main.tower;
 
 import main.DoubleCoord;
 import main.Game;
-import main.Map;
 import main.enemy.Enemy;
 
 import java.awt.*;

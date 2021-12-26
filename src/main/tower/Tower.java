@@ -5,21 +5,15 @@ import main.IntCoord;
 import main.Map;
 import main.enemy.Enemy;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class Tower {
-
-
     protected int damage;
     protected int range;
+    protected int cost;
 
     protected int fireRate;
     protected int timer;
@@ -29,18 +23,17 @@ public class Tower {
     protected final ArrayList<Projectile> projectiles;
 
     private BufferedImage image;
-    private ImageObserver comp;
 
-    public Tower(int damage, int range, int fireRate, IntCoord tileLocation, BufferedImage image) {
+    public Tower(int damage, int range, int cost, int fireRate, IntCoord tileLocation, BufferedImage image) {
         this.damage = damage;
         this.range = range;
+        this.cost = cost;
         this.fireRate = fireRate;
         this.timer = 0;
         this.tileLocation = tileLocation;
         this.projectiles = new ArrayList<>();
 
         this.image = image;
-        comp = new JComponent() {};
     }
 
     public void update(ArrayList<Enemy> enemies) {
@@ -87,7 +80,7 @@ public class Tower {
         for (Projectile projectile : projectiles) {
             projectile.paint(g);
         }
-        g.drawImage(image, this.tileLocation.x * Map.TILE_SIZE, this.tileLocation.y * Map.TILE_SIZE, comp);
+        g.drawImage(image, this.tileLocation.x * Map.TILE_SIZE, this.tileLocation.y * Map.TILE_SIZE, null);
 
         if(isRange) {
             Ellipse2D circle = new Ellipse2D.Double(this.tileLocation.x * Map.TILE_SIZE + offset, this.tileLocation.y * Map.TILE_SIZE + offset, this.range * 2, this.range * 2);
@@ -106,6 +99,10 @@ public class Tower {
 
     public void setTileLocation(IntCoord tileLocation) {
         this.tileLocation = tileLocation;
+    }
+
+    public int getCost() {
+        return this.cost;
     }
 
     public IntCoord getTileLocation() {

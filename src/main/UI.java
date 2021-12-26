@@ -1,14 +1,11 @@
 package main;
 
-import main.enemy.EnemyManager;
-import main.tower.ExampleTower;
 import main.tower.Tower;
 import main.tower.TowerManager;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 
 public class UI implements ActionListener, MouseMotionListener, MouseListener {
@@ -19,38 +16,32 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
     private Tower selectedTower;
     private boolean isValid;
 
-    private int health;
-    private int money;
-
     private final TowerManager towerManager;
-    private final EnemyManager enemyManager;
+    private final GameState gameState;
     private final Map map;
 
-    JButton button;
+    JButton attackMageButton;
 
-    public UI(Map map, TowerManager towerManager, EnemyManager enemyManager) {
+    public UI(Map map, TowerManager towerManager, GameState gameState) {
         this.displayTower = null;
         this.isValid = true;
 
         this.towerManager = towerManager;
-        this.enemyManager = enemyManager;
+        this.gameState = gameState;
         this.map = map;
 
-        this.health = 50;
-        this.money = 650;
-
-        this.button = new JButton();
-        this.button.setIcon(new ImageIcon(towerManager.getImage()));
-        this.button.setBounds(22 * Map.TILE_SIZE - Map.TILE_SIZE / 2,3 * Map.TILE_SIZE,64,64);
+        this.attackMageButton = new JButton();
+        this.attackMageButton.setIcon(new ImageIcon(towerManager.getImage()));
+        this.attackMageButton.setBounds(22 * Map.TILE_SIZE - Map.TILE_SIZE / 2,3 * Map.TILE_SIZE,64,64);
 
     }
 
     public void addNotify(JPanel panel) {
         panel.addMouseMotionListener(this);
         panel.addMouseListener(this);
-        this.button.addActionListener(this);
+        this.attackMageButton.addActionListener(this);
         panel.setLayout(null);
-        panel.add(this.button);
+        panel.add(this.attackMageButton);
     }
 
     public void paint(Graphics2D g) {
@@ -61,7 +52,9 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
 
         g.setPaint(Color.white);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
-        g.drawString("Wave: " + enemyManager.getWave() + " / " + enemyManager.MAX_WAVE, 19 * Map.TILE_SIZE, Map.TILE_SIZE / 2);
+        g.drawString("Health: " + this.gameState.getHealth(), Map.TILE_SIZE / 4, Map.TILE_SIZE / 2);
+        g.drawString("Money: " + this.gameState.getMoney(), 2 * Map.TILE_SIZE, Map.TILE_SIZE / 2);
+        g.drawString("Wave: " + gameState.getWave() + " / " + gameState.MAX_WAVE, 19 * Map.TILE_SIZE, Map.TILE_SIZE / 2);
 
         if(displayTower != null) {
             displayTower.paint(g, isValid, true);
@@ -106,6 +99,7 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
     public void mouseReleased(MouseEvent e) {
         if(displayTower != null && this.isValid) {
             towerManager.place(map.getMap(), displayTower);
+            this.gameState.subtractMoney(120);
             displayTower = null;
         }
     }
@@ -122,8 +116,11 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == this.button) {
-            this.displayTower = new ExampleTower(1, 160, 30, new IntCoord(Map.MAP_WIDTH * Map.TILE_SIZE, 0), towerManager.getImage());
+        if(e.getSource() == this.attackMageButton) {
+            if(this.gameState.getMoney() >= displayTower) {
+                this.displayTower = new Tower(1, 120, 120, 60, new IntCoord(Map.MAP_WIDTH * Map.TILE_SIZE, 0), towerManager.getImage());
+                this.selectedTower = null;
+            }
         }
     }
 }

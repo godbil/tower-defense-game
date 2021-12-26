@@ -7,10 +7,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.geom.Line2D;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
 
@@ -25,8 +22,8 @@ public class Game extends JPanel implements ActionListener, KeyListener {
     private EnemyManager enemyManager;
     private TowerManager towerManager;
     private UI ui;
+    private GameState gameState;
 
-    private ImageObserver comp;
     private BufferedImage rock;
 
     public Game(){
@@ -35,17 +32,17 @@ public class Game extends JPanel implements ActionListener, KeyListener {
         this.requestFocus();
 
         this.map = new Map();
-        this.enemyManager = new EnemyManager();
         this.towerManager = new TowerManager();
-        this.ui = new UI(this.map, this.towerManager, enemyManager);
+        this.gameState = new GameState();
+        this.enemyManager = new EnemyManager(this.gameState);
+        this.ui = new UI(this.map, this.towerManager, this.gameState);
 
         try {
             rock = ImageIO.read(new File("assets/rock.png"));
         }
-        catch (IOException ex) {
-        }
+        catch (IOException ignored) {
 
-        comp = new JComponent() {};
+        }
     }
 
     private void init() {
@@ -54,7 +51,9 @@ public class Game extends JPanel implements ActionListener, KeyListener {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        this.gameState.init();
         this.enemyManager.init(this.map.getMap());
+        this.towerManager.init();
     }
 
     @Override
@@ -77,6 +76,9 @@ public class Game extends JPanel implements ActionListener, KeyListener {
     private void update() {
         this.enemyManager.update(this.map.getMap());
         this.towerManager.update(this.map.getMap(), this.enemyManager.getEnemies());
+        if(this.gameState.getHealth() <= 0) {
+            this.init();
+        }
     }
 
     @Override
@@ -88,7 +90,7 @@ public class Game extends JPanel implements ActionListener, KeyListener {
         enemyManager.paint(g2);
         ui.paint(g2);
 
-        g.drawImage(rock, -10, 3 * Map.TILE_SIZE, comp);
+        g.drawImage(rock, -10, 3 * Map.TILE_SIZE, null);
     }
 
     @Override

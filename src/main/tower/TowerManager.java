@@ -22,8 +22,13 @@ public class TowerManager {
         try {
             attackMage = ImageIO.read(new File("assets/attackmage1.png"));
         }
-        catch (IOException ex) {
+        catch (IOException ignored) {
+
         }
+    }
+
+    public void init() {
+        this.towers.clear();
     }
 
     public void update(int[][] map, ArrayList<Enemy> enemies){
