@@ -1,6 +1,5 @@
 package main.tower;
 
-import main.DoubleCoord;
 import main.IntCoord;
 import main.Map;
 import main.enemy.Enemy;
@@ -33,7 +32,15 @@ public class TowerManager {
                 String[] param = line.split(" ");
                 if(param[1].equals("Projectile")) {
                     BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[4] + ".png"));
-                    projectileTypes.put(param[0], new Projectile(Integer.parseInt(param[2]), Integer.parseInt(param[3]), sprite));
+                    projectileTypes.put(param[0], new Projectile(Double.parseDouble(param[2]), Integer.parseInt(param[3]), sprite));
+                }
+                else if(param[1].equals("SplashProjectile")) {
+                    BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[4] + ".png"));
+                    projectileTypes.put(param[0], new SplashProjectile(Double.parseDouble(param[2]), Integer.parseInt(param[3]), sprite));
+                }
+                else if(param[1].equals("PierceProjectile")) {
+                    BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[4] + ".png"));
+                    projectileTypes.put(param[0], new PierceProjectile(Double.parseDouble(param[2]), Integer.parseInt(param[3]), sprite, Integer.parseInt(param[5])));
                 }
             }
             file = Path.of("assets/towers.txt");

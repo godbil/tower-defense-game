@@ -1,0 +1,2 @@
+SmallGoblin Enemy 5 2 32 goblin1
+LargeGoblin Enemy 12 0.5 64 goblin2

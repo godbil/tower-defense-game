@@ -54,6 +54,7 @@ public class Game extends JPanel implements ActionListener, KeyListener {
         this.gameState.init();
         this.enemyManager.init(this.map.getMap());
         this.towerManager.init();
+        this.ui.init();
     }
 
     @Override

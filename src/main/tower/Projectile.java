@@ -10,16 +10,18 @@ import java.awt.image.BufferedImage;
 public class Projectile {
     private DoubleCoord position;
     private DoubleCoord velocity;
-    private double speed;
-    private int size;
-    private boolean active;
+    protected double speed;
+    protected int size;
+    protected int hitCount;
+    protected boolean active;
 
-    private BufferedImage sprite;
+    protected BufferedImage sprite;
 
     public Projectile(double speed, int size, BufferedImage sprite) {
         this.speed = speed;
         this.size = size;
         this.sprite = sprite;
+        this.hitCount = 0;
         this.active = true;
     }
 
@@ -28,6 +30,7 @@ public class Projectile {
         this.velocity = calculateVelocity(speed, target);
         this.size = size;
         this.sprite = sprite;
+        this.hitCount = 0;
         this.active = true;
     }
 
@@ -55,7 +58,12 @@ public class Projectile {
     }
 
     public void hit(){
+        this.hitCount++;
         this.active = false;
+    }
+
+    public void postUpdate() {
+
     }
 
     public boolean isActive(){

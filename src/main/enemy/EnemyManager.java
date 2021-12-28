@@ -7,12 +7,16 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class EnemyManager {
     private final ArrayList<DoubleCoord> startPos;
     private final ArrayList<Direction> startDirs;
     private final ArrayList<Enemy> enemies;
+    private final HashMap<String, Enemy> enemyTypes;
 
     private int timer;
     private int enemyQuota;
@@ -26,12 +30,20 @@ public class EnemyManager {
         enemies = new ArrayList<>();
         startPos = new ArrayList<>();
         startDirs = new ArrayList<>();
+        enemyTypes = new HashMap<>();
 
         this.gameState = gameState;
 
         try {
-            smallGoblin = ImageIO.read(new File("assets/sprites/goblin1.png"));
-            largeGoblin = ImageIO.read(new File("assets/sprites/goblin2.png"));
+            Path file = Path.of("assets/enemies.txt");
+            java.util.List<String> content = Files.readAllLines(file);
+            for(String line : content) {
+                String[] param = line.split(" ");
+                if(param[1].equals("Enemy")) {
+                    BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[5] + ".png"));
+                    enemyTypes.put(param[0], new Enemy(Integer.parseInt(param[2]), Double.parseDouble(param[3]), Integer.parseInt(param[4]), sprite));
+                }
+            }
         }
         catch (IOException ignored) {
         }
@@ -116,11 +128,11 @@ public class EnemyManager {
         for(int i = 0; i < this.startPos.size() && i < this.startDirs.size(); i++) {
             int random = (int)(Math.random()*2+1);
             if(random == 1) {
-                Enemy smallGoblin = new Enemy(3, 4, this.startPos.get(i), this.startDirs.get(i), Map.TILE_SIZE / 2, this.smallGoblin);
+                Enemy smallGoblin = enemyTypes.get("SmallGoblin").copy(this.startPos.get(i), this.startDirs.get(i));
                 enemies.add(smallGoblin);
             }
             else if(random == 2) {
-                Enemy largeGoblin = new Enemy(10, 2, this.startPos.get(i), this.startDirs.get(i), Map.TILE_SIZE, this.largeGoblin);
+                Enemy largeGoblin = enemyTypes.get("LargeGoblin").copy(this.startPos.get(i), this.startDirs.get(i));
                 enemies.add(largeGoblin);
             }
         }

@@ -1,1 +1,4 @@
-MagicBall Projectile 25 8 magicball
+AttackMagicBall Projectile 8 16 attackmagicball
+SupportMagicBall Projectile 4 16 supportmagicball
+WarriorSlash Projectile 6 16 warriorslash
+CatapultRock Projectile 10 16 catapultrock

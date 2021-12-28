@@ -57,11 +57,12 @@ public class Tower {
         for (Projectile projectile : projectiles) {
             projectile.update();
             for(Enemy enemy : enemies) {
-                if (projectile.collision(enemy)) {
+                if (projectile.isActive() && projectile.collision(enemy)) {
                     enemy.takeDamage(this.damage);
                     projectile.hit();
                 }
             }
+            projectile.postUpdate();
         }
         projectiles.removeIf(projectile -> !projectile.isActive());
     }
