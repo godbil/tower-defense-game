@@ -38,7 +38,7 @@ public class Game extends JPanel implements ActionListener, KeyListener {
         this.ui = new UI(this.map, this.towerManager, this.gameState);
 
         try {
-            rock = ImageIO.read(new File("assets/rock.png"));
+            rock = ImageIO.read(new File("assets/sprites/rock.png"));
         }
         catch (IOException ignored) {
 

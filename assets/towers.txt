@@ -1,0 +1,1 @@
+AttackMage Tower 1 120 120 60 attackmage1 MagicBall

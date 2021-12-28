@@ -7,14 +7,14 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class ExampleTower extends Tower {
-    public ExampleTower(int damage, int range, int fireRate, IntCoord tileLocation, BufferedImage image) {
-        super(damage, range, fireRate, tileLocation, image);
+
+    public ExampleTower(int damage, int range, int cost, int fireRate, IntCoord tileLocation, BufferedImage image, Projectile projectileType) {
+        super(damage, range, cost, fireRate, tileLocation, image, projectileType);
     }
 
     @Override
     public boolean fireProjectile(Enemy enemy) {
-        Projectile project = new ProjectileExample(10, this.getCenter(), 5, enemy.getCenter());
-        projectiles.add(project);
+
         return true;
     }
 

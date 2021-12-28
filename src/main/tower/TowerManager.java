@@ -1,5 +1,6 @@
 package main.tower;
 
+import main.DoubleCoord;
 import main.IntCoord;
 import main.Map;
 import main.enemy.Enemy;
@@ -9,21 +10,44 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class TowerManager {
     private final ArrayList<Tower> towers;
-
-    BufferedImage attackMage;
+    private final HashMap<String, Tower> towerTypes;
+    private final HashMap<String, Projectile> projectileTypes;
 
     public TowerManager(){
         towers = new ArrayList<>();
+        towerTypes = new HashMap<>();
+        projectileTypes = new HashMap<>();
 
         try {
-            attackMage = ImageIO.read(new File("assets/attackmage1.png"));
+            Path file = Path.of("assets/projectiles.txt");
+            List<String> content = Files.readAllLines(file);
+            for(String line : content) {
+                String[] param = line.split(" ");
+                if(param[1].equals("Projectile")) {
+                    BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[4] + ".png"));
+                    projectileTypes.put(param[0], new Projectile(Integer.parseInt(param[2]), Integer.parseInt(param[3]), sprite));
+                }
+            }
+            file = Path.of("assets/towers.txt");
+            content = Files.readAllLines(file);
+            for(String line : content) {
+                String[] param = line.split(" ");
+                if(param[1].equals("Tower")) {
+                    BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[6] + ".png"));
+                    towerTypes.put(param[0], new Tower(Integer.parseInt(param[2]), Integer.parseInt(param[3]), Integer.parseInt(param[4]), Integer.parseInt(param[5]), new IntCoord(0,0), sprite, projectileTypes.get(param[7])));
+                }
+            }
         }
-        catch (IOException ignored) {
-
+        catch (IOException exception) {
+            exception.printStackTrace();
         }
     }
 
@@ -50,6 +74,10 @@ public class TowerManager {
         }
     }
 
+    public Tower getTower(String towerName) {
+        return towerTypes.get(towerName);
+    }
+
     public Tower findSelectedTower(IntCoord selectedPosition) {
         for(Tower tower : towers) {
             if(tower.getTileLocation().equals(selectedPosition)){
@@ -57,10 +85,6 @@ public class TowerManager {
             }
         }
         return null;
-    }
-
-    public BufferedImage getImage() {
-        return attackMage;
     }
 
 }

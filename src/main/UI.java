@@ -31,7 +31,7 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
         this.map = map;
 
         this.attackMageButton = new JButton();
-        this.attackMageButton.setIcon(new ImageIcon(towerManager.getImage()));
+        this.attackMageButton.setIcon(new ImageIcon(towerManager.getTower("AttackMage").getSprite()));
         this.attackMageButton.setBounds(22 * Map.TILE_SIZE - Map.TILE_SIZE / 2,3 * Map.TILE_SIZE,64,64);
 
     }
@@ -117,8 +117,9 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.attackMageButton) {
-            if(this.gameState.getMoney() >= displayTower) {
-                this.displayTower = new Tower(1, 120, 120, 60, new IntCoord(Map.MAP_WIDTH * Map.TILE_SIZE, 0), towerManager.getImage());
+            Tower temp = towerManager.getTower("AttackMage");
+            if(this.gameState.getMoney() >= temp.getCost()) {
+                this.displayTower = temp.copy(new IntCoord(Map.MAP_WIDTH * Map.TILE_SIZE, 0));
                 this.selectedTower = null;
             }
         }

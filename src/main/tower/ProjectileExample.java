@@ -2,10 +2,11 @@ package main.tower;
 
 import main.DoubleCoord;
 
-public class ProjectileExample extends Projectile {
+import java.awt.image.BufferedImage;
 
-    public ProjectileExample(double speed, DoubleCoord position, int size, DoubleCoord target) {
-        super(speed, position, size, target);
+public class ProjectileExample extends Projectile {
+    public ProjectileExample(double speed, DoubleCoord position, int size, DoubleCoord target, BufferedImage sprite) {
+        super(speed, position, size, target, sprite);
     }
 
     /*@Override

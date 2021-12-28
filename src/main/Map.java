@@ -33,7 +33,7 @@ public class Map {
         this.map = new int[MAP_WIDTH][MAP_HEIGHT];
 
         try {
-            EasyMap1 = ImageIO.read(new File("assets/easymap1.png"));
+            EasyMap1 = ImageIO.read(new File("assets/sprites/easymap1.png"));
         }
         catch (IOException ex) {
         }
@@ -42,7 +42,7 @@ public class Map {
     }
 
     public void loadMap(String path) throws IOException {
-        Path file = Path.of("assets/" + path + ".txt");
+        Path file = Path.of("assets/maps/" + path + ".txt");
         List<String> content = Files.readAllLines(file);
         for(int i = 0; i < map[0].length; i++){
             for(int j = 0; j < map.length; j++){

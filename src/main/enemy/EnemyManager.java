@@ -30,8 +30,8 @@ public class EnemyManager {
         this.gameState = gameState;
 
         try {
-            smallGoblin = ImageIO.read(new File("assets/goblin1.png"));
-            largeGoblin = ImageIO.read(new File("assets/goblin2.png"));
+            smallGoblin = ImageIO.read(new File("assets/sprites/goblin1.png"));
+            largeGoblin = ImageIO.read(new File("assets/sprites/goblin2.png"));
         }
         catch (IOException ignored) {
         }

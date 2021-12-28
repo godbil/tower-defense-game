@@ -21,19 +21,35 @@ public class Tower {
     protected IntCoord tileLocation;
 
     protected final ArrayList<Projectile> projectiles;
+    protected Projectile projectileType;
 
-    private BufferedImage image;
+    private BufferedImage sprite;
 
-    public Tower(int damage, int range, int cost, int fireRate, IntCoord tileLocation, BufferedImage image) {
+    public Tower(int damage, int range, int cost, int fireRate, BufferedImage image, Projectile projectileType) {
+        this.damage = damage;
+        this.range = range;
+        this.cost = cost;
+        this.fireRate = fireRate;
+        this.timer = 0;
+
+        this.projectiles = new ArrayList<>();
+        this.projectileType = projectileType;
+
+        this.sprite = image;
+    }
+
+    public Tower(int damage, int range, int cost, int fireRate, IntCoord tileLocation, BufferedImage image, Projectile projectileType) {
         this.damage = damage;
         this.range = range;
         this.cost = cost;
         this.fireRate = fireRate;
         this.timer = 0;
         this.tileLocation = tileLocation;
-        this.projectiles = new ArrayList<>();
 
-        this.image = image;
+        this.projectiles = new ArrayList<>();
+        this.projectileType = projectileType;
+
+        this.sprite = image;
     }
 
     public void update(ArrayList<Enemy> enemies) {
@@ -80,7 +96,7 @@ public class Tower {
         for (Projectile projectile : projectiles) {
             projectile.paint(g);
         }
-        g.drawImage(image, this.tileLocation.x * Map.TILE_SIZE, this.tileLocation.y * Map.TILE_SIZE, null);
+        g.drawImage(sprite, this.tileLocation.x * Map.TILE_SIZE, this.tileLocation.y * Map.TILE_SIZE, null);
 
         if(isRange) {
             Ellipse2D circle = new Ellipse2D.Double(this.tileLocation.x * Map.TILE_SIZE + offset, this.tileLocation.y * Map.TILE_SIZE + offset, this.range * 2, this.range * 2);
@@ -109,9 +125,17 @@ public class Tower {
         return this.tileLocation;
     }
 
+    public Tower copy(IntCoord tileLocation){
+        return new Tower(this.damage, this.range, this.cost, this.fireRate, tileLocation, this.sprite, this.projectileType);
+    }
+
+    public BufferedImage getSprite() {
+        return this.sprite;
+    }
+
     protected boolean fireProjectile(Enemy enemy) {
-        Projectile project = new Projectile(20, this.getCenter(), 5, enemy.getCenter());
-        projectiles.add(project);
+        Projectile projectile = this.projectileType.copy(this.getCenter(), enemy.getCenter());
+        projectiles.add(projectile);
         return true;
     }
 
