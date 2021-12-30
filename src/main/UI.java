@@ -24,6 +24,7 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
     JButton supportMageButton;
     JButton warriorButton;
     JButton catapultButton;
+    JButton tackShooterButton;
 
     public UI(Map map, TowerManager towerManager, GameState gameState) {
         this.towerManager = towerManager;
@@ -45,6 +46,10 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
         this.catapultButton = new JButton();
         this.catapultButton.setIcon(new ImageIcon(towerManager.getTower("Catapult").getSprite()));
         this.catapultButton.setBounds(24 * Map.TILE_SIZE - Map.TILE_SIZE / 2,5 * Map.TILE_SIZE,64,64);
+
+        this.tackShooterButton = new JButton();
+        this.tackShooterButton.setIcon(new ImageIcon(towerManager.getTower("TackShooter").getSprite()));
+        this.tackShooterButton.setBounds(22 * Map.TILE_SIZE - Map.TILE_SIZE / 2,7 * Map.TILE_SIZE,64,64);
     }
 
     public void addNotify(JPanel panel) {
@@ -54,11 +59,13 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
         this.supportMageButton.addActionListener(this);
         this.warriorButton.addActionListener(this);
         this.catapultButton.addActionListener(this);
+        this.tackShooterButton.addActionListener(this);
         panel.setLayout(null);
         panel.add(this.attackMageButton);
         panel.add(this.supportMageButton);
         panel.add(this.warriorButton);
         panel.add(this.catapultButton);
+        panel.add(this.tackShooterButton);
     }
 
     public void init() {
@@ -68,6 +75,12 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
     }
 
     public void paint(Graphics2D g) {
+        if(displayTower != null) {
+            displayTower.paint(g, isValid, true);
+        }
+        if(selectedTower != null) {
+            selectedTower.paint(g, isValid, true);
+        }
         Rectangle2D.Double UI = new Rectangle2D.Double(Map.MAP_WIDTH * Map.TILE_SIZE, 0, UI_WIDTH, UI_HEIGHT);
         g.draw(UI);
         g.setPaint(Color.DARK_GRAY);
@@ -82,13 +95,7 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
         g.drawString("$" + towerManager.getTower("SupportMage").getCost(), 24 * Map.TILE_SIZE - 20,3 * Map.TILE_SIZE - 5);
         g.drawString("$" + towerManager.getTower("Warrior").getCost(), 22 * Map.TILE_SIZE - 20,5 * Map.TILE_SIZE - 5);
         g.drawString("$" + towerManager.getTower("Catapult").getCost(), 24 * Map.TILE_SIZE - 20,5 * Map.TILE_SIZE - 5);
-
-        if(displayTower != null) {
-            displayTower.paint(g, isValid, true);
-        }
-        if(selectedTower != null) {
-            selectedTower.paint(g, isValid, true);
-        }
+        g.drawString("$" + towerManager.getTower("TackShooter").getCost(), 22 * Map.TILE_SIZE - 20,7 * Map.TILE_SIZE - 5);
     }
 
     @Override
@@ -169,6 +176,14 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
 
         if(e.getSource() == this.catapultButton) {
             Tower temp = towerManager.getTower("Catapult");
+            if(this.gameState.getMoney() >= temp.getCost()) {
+                this.displayTower = temp.copy(new IntCoord(Map.MAP_WIDTH * Map.TILE_SIZE, 0));
+                this.selectedTower = null;
+            }
+        }
+
+        if(e.getSource() == this.tackShooterButton) {
+            Tower temp = towerManager.getTower("TackShooter");
             if(this.gameState.getMoney() >= temp.getCost()) {
                 this.displayTower = temp.copy(new IntCoord(Map.MAP_WIDTH * Map.TILE_SIZE, 0));
                 this.selectedTower = null;

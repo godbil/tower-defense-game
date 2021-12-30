@@ -23,7 +23,7 @@ public class Tower {
     protected final ArrayList<Projectile> projectiles;
     protected Projectile projectileType;
 
-    private BufferedImage sprite;
+    protected BufferedImage sprite;
 
     public Tower(int damage, int range, int cost, int fireRate, BufferedImage image, Projectile projectileType) {
         this.damage = damage;

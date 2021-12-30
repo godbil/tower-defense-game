@@ -51,6 +51,10 @@ public class TowerManager {
                     BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[6] + ".png"));
                     towerTypes.put(param[0], new Tower(Integer.parseInt(param[2]), Integer.parseInt(param[3]), Integer.parseInt(param[4]), Integer.parseInt(param[5]), new IntCoord(0,0), sprite, projectileTypes.get(param[7])));
                 }
+                if(param[1].equals("CircularTower")) {
+                    BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[6] + ".png"));
+                    towerTypes.put(param[0], new CircularTower(Integer.parseInt(param[2]), Integer.parseInt(param[3]), Integer.parseInt(param[4]), Integer.parseInt(param[5]), new IntCoord(0,0), sprite, projectileTypes.get(param[7]), Integer.parseInt(param[8])));
+                }
             }
         }
         catch (IOException exception) {

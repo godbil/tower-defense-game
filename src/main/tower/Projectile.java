@@ -8,8 +8,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Projectile {
-    private DoubleCoord position;
-    private DoubleCoord velocity;
+    protected DoubleCoord position;
+    protected DoubleCoord velocity;
     protected double speed;
     protected int size;
     protected int hitCount;
@@ -72,6 +72,17 @@ public class Projectile {
 
     public Projectile copy(DoubleCoord position, DoubleCoord target){
         return new Projectile(this.speed, position, this.size, target, this.sprite);
+    }
+
+    public void rotate(double rotation) {
+        int width = this.sprite.getWidth();
+        int height = this.sprite.getHeight();
+        BufferedImage newSprite = new BufferedImage(this.sprite.getWidth(), this.sprite.getHeight(), this.sprite.getType());
+        Graphics2D g = newSprite.createGraphics();
+
+        g.rotate(rotation, width / 2.0, height / 2.0);
+        g.drawImage(this.sprite, null, 0, 0);
+        this.sprite = newSprite;
     }
 
     private DoubleCoord calculateVelocity(double speed, DoubleCoord target) {
