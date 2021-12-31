@@ -24,6 +24,7 @@ public class Tower {
     protected Projectile projectileType;
 
     protected BufferedImage sprite;
+    protected boolean isFlipped;
 
     public Tower(int damage, int range, int cost, int fireRate, BufferedImage image, Projectile projectileType) {
         this.damage = damage;
@@ -36,6 +37,7 @@ public class Tower {
         this.projectileType = projectileType;
 
         this.sprite = image;
+        this.isFlipped = false;
     }
 
     public Tower(int damage, int range, int cost, int fireRate, IntCoord tileLocation, BufferedImage image, Projectile projectileType) {
@@ -50,6 +52,7 @@ public class Tower {
         this.projectileType = projectileType;
 
         this.sprite = image;
+        this.isFlipped = false;
     }
 
     public void update(ArrayList<Enemy> enemies) {
@@ -97,7 +100,12 @@ public class Tower {
         for (Projectile projectile : projectiles) {
             projectile.paint(g);
         }
-        g.drawImage(sprite, this.tileLocation.x * Map.TILE_SIZE, this.tileLocation.y * Map.TILE_SIZE, null);
+        if(isFlipped){
+            g.drawImage(sprite, this.tileLocation.x * Map.TILE_SIZE + sprite.getWidth(), this.tileLocation.y * Map.TILE_SIZE, -sprite.getWidth(), sprite.getHeight(), null);
+        }
+        else {
+            g.drawImage(sprite, this.tileLocation.x * Map.TILE_SIZE, this.tileLocation.y * Map.TILE_SIZE, null);
+        }
 
         if(isRange) {
             Ellipse2D circle = new Ellipse2D.Double(this.tileLocation.x * Map.TILE_SIZE + offset, this.tileLocation.y * Map.TILE_SIZE + offset, this.range * 2, this.range * 2);
@@ -135,6 +143,7 @@ public class Tower {
     }
 
     protected boolean fireProjectile(Enemy enemy) {
+        this.isFlipped = this.getCenter().x < enemy.getCenter().x;
         Projectile projectile = this.projectileType.copy(this.getCenter(), enemy.getCenter());
         projectiles.add(projectile);
         return true;

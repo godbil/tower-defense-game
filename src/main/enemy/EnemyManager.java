@@ -21,9 +21,6 @@ public class EnemyManager {
     private int timer;
     private int enemyQuota;
 
-    private BufferedImage smallGoblin;
-    private BufferedImage largeGoblin;
-
     private final GameState gameState;
 
     public EnemyManager(GameState gameState){
@@ -77,7 +74,7 @@ public class EnemyManager {
         }
 
         this.timer = 0;
-        this.enemyQuota = this.gameState.getWave() * 10;
+        this.enemyQuota = this.gameState.getWave() * 20;
         this.enemies.clear();
     }
 
@@ -126,7 +123,7 @@ public class EnemyManager {
 
     public void spawn() {
         for(int i = 0; i < this.startPos.size() && i < this.startDirs.size(); i++) {
-            int random = (int)(Math.random()*2+1);
+            int random = (int)(Math.random()*3+1);
             if(random == 1) {
                 Enemy smallGoblin = enemyTypes.get("SmallGoblin").copy(this.startPos.get(i), this.startDirs.get(i));
                 enemies.add(smallGoblin);
@@ -134,6 +131,10 @@ public class EnemyManager {
             else if(random == 2) {
                 Enemy largeGoblin = enemyTypes.get("LargeGoblin").copy(this.startPos.get(i), this.startDirs.get(i));
                 enemies.add(largeGoblin);
+            }
+            else if(random == 3) {
+                Enemy splunky = enemyTypes.get("Splunky").copy(this.startPos.get(i), this.startDirs.get(i));
+                enemies.add(splunky);
             }
         }
     }

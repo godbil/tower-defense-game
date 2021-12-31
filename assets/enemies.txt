@@ -1,2 +1,3 @@
 SmallGoblin Enemy 5 2 32 goblin1
 LargeGoblin Enemy 12 0.5 64 goblin2
+Splunky Enemy 1 4 16 splunky

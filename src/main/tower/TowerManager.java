@@ -42,6 +42,10 @@ public class TowerManager {
                     BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[4] + ".png"));
                     projectileTypes.put(param[0], new PierceProjectile(Double.parseDouble(param[2]), Integer.parseInt(param[3]), sprite, Integer.parseInt(param[5])));
                 }
+                else if(param[1].equals("SlashProjectile")) {
+                    BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[4] + ".png"));
+                    projectileTypes.put(param[0], new SlashProjectile(Double.parseDouble(param[2]), Integer.parseInt(param[3]), sprite));
+                }
             }
             file = Path.of("assets/towers.txt");
             content = Files.readAllLines(file);

@@ -25,6 +25,7 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
     JButton warriorButton;
     JButton catapultButton;
     JButton tackShooterButton;
+    JButton mortarButton;
 
     public UI(Map map, TowerManager towerManager, GameState gameState) {
         this.towerManager = towerManager;
@@ -50,6 +51,10 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
         this.tackShooterButton = new JButton();
         this.tackShooterButton.setIcon(new ImageIcon(towerManager.getTower("TackShooter").getSprite()));
         this.tackShooterButton.setBounds(22 * Map.TILE_SIZE - Map.TILE_SIZE / 2,7 * Map.TILE_SIZE,64,64);
+
+        this.mortarButton = new JButton();
+        this.mortarButton.setIcon(new ImageIcon(towerManager.getTower("Mortar").getSprite()));
+        this.mortarButton.setBounds(24 * Map.TILE_SIZE - Map.TILE_SIZE / 2,7 * Map.TILE_SIZE,64,64);
     }
 
     public void addNotify(JPanel panel) {
@@ -60,12 +65,14 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
         this.warriorButton.addActionListener(this);
         this.catapultButton.addActionListener(this);
         this.tackShooterButton.addActionListener(this);
+        this.mortarButton.addActionListener(this);
         panel.setLayout(null);
         panel.add(this.attackMageButton);
         panel.add(this.supportMageButton);
         panel.add(this.warriorButton);
         panel.add(this.catapultButton);
         panel.add(this.tackShooterButton);
+        panel.add(this.mortarButton);
     }
 
     public void init() {
@@ -96,6 +103,7 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
         g.drawString("$" + towerManager.getTower("Warrior").getCost(), 22 * Map.TILE_SIZE - 20,5 * Map.TILE_SIZE - 5);
         g.drawString("$" + towerManager.getTower("Catapult").getCost(), 24 * Map.TILE_SIZE - 20,5 * Map.TILE_SIZE - 5);
         g.drawString("$" + towerManager.getTower("TackShooter").getCost(), 22 * Map.TILE_SIZE - 20,7 * Map.TILE_SIZE - 5);
+        g.drawString("$" + towerManager.getTower("Mortar").getCost(), 24 * Map.TILE_SIZE - 20,7 * Map.TILE_SIZE - 5);
     }
 
     @Override
@@ -184,6 +192,14 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
 
         if(e.getSource() == this.tackShooterButton) {
             Tower temp = towerManager.getTower("TackShooter");
+            if(this.gameState.getMoney() >= temp.getCost()) {
+                this.displayTower = temp.copy(new IntCoord(Map.MAP_WIDTH * Map.TILE_SIZE, 0));
+                this.selectedTower = null;
+            }
+        }
+
+        if(e.getSource() == this.mortarButton) {
+            Tower temp = towerManager.getTower("Mortar");
             if(this.gameState.getMoney() >= temp.getCost()) {
                 this.displayTower = temp.copy(new IntCoord(Map.MAP_WIDTH * Map.TILE_SIZE, 0));
                 this.selectedTower = null;
