@@ -1,6 +1,8 @@
 AttackMagicBall Projectile 8 16 attackmagicball
 SupportMagicBall Projectile 4 16 supportmagicball
-WarriorSlash SlashProjectile 6 16 warriorslash
+WarriorSlash RotatableProjectile 6 16 warriorslash
 CatapultRock Projectile 10 16 catapultrock
 Tack Projectile 8 8 tack 4
-MortarBomb Projectile 12 16 mortarbomb
+MortarBomb MortarProjectile 10 32 mortarbomb mortarexplosion 5
+FarmCow PierceProjectile 2 16 farmcow 10000
+BallistaArrow RotatableProjectile 10 16 ballistaarrow

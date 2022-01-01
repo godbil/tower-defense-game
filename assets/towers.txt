@@ -3,4 +3,6 @@ SupportMage Tower 1 120 90 80 supportmage1 SupportMagicBall
 Warrior Tower 2 100 100 80 warrior1 WarriorSlash
 Catapult Tower 2 160 180 110 catapult1 CatapultRock
 TackShooter CircularTower 1 100 160 80 tackshooter1 Tack 4
-Mortar Tower 1 10000 200 160 mortar1 MortarBomb
+Mortar MortarTower 1 10000 200 120 mortar1 MortarBomb mortartarget
+Farm Tower 0 100 500 100 farm1 FarmCow
+Ballista Tower 2 10000 250 100 ballista1 BallistaArrow

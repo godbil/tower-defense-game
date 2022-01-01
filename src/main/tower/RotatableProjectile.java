@@ -4,20 +4,20 @@ import main.DoubleCoord;
 
 import java.awt.image.BufferedImage;
 
-public class SlashProjectile extends Projectile{
+public class RotatableProjectile extends Projectile{
 
-    public SlashProjectile(double speed, int size, BufferedImage sprite) {
+    public RotatableProjectile(double speed, int size, BufferedImage sprite) {
         super(speed, size, sprite);
     }
 
-    public SlashProjectile(double speed, DoubleCoord position, int size, DoubleCoord target, BufferedImage sprite) {
+    public RotatableProjectile(double speed, DoubleCoord position, int size, DoubleCoord target, BufferedImage sprite) {
         super(speed, position, size, target, sprite);
         rotate(findAngle(target));
     }
 
     @Override
-    public SlashProjectile copy(DoubleCoord position, DoubleCoord target){
-        return new SlashProjectile(this.speed, position, this.size, target, this.sprite);
+    public RotatableProjectile copy(DoubleCoord position, DoubleCoord target){
+        return new RotatableProjectile(this.speed, position, this.size, target, this.sprite);
     }
 
     private double findAngle(DoubleCoord target) {

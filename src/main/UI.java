@@ -1,5 +1,6 @@
 package main;
 
+import main.tower.MortarTower;
 import main.tower.Tower;
 import main.tower.TowerManager;
 
@@ -15,6 +16,7 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
     private Tower displayTower;
     private Tower selectedTower;
     private boolean isValid;
+    private boolean retarget;
 
     private final TowerManager towerManager;
     private final GameState gameState;
@@ -26,11 +28,15 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
     JButton catapultButton;
     JButton tackShooterButton;
     JButton mortarButton;
+    JButton farmButton;
+    JButton ballistaButton;
+    JButton mortarRetargetButton;
 
     public UI(Map map, TowerManager towerManager, GameState gameState) {
         this.towerManager = towerManager;
         this.gameState = gameState;
         this.map = map;
+        this.retarget = false;
 
         this.attackMageButton = new JButton();
         this.attackMageButton.setIcon(new ImageIcon(towerManager.getTower("AttackMage").getSprite()));
@@ -55,6 +61,17 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
         this.mortarButton = new JButton();
         this.mortarButton.setIcon(new ImageIcon(towerManager.getTower("Mortar").getSprite()));
         this.mortarButton.setBounds(24 * Map.TILE_SIZE - Map.TILE_SIZE / 2,7 * Map.TILE_SIZE,64,64);
+
+        this.farmButton = new JButton();
+        this.farmButton.setIcon(new ImageIcon(towerManager.getTower("Farm").getSprite()));
+        this.farmButton.setBounds(22 * Map.TILE_SIZE - Map.TILE_SIZE / 2,9 * Map.TILE_SIZE,64,64);
+
+        this.ballistaButton = new JButton();
+        this.ballistaButton.setIcon(new ImageIcon(towerManager.getTower("Ballista").getSprite()));
+        this.ballistaButton.setBounds(24 * Map.TILE_SIZE - Map.TILE_SIZE / 2,9 * Map.TILE_SIZE,64,64);
+
+        this.mortarRetargetButton = new JButton("Target Mortar");
+        this.mortarRetargetButton.setBounds(22 * Map.TILE_SIZE - Map.TILE_SIZE / 2,11 * Map.TILE_SIZE,192,64);
     }
 
     public void addNotify(JPanel panel) {
@@ -66,6 +83,9 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
         this.catapultButton.addActionListener(this);
         this.tackShooterButton.addActionListener(this);
         this.mortarButton.addActionListener(this);
+        this.farmButton.addActionListener(this);
+        this.ballistaButton.addActionListener(this);
+        this.mortarRetargetButton.addActionListener(this);
         panel.setLayout(null);
         panel.add(this.attackMageButton);
         panel.add(this.supportMageButton);
@@ -73,6 +93,10 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
         panel.add(this.catapultButton);
         panel.add(this.tackShooterButton);
         panel.add(this.mortarButton);
+        panel.add(this.farmButton);
+        panel.add(this.ballistaButton);
+        panel.add(this.mortarRetargetButton);
+        mortarRetargetButton.setVisible(false);
     }
 
     public void init() {
@@ -104,6 +128,8 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
         g.drawString("$" + towerManager.getTower("Catapult").getCost(), 24 * Map.TILE_SIZE - 20,5 * Map.TILE_SIZE - 5);
         g.drawString("$" + towerManager.getTower("TackShooter").getCost(), 22 * Map.TILE_SIZE - 20,7 * Map.TILE_SIZE - 5);
         g.drawString("$" + towerManager.getTower("Mortar").getCost(), 24 * Map.TILE_SIZE - 20,7 * Map.TILE_SIZE - 5);
+        g.drawString("$" + towerManager.getTower("Farm").getCost(), 22 * Map.TILE_SIZE - 20,9 * Map.TILE_SIZE - 5);
+        g.drawString("$" + towerManager.getTower("Ballista").getCost(), 24 * Map.TILE_SIZE - 20,9 * Map.TILE_SIZE - 5);
     }
 
     @Override
@@ -130,7 +156,19 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
     @Override
     public void mousePressed(MouseEvent e) {
         if (e.getX() / Map.TILE_SIZE >= 0 && e.getX() / Map.TILE_SIZE < Map.MAP_WIDTH && e.getY() / Map.TILE_SIZE >= 0 && e.getY() / Map.TILE_SIZE < Map.MAP_HEIGHT && this.displayTower == null) {
-            selectedTower = towerManager.findSelectedTower(new IntCoord(e.getX() / Map.TILE_SIZE, e.getY() / Map.TILE_SIZE));
+            if(selectedTower instanceof MortarTower && retarget) {
+                ((MortarTower) selectedTower).setTargetPosition(new DoubleCoord(e.getX(), e.getY()));
+            }
+            else {
+                selectedTower = towerManager.findSelectedTower(new IntCoord(e.getX() / Map.TILE_SIZE, e.getY() / Map.TILE_SIZE));
+                if(selectedTower instanceof MortarTower) {
+                    mortarRetargetButton.setVisible(true);
+                    retarget = false;
+                }
+                else {
+                    mortarRetargetButton.setVisible(false);
+                }
+            }
         }
         if(e.getButton() == MouseEvent.BUTTON3) {
             displayTower = null;
@@ -205,5 +243,26 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
                 this.selectedTower = null;
             }
         }
+
+        if(e.getSource() == this.farmButton) {
+            Tower temp = towerManager.getTower("Farm");
+            if(this.gameState.getMoney() >= temp.getCost()) {
+                this.displayTower = temp.copy(new IntCoord(Map.MAP_WIDTH * Map.TILE_SIZE, 0));
+                this.selectedTower = null;
+            }
+        }
+
+        if(e.getSource() == this.ballistaButton) {
+            Tower temp = towerManager.getTower("Ballista");
+            if(this.gameState.getMoney() >= temp.getCost()) {
+                this.displayTower = temp.copy(new IntCoord(Map.MAP_WIDTH * Map.TILE_SIZE, 0));
+                this.selectedTower = null;
+            }
+        }
+
+        if(e.getSource() == this.mortarRetargetButton) {
+            this.retarget = !this.retarget;
+        }
+        mortarRetargetButton.setVisible(this.selectedTower instanceof MortarTower);
     }
 }

@@ -2,6 +2,7 @@ package main.tower;
 
 import main.DoubleCoord;
 import main.Game;
+import main.IntCoord;
 import main.enemy.Enemy;
 
 import java.awt.*;
@@ -47,9 +48,7 @@ public class Projectile {
     }
 
     public void paint(Graphics2D g) {
-        if(this.active) {
-            g.drawImage(this.sprite, (int)this.position.x - this.size, (int)this.position.y - this.size, null);
-        }
+        g.drawImage(this.sprite, (int)this.position.x - this.size, (int)this.position.y - this.size, null);
     }
 
     public boolean collision(Enemy enemy) {
@@ -85,7 +84,7 @@ public class Projectile {
         this.sprite = newSprite;
     }
 
-    private DoubleCoord calculateVelocity(double speed, DoubleCoord target) {
+    protected DoubleCoord calculateVelocity(double speed, DoubleCoord target) {
         double width = target.x - this.position.x;
         double height = target.y - this.position.y;
         double distance = Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2));

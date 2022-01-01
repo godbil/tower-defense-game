@@ -23,7 +23,6 @@ public class Map {
     public static final int TOWER = 3;
     public static final int OBSTACLE = 4;
 
-    private ImageObserver comp;
     private BufferedImage EasyMap1;
 
     private int[][] map;
@@ -37,7 +36,6 @@ public class Map {
         catch (IOException ex) {
         }
 
-        comp = new JComponent() {};
     }
 
     public void loadMap(String path) throws IOException {
@@ -52,7 +50,7 @@ public class Map {
     }
 
     public void paint(Graphics2D g){
-        g.drawImage(EasyMap1, 0, 0, comp);
+        g.drawImage(EasyMap1, 0, 0, null);
     }
 
     public int[][] getMap() {

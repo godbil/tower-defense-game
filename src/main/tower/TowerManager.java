@@ -42,9 +42,14 @@ public class TowerManager {
                     BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[4] + ".png"));
                     projectileTypes.put(param[0], new PierceProjectile(Double.parseDouble(param[2]), Integer.parseInt(param[3]), sprite, Integer.parseInt(param[5])));
                 }
-                else if(param[1].equals("SlashProjectile")) {
+                else if(param[1].equals("RotatableProjectile")) {
                     BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[4] + ".png"));
-                    projectileTypes.put(param[0], new SlashProjectile(Double.parseDouble(param[2]), Integer.parseInt(param[3]), sprite));
+                    projectileTypes.put(param[0], new RotatableProjectile(Double.parseDouble(param[2]), Integer.parseInt(param[3]), sprite));
+                }
+                else if(param[1].equals("MortarProjectile")) {
+                    BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[4] + ".png"));
+                    BufferedImage explosion = ImageIO.read(new File("assets/sprites/" + param[5] + ".png"));
+                    projectileTypes.put(param[0], new MortarProjectile(Double.parseDouble(param[2]), Integer.parseInt(param[3]), sprite, explosion, Integer.parseInt(param[6])));
                 }
             }
             file = Path.of("assets/towers.txt");
@@ -55,9 +60,14 @@ public class TowerManager {
                     BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[6] + ".png"));
                     towerTypes.put(param[0], new Tower(Integer.parseInt(param[2]), Integer.parseInt(param[3]), Integer.parseInt(param[4]), Integer.parseInt(param[5]), new IntCoord(0,0), sprite, projectileTypes.get(param[7])));
                 }
-                if(param[1].equals("CircularTower")) {
+                else if(param[1].equals("CircularTower")) {
                     BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[6] + ".png"));
                     towerTypes.put(param[0], new CircularTower(Integer.parseInt(param[2]), Integer.parseInt(param[3]), Integer.parseInt(param[4]), Integer.parseInt(param[5]), new IntCoord(0,0), sprite, projectileTypes.get(param[7]), Integer.parseInt(param[8])));
+                }
+                else if(param[1].equals("MortarTower")) {
+                    BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[6] + ".png"));
+                    BufferedImage target = ImageIO.read(new File("assets/sprites/" + param[8] + ".png"));
+                    towerTypes.put(param[0], new MortarTower(Integer.parseInt(param[2]), Integer.parseInt(param[3]), Integer.parseInt(param[4]), Integer.parseInt(param[5]), new IntCoord(0,0), sprite, projectileTypes.get(param[7]), target));
                 }
             }
         }

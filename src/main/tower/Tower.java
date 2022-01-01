@@ -56,6 +56,7 @@ public class Tower {
     }
 
     public void update(ArrayList<Enemy> enemies) {
+        projectiles.removeIf(projectile -> !projectile.isActive());
         fire(enemies);
         for (Projectile projectile : projectiles) {
             projectile.update();
@@ -67,7 +68,6 @@ public class Tower {
             }
             projectile.postUpdate();
         }
-        projectiles.removeIf(projectile -> !projectile.isActive());
     }
 
     public void fire(ArrayList<Enemy> enemies) {
