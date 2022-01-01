@@ -9,7 +9,7 @@ public class GameState {
 
     public void init() {
         this.health = 50;
-        this.money = 300;
+        this.money = 1000;
         this.wave = 1;
     }
 

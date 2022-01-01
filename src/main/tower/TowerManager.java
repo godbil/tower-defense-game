@@ -1,11 +1,13 @@
 package main.tower;
 
+import main.DoubleCoord;
 import main.IntCoord;
 import main.Map;
 import main.enemy.Enemy;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -19,11 +21,13 @@ public class TowerManager {
     private final ArrayList<Tower> towers;
     private final HashMap<String, Tower> towerTypes;
     private final HashMap<String, Projectile> projectileTypes;
+    private final DoubleCoord mousePosition;
 
     public TowerManager(){
         towers = new ArrayList<>();
         towerTypes = new HashMap<>();
         projectileTypes = new HashMap<>();
+        mousePosition = new DoubleCoord(0, 0);
 
         try {
             Path file = Path.of("assets/projectiles.txt");
@@ -69,6 +73,14 @@ public class TowerManager {
                     BufferedImage target = ImageIO.read(new File("assets/sprites/" + param[8] + ".png"));
                     towerTypes.put(param[0], new MortarTower(Integer.parseInt(param[2]), Integer.parseInt(param[3]), Integer.parseInt(param[4]), Integer.parseInt(param[5]), new IntCoord(0,0), sprite, projectileTypes.get(param[7]), target));
                 }
+                else if(param[1].equals("BallistaTower")) {
+                    BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[6] + ".png"));
+                    towerTypes.put(param[0], new BallistaTower(Integer.parseInt(param[2]), Integer.parseInt(param[3]), Integer.parseInt(param[4]), Integer.parseInt(param[5]), new IntCoord(0,0), sprite, projectileTypes.get(param[7])));
+                }
+                else if(param[1].equals("FarmTower")) {
+                    BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[6] + ".png"));
+                    towerTypes.put(param[0], new FarmTower(Integer.parseInt(param[2]), Integer.parseInt(param[3]), Integer.parseInt(param[4]), Integer.parseInt(param[5]), new IntCoord(0,0), sprite, projectileTypes.get(param[7]), Integer.parseInt(param[8]), Integer.parseInt(param[9])));
+                }
             }
         }
         catch (IOException exception) {
@@ -80,9 +92,12 @@ public class TowerManager {
         this.towers.clear();
     }
 
-    public void update(int[][] map, ArrayList<Enemy> enemies){
+    public void update(ArrayList<Enemy> enemies){
         for(Tower tower : towers){
             tower.update(enemies);
+            if(tower instanceof BallistaTower) {
+                ((BallistaTower) tower).setTargetPosition(mousePosition);
+            }
         }
     }
 
@@ -112,4 +127,8 @@ public class TowerManager {
         return null;
     }
 
+    public void setMousePosition(MouseEvent e) {
+        this.mousePosition.x = e.getX();
+        this.mousePosition.y = e.getY();
+    }
 }

@@ -6,7 +6,6 @@ import main.Map;
 import main.enemy.Enemy;
 
 import java.awt.*;
-import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 
 
@@ -28,6 +27,7 @@ public class MortarTower extends Tower{
 
     public void setTargetPosition(DoubleCoord position) {
         targetPosition = position;
+        this.isFlipped = this.getCenter().x < this.targetPosition.x;
     }
 
     @Override
@@ -36,37 +36,20 @@ public class MortarTower extends Tower{
     }
 
     @Override
-    public void paint(Graphics2D g, boolean isValid, boolean isRange) {
-        double offset = Map.TILE_SIZE / 2.0 - this.range;
-        for (Projectile projectile : projectiles) {
-            projectile.paint(g);
-        }
-        if(isFlipped){
-            g.drawImage(sprite, this.tileLocation.x * Map.TILE_SIZE + sprite.getWidth(), this.tileLocation.y * Map.TILE_SIZE, -sprite.getWidth(), sprite.getHeight(), null);
-        }
-        else {
-            g.drawImage(sprite, this.tileLocation.x * Map.TILE_SIZE, this.tileLocation.y * Map.TILE_SIZE, null);
-        }
+    public boolean collision(Enemy enemy) {
+        return true;
+    }
 
+    @Override
+    public void paint(Graphics2D g, boolean isValid, boolean isRange) {
+        super.paint(g, isValid, isRange);
         if(isRange) {
-            Ellipse2D circle = new Ellipse2D.Double(this.tileLocation.x * Map.TILE_SIZE + offset, this.tileLocation.y * Map.TILE_SIZE + offset, this.range * 2, this.range * 2);
             g.drawImage(target, (int)targetPosition.x - Map.TILE_SIZE / 2, (int)targetPosition.y - Map.TILE_SIZE / 2, null);
-            Color rangeColor;
-            if(isValid) {
-                rangeColor = new Color(0.6f, 0.6f, 0.6f, .4f);
-            }
-            else{
-                rangeColor = new Color(1f, 0.0f, 0.0f, .4f);
-            }
-            g.setPaint(rangeColor);
-            g.draw(circle);
-            g.fill(circle);
         }
     }
 
     @Override
     protected boolean fireProjectile(Enemy enemy) {
-        this.isFlipped = this.getCenter().x < this.targetPosition.x;
         Projectile projectile = this.projectileType.copy(this.getCenter(), this.targetPosition);
         projectiles.add(projectile);
         return true;

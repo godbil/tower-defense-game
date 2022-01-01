@@ -76,7 +76,7 @@ public class Game extends JPanel implements ActionListener, KeyListener {
 
     private void update() {
         this.enemyManager.update(this.map.getMap());
-        this.towerManager.update(this.map.getMap(), this.enemyManager.getEnemies());
+        this.towerManager.update(this.enemyManager.getEnemies());
         if(this.gameState.getHealth() <= 0) {
             this.init();
         }

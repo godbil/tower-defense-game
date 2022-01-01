@@ -5,4 +5,4 @@ CatapultRock Projectile 10 16 catapultrock
 Tack Projectile 8 8 tack 4
 MortarBomb MortarProjectile 10 32 mortarbomb mortarexplosion 5
 FarmCow PierceProjectile 2 16 farmcow 10000
-BallistaArrow RotatableProjectile 10 16 ballistaarrow
+BallistaArrow RotatableProjectile 20 16 ballistaarrow

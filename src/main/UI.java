@@ -1,8 +1,6 @@
 package main;
 
-import main.tower.MortarTower;
-import main.tower.Tower;
-import main.tower.TowerManager;
+import main.tower.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,6 +29,9 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
     JButton farmButton;
     JButton ballistaButton;
     JButton mortarRetargetButton;
+
+    private int moneyShowTimer;
+    private int moneyGain;
 
     public UI(Map map, TowerManager towerManager, GameState gameState) {
         this.towerManager = towerManager;
@@ -72,6 +73,9 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
 
         this.mortarRetargetButton = new JButton("Target Mortar");
         this.mortarRetargetButton.setBounds(22 * Map.TILE_SIZE - Map.TILE_SIZE / 2,11 * Map.TILE_SIZE,192,64);
+
+        this.moneyShowTimer = 0;
+        this.moneyGain = 0;
     }
 
     public void addNotify(JPanel panel) {
@@ -120,7 +124,7 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
         g.setPaint(Color.white);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
         g.drawString("Health: " + this.gameState.getHealth(), Map.TILE_SIZE / 4, Map.TILE_SIZE / 2);
-        g.drawString("Money: " + this.gameState.getMoney(), 2 * Map.TILE_SIZE, Map.TILE_SIZE / 2);
+        g.drawString("Money: $" + this.gameState.getMoney(), 2 * Map.TILE_SIZE, Map.TILE_SIZE / 2);
         g.drawString("Wave: " + gameState.getWave() + " / " + gameState.MAX_WAVE, 19 * Map.TILE_SIZE, Map.TILE_SIZE / 2);
         g.drawString("$" + towerManager.getTower("AttackMage").getCost(), 22 * Map.TILE_SIZE - 25,3 * Map.TILE_SIZE - 5);
         g.drawString("$" + towerManager.getTower("SupportMage").getCost(), 24 * Map.TILE_SIZE - 20,3 * Map.TILE_SIZE - 5);
@@ -130,6 +134,10 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
         g.drawString("$" + towerManager.getTower("Mortar").getCost(), 24 * Map.TILE_SIZE - 20,7 * Map.TILE_SIZE - 5);
         g.drawString("$" + towerManager.getTower("Farm").getCost(), 22 * Map.TILE_SIZE - 20,9 * Map.TILE_SIZE - 5);
         g.drawString("$" + towerManager.getTower("Ballista").getCost(), 24 * Map.TILE_SIZE - 20,9 * Map.TILE_SIZE - 5);
+        if(moneyShowTimer > 0 && moneyGain > 0) {
+            g.drawString("+$" + moneyGain, 3 * Map.TILE_SIZE, Map.TILE_SIZE);
+            moneyShowTimer--;
+        }
     }
 
     @Override
@@ -139,11 +147,12 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        if(displayTower != null) {
-            if (e.getX() / Map.TILE_SIZE >= 0 && e.getX() / Map.TILE_SIZE < Map.MAP_WIDTH && e.getY() / Map.TILE_SIZE >= 0 && e.getY() / Map.TILE_SIZE < Map.MAP_HEIGHT) {
+        if (e.getX() / Map.TILE_SIZE >= 0 && e.getX() / Map.TILE_SIZE < Map.MAP_WIDTH && e.getY() / Map.TILE_SIZE >= 0 && e.getY() / Map.TILE_SIZE < Map.MAP_HEIGHT) {
+            if(displayTower != null) {
                 isValid = map.getMap()[e.getX() / Map.TILE_SIZE][e.getY() / Map.TILE_SIZE] == 0;
                 displayTower.setTileLocation(new IntCoord(e.getX() / Map.TILE_SIZE, e.getY() / Map.TILE_SIZE));
             }
+            this.towerManager.setMousePosition(e);
         }
     }
 
@@ -164,6 +173,13 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
                 if(selectedTower instanceof MortarTower) {
                     mortarRetargetButton.setVisible(true);
                     retarget = false;
+                }
+                else if(selectedTower instanceof FarmTower) {
+                    gameState.addMoney(((FarmTower) selectedTower).getStoredMoney());
+                    moneyGain = ((FarmTower) selectedTower).getStoredMoney();
+                    ((FarmTower) selectedTower).resetStoredMoney();
+                    moneyShowTimer = Game.FPS;
+                    mortarRetargetButton.setVisible(false);
                 }
                 else {
                     mortarRetargetButton.setVisible(false);
