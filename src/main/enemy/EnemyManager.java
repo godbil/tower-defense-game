@@ -123,7 +123,7 @@ public class EnemyManager {
 
     public void spawn() {
         for(int i = 0; i < this.startPos.size() && i < this.startDirs.size(); i++) {
-            int random = (int)(Math.random()*3+1);
+            int random = (int)(Math.random()*(gameState.getWave()+2)+gameState.getWave());
             if(random == 1) {
                 Enemy smallGoblin = enemyTypes.get("SmallGoblin").copy(this.startPos.get(i), this.startDirs.get(i));
                 enemies.add(smallGoblin);
@@ -135,6 +135,22 @@ public class EnemyManager {
             else if(random == 3) {
                 Enemy splunky = enemyTypes.get("Splunky").copy(this.startPos.get(i), this.startDirs.get(i));
                 enemies.add(splunky);
+            }
+            else if(random == 4) {
+                Enemy shrek = enemyTypes.get("Ogre").copy(this.startPos.get(i), this.startDirs.get(i));
+                enemies.add(shrek);
+            }
+            else if(random == 5) {
+                Enemy thief = enemyTypes.get("Thief").copy(this.startPos.get(i), this.startDirs.get(i));
+                enemies.add(thief);
+            }
+            else if(random == 6) {
+                Enemy darkmage = enemyTypes.get("DarkMage").copy(this.startPos.get(i), this.startDirs.get(i));
+                enemies.add(darkmage);
+            }
+            else if(random == 7) {
+                Enemy headlessMan = enemyTypes.get("HeadlessMan").copy(this.startPos.get(i), this.startDirs.get(i));
+                enemies.add(headlessMan);
             }
         }
     }

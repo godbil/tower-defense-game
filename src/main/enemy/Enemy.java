@@ -85,16 +85,17 @@ public class Enemy {
 
     public void paint(Graphics2D g){
         if(this.active) {
-            double offset = Map.TILE_SIZE / 2.0 - this.size / 2.0;
+            double heightOffset = Map.TILE_SIZE / 2.0 - this.sprite.getHeight() / 2.0;
+            double widthOffset = Map.TILE_SIZE / 2.0 - this.sprite.getWidth() / 2.0;
 
-            g.drawImage(this.sprite, (int) Math.round(position.x + offset), (int) Math.round(position.y + offset), null);
+            g.drawImage(this.sprite, (int) Math.round(position.x + widthOffset), (int) Math.round(position.y + heightOffset), null);
 
-            Rectangle2D rect2 = new Rectangle((int) Math.round(position.x), (int) Math.round(position.y - HEALTH_OFFSET + offset), Map.TILE_SIZE, HEALTH_HEIGHT);
+            Rectangle2D rect2 = new Rectangle((int) Math.round(position.x), (int) Math.round(position.y - HEALTH_OFFSET + heightOffset), Map.TILE_SIZE, HEALTH_HEIGHT);
             g.setPaint(Color.red);
             g.draw(rect2);
             g.fill(rect2);
 
-            Rectangle2D rect3 = new Rectangle((int) Math.round(position.x), (int) Math.round(position.y - HEALTH_OFFSET + offset), Map.TILE_SIZE * this.health / this.maxHealth, HEALTH_HEIGHT);
+            Rectangle2D rect3 = new Rectangle((int) Math.round(position.x), (int) Math.round(position.y - HEALTH_OFFSET + heightOffset), Map.TILE_SIZE * this.health / this.maxHealth, HEALTH_HEIGHT);
             g.setPaint(Color.green);
             g.draw(rect3);
             g.fill(rect3);
