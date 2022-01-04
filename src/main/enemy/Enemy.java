@@ -32,7 +32,11 @@ public class Enemy {
 
     private BufferedImage sprite;
 
-    public Enemy(int maxHealth, double movementSpeed, int size, BufferedImage image) {
+    protected boolean camo;
+    protected boolean magicProof;
+    protected boolean armoured;
+
+    public Enemy(int maxHealth, double movementSpeed, int size, BufferedImage image, boolean camo, boolean magicProof, boolean armoured) {
         this.maxHealth = maxHealth;
         this.health = maxHealth;
         this.movementSpeed = movementSpeed;
@@ -41,9 +45,13 @@ public class Enemy {
         this.active = true;
 
         this.sprite = image;
+
+        this.camo = camo;
+        this.magicProof = magicProof;
+        this.armoured = armoured;
     }
 
-    public Enemy(int maxHealth, double movementSpeed, DoubleCoord position, Direction direction, int size, BufferedImage image) {
+    public Enemy(int maxHealth, double movementSpeed, DoubleCoord position, Direction direction, int size, BufferedImage image, boolean camo, boolean magicProof, boolean armoured) {
         this.maxHealth = maxHealth;
         this.health = maxHealth;
         this.movementSpeed = movementSpeed;
@@ -54,6 +62,10 @@ public class Enemy {
         this.active = true;
 
         this.sprite = image;
+
+        this.camo = camo;
+        this.magicProof = magicProof;
+        this.armoured = armoured;
     }
 
     public void takeDamage(int damage){
@@ -144,11 +156,23 @@ public class Enemy {
     }
 
     public Enemy copy(DoubleCoord position, Direction direction){
-        return new Enemy(this.maxHealth, this.movementSpeed, position, direction, this.size, this.sprite);
+        return new Enemy(this.maxHealth, this.movementSpeed, position, direction, this.size, this.sprite, this.camo, this.magicProof, this.armoured);
     }
 
     public int getHealth() {
         return health;
+    }
+
+    public boolean isCamo() {
+        return this.camo;
+    }
+
+    public boolean isMagicProof() {
+        return this.magicProof;
+    }
+
+    public boolean isArmoured() {
+        return this.armoured;
     }
 
     public DoubleCoord getCenter() {

@@ -1,0 +1,4 @@
+GameSettings 100 1000 20
+LargeGoblin 50 SmallGoblin 48 Splunky 2 10
+LargeGoblin 25 SmallGoblin 25 Splunky 50 18
+LargeGoblin 10 SmallGoblin 10 Splunky 20 Thief 60 16

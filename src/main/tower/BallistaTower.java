@@ -10,13 +10,13 @@ import java.awt.image.BufferedImage;
 public class BallistaTower extends Tower{
     private DoubleCoord targetPosition;
 
-    public BallistaTower(int damage, int range, int cost, int fireRate, BufferedImage image, Projectile projectileType) {
-        super(damage, range, cost, fireRate, image, projectileType);
+    public BallistaTower(int damage, int range, int cost, int fireRate, BufferedImage image, Projectile projectileType, boolean camoHittable, boolean magicProofHittable, boolean armourHittable) {
+        super(damage, range, cost, fireRate, image, projectileType, camoHittable, magicProofHittable, armourHittable);
         targetPosition = new DoubleCoord(Map.TILE_SIZE, Map.TILE_SIZE);
     }
 
-    public BallistaTower(int damage, int range, int cost, int fireRate, IntCoord tileLocation, BufferedImage image, Projectile projectileType) {
-        super(damage, range, cost, fireRate, tileLocation, image, projectileType);
+    public BallistaTower(int damage, int range, int cost, int fireRate, IntCoord tileLocation, BufferedImage image, Projectile projectileType, boolean camoHittable, boolean magicProofHittable, boolean armourHittable) {
+        super(damage, range, cost, fireRate, tileLocation, image, projectileType, camoHittable, magicProofHittable, armourHittable);
         targetPosition = new DoubleCoord(Map.TILE_SIZE, Map.TILE_SIZE);
     }
 
@@ -27,7 +27,7 @@ public class BallistaTower extends Tower{
 
     @Override
     public BallistaTower copy(IntCoord tileLocation){
-        return new BallistaTower(this.damage, this.range, this.cost, this.fireRate, tileLocation, this.sprite, this.projectileType);
+        return new BallistaTower(this.damage, this.range, this.cost, this.fireRate, tileLocation, this.sprite, this.projectileType, this.camoHittable, this.magicProofHittable, this.armourHittable);
     }
 
     @Override

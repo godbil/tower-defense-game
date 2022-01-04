@@ -17,6 +17,7 @@ public class EnemyManager {
     private final ArrayList<Direction> startDirs;
     private final ArrayList<Enemy> enemies;
     private final HashMap<String, Enemy> enemyTypes;
+    private final HashMap<String[], int[]> easyWaves;
 
     private int timer;
     private int enemyQuota;
@@ -28,6 +29,7 @@ public class EnemyManager {
         startPos = new ArrayList<>();
         startDirs = new ArrayList<>();
         enemyTypes = new HashMap<>();
+        easyWaves = new HashMap<>();
 
         this.gameState = gameState;
 
@@ -38,8 +40,18 @@ public class EnemyManager {
                 String[] param = line.split(" ");
                 if(param[1].equals("Enemy")) {
                     BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[5] + ".png"));
-                    enemyTypes.put(param[0], new Enemy(Integer.parseInt(param[2]), Double.parseDouble(param[3]), Integer.parseInt(param[4]), sprite));
+                    enemyTypes.put(param[0], new Enemy(Integer.parseInt(param[2]), Double.parseDouble(param[3]), Integer.parseInt(param[4]), sprite, Boolean.parseBoolean(param[6]), Boolean.parseBoolean(param[7]), Boolean.parseBoolean(param[8])));
                 }
+            }
+            file = Path.of("assets/easymode.txt");
+            content = Files.readAllLines(file);
+            for(String line : content) {
+                String[] param = line.split(" ");
+                System.out.println(param.length);
+                easyWaves.put(new String[] {param[0]}, new int[] {Integer.parseInt(param[1]), Integer.parseInt(param[2]), Integer.parseInt(param[3])});
+                easyWaves.put(new String[] {param[0], param[2], param[4]}, new int[] {Integer.parseInt(param[1]), Integer.parseInt(param[3]), Integer.parseInt(param[5]), Integer.parseInt(param[6])});
+                easyWaves.put(new String[] {param[0], param[2], param[4]}, new int[] {Integer.parseInt(param[1]), Integer.parseInt(param[3]), Integer.parseInt(param[5]), Integer.parseInt(param[6])});
+                easyWaves.put(new String[] {param[0], param[2], param[4], param[6]}, new int[] {Integer.parseInt(param[1]), Integer.parseInt(param[3]), Integer.parseInt(param[5]), Integer.parseInt(param[7]), Integer.parseInt(param[8])});
             }
         }
         catch (IOException ignored) {
@@ -123,7 +135,7 @@ public class EnemyManager {
 
     public void spawn() {
         for(int i = 0; i < this.startPos.size() && i < this.startDirs.size(); i++) {
-            int random = (int)(Math.random()*(gameState.getWave()+2)+gameState.getWave());
+            int random = (int)(Math.random()*(gameState.getWave()+1)+gameState.getWave());
             if(random == 1) {
                 Enemy smallGoblin = enemyTypes.get("SmallGoblin").copy(this.startPos.get(i), this.startDirs.get(i));
                 enemies.add(smallGoblin);

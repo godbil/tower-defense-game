@@ -26,7 +26,11 @@ public class Tower {
     protected BufferedImage sprite;
     protected boolean isFlipped;
 
-    public Tower(int damage, int range, int cost, int fireRate, BufferedImage image, Projectile projectileType) {
+    protected boolean camoHittable;
+    protected boolean magicProofHittable;
+    protected boolean armourHittable;
+
+    public Tower(int damage, int range, int cost, int fireRate, BufferedImage image, Projectile projectileType, boolean camoHittable, boolean magicProofHittable, boolean armourHittable) {
         this.damage = damage;
         this.range = range;
         this.cost = cost;
@@ -38,9 +42,13 @@ public class Tower {
 
         this.sprite = image;
         this.isFlipped = false;
+
+        this.camoHittable = camoHittable;
+        this.magicProofHittable = magicProofHittable;
+        this.armourHittable = armourHittable;
     }
 
-    public Tower(int damage, int range, int cost, int fireRate, IntCoord tileLocation, BufferedImage image, Projectile projectileType) {
+    public Tower(int damage, int range, int cost, int fireRate, IntCoord tileLocation, BufferedImage image, Projectile projectileType, boolean camoHittable, boolean magicProofHittable, boolean armourHittable) {
         this.damage = damage;
         this.range = range;
         this.cost = cost;
@@ -53,6 +61,10 @@ public class Tower {
 
         this.sprite = image;
         this.isFlipped = false;
+
+        this.camoHittable = camoHittable;
+        this.magicProofHittable = magicProofHittable;
+        this.armourHittable = armourHittable;
     }
 
     public void update(ArrayList<Enemy> enemies) {
@@ -62,8 +74,14 @@ public class Tower {
             projectile.update();
             for(Enemy enemy : enemies) {
                 if (projectile.isActive() && projectile.collision(enemy)) {
-                    enemy.takeDamage(this.damage);
-                    projectile.hit();
+                    if((enemy.isArmoured() && !this.armourHittable) || (enemy.isMagicProof() && !this.magicProofHittable) || (enemy.isCamo() && !this.camoHittable)) {
+                        projectile.setActive(false);
+                        break;
+                    }
+                    else {
+                        enemy.takeDamage(this.damage);
+                        projectile.hit();
+                    }
                 }
             }
             projectile.postUpdate();
@@ -87,8 +105,13 @@ public class Tower {
     }
 
     public boolean collision(Enemy enemy) {
-        double distance = Math.pow(enemy.getCenter().x - this.getCenter().x, 2) + Math.pow(enemy.getCenter().y - this.getCenter().y, 2);
-        return distance < Math.pow(enemy.getRadius() + range, 2);
+        if(enemy.isCamo() && !this.camoHittable) {
+            return false;
+        }
+        else {
+            double distance = Math.pow(enemy.getCenter().x - this.getCenter().x, 2) + Math.pow(enemy.getCenter().y - this.getCenter().y, 2);
+            return distance < Math.pow(enemy.getRadius() + range, 2);
+        }
     }
 
     public void paint(Graphics2D g) {
@@ -135,7 +158,7 @@ public class Tower {
     }
 
     public Tower copy(IntCoord tileLocation){
-        return new Tower(this.damage, this.range, this.cost, this.fireRate, tileLocation, this.sprite, this.projectileType);
+        return new Tower(this.damage, this.range, this.cost, this.fireRate, tileLocation, this.sprite, this.projectileType, this.camoHittable, this.magicProofHittable, this.armourHittable);
     }
 
     public BufferedImage getSprite() {

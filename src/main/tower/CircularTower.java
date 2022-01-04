@@ -10,19 +10,19 @@ import java.awt.image.BufferedImage;
 public class CircularTower extends Tower {
     private int projectileCount;
 
-    public CircularTower(int damage, int range, int cost, int fireRate, BufferedImage image, Projectile projectileType, int projectileCount) {
-        super(damage, range, cost, fireRate, image, projectileType);
+    public CircularTower(int damage, int range, int cost, int fireRate, BufferedImage image, Projectile projectileType, int projectileCount, boolean camoHittable, boolean magicProofHittable, boolean armourHittable) {
+        super(damage, range, cost, fireRate, image, projectileType, camoHittable, magicProofHittable, armourHittable);
         this.projectileCount = projectileCount;
     }
 
-    public CircularTower(int damage, int range, int cost, int fireRate, IntCoord tileLocation, BufferedImage image, Projectile projectileType, int projectileCount) {
-        super(damage, range, cost, fireRate, tileLocation, image, projectileType);
+    public CircularTower(int damage, int range, int cost, int fireRate, IntCoord tileLocation, BufferedImage image, Projectile projectileType, int projectileCount, boolean camoHittable, boolean magicProofHittable, boolean armourHittable) {
+        super(damage, range, cost, fireRate, tileLocation, image, projectileType, camoHittable, magicProofHittable, armourHittable);
         this.projectileCount = projectileCount;
     }
 
     @Override
     public CircularTower copy(IntCoord tileLocation){
-        return new CircularTower(this.damage, this.range, this.cost, this.fireRate, tileLocation, this.sprite, this.projectileType, this.projectileCount);
+        return new CircularTower(this.damage, this.range, this.cost, this.fireRate, tileLocation, this.sprite, this.projectileType, this.projectileCount, this.camoHittable, this.magicProofHittable, this.armourHittable);
     }
 
     @Override

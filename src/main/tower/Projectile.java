@@ -2,7 +2,6 @@ package main.tower;
 
 import main.DoubleCoord;
 import main.Game;
-import main.IntCoord;
 import main.enemy.Enemy;
 
 import java.awt.*;
@@ -67,6 +66,10 @@ public class Projectile {
 
     public boolean isActive(){
         return this.active;
+    }
+
+    public void setActive(boolean temp) {
+        this.active = temp;
     }
 
     public Projectile copy(DoubleCoord position, DoubleCoord target){

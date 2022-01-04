@@ -1,8 +1,8 @@
-AttackMage Tower 1 150 120 60 attackmage1 AttackMagicBall
-SupportMage Tower 1 120 90 80 supportmage1 SupportMagicBall
-Warrior Tower 2 100 100 80 warrior1 WarriorSlash
-Catapult Tower 2 160 180 110 catapult1 CatapultRock
-TackShooter CircularTower 1 100 160 80 tackshooter1 Tack 4
-Mortar MortarTower 1 64 200 120 mortar1 MortarBomb mortartarget
-Farm FarmTower 0 100 500 600 farm1 farmcow 20 200
-Ballista BallistaTower 2 64 250 100 ballista1 BallistaArrow
+AttackMage Tower 1 150 120 60 attackmage1 AttackMagicBall true false true
+SupportMage Tower 1 120 90 80 supportmage1 SupportMagicBall true false false
+Warrior Tower 2 100 100 80 warrior1 WarriorSlash false true false
+Catapult Tower 2 160 180 110 catapult1 CatapultRock false true true
+TackShooter CircularTower 1 100 160 100 tackshooter1 Tack 4 false true false
+Mortar MortarTower 1 64 200 120 mortar1 MortarBomb mortartarget false true true
+Farm FarmTower 0 100 500 300 farm1 farmcow 20 200 false false false
+Ballista BallistaTower 2 64 250 120 ballista1 BallistaArrow true true false

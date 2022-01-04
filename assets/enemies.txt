@@ -1,7 +1,7 @@
-SmallGoblin Enemy 5 2 32 goblin1
-LargeGoblin Enemy 15 1 64 goblin2
-Splunky Enemy 1 4 16 splunky
-HeadlessMan Enemy 100 2 106 headlessman
-Ogre Enemy 50 0.5 64 shrek
-DarkMage Enemy 30 2 64 darkmage
-Thief Enemy 15 3 64 thief
+SmallGoblin Enemy 5 2 32 goblin1 false false false
+LargeGoblin Enemy 15 1 64 goblin2 false false false
+Splunky Enemy 1 4 16 splunky false false false
+HeadlessMan Enemy 100 2 106 headlessman true true true
+Ogre Enemy 50 0.5 64 shrek false false true
+DarkMage Enemy 30 2 64 darkmage false true false
+Thief Enemy 15 3 64 thief true false false

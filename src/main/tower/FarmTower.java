@@ -15,16 +15,16 @@ public class FarmTower extends Tower{
     private final int maxStoredMoney;
     private int moneyShowTimer;
 
-    public FarmTower(int damage, int range, int cost, int fireRate, BufferedImage image, Projectile projectileType, int moneyGain, int maxStoredMoney) {
-        super(damage, range, cost, fireRate, image, projectileType);
+    public FarmTower(int damage, int range, int cost, int fireRate, BufferedImage image, Projectile projectileType, int moneyGain, int maxStoredMoney, boolean camoHittable, boolean magicProofHittable, boolean armourHittable) {
+        super(damage, range, cost, fireRate, image, projectileType, camoHittable, magicProofHittable, armourHittable);
         this.moneyGain = moneyGain;
         this.maxStoredMoney = maxStoredMoney;
         this.storedMoney = 0;
         this.moneyShowTimer = 0;
     }
 
-    public FarmTower(int damage, int range, int cost, int fireRate, IntCoord tileLocation, BufferedImage image, Projectile projectileType, int moneyGain, int maxStoredMoney) {
-        super(damage, range, cost, fireRate, tileLocation, image, projectileType);
+    public FarmTower(int damage, int range, int cost, int fireRate, IntCoord tileLocation, BufferedImage image, Projectile projectileType, int moneyGain, int maxStoredMoney, boolean camoHittable, boolean magicProofHittable, boolean armourHittable) {
+        super(damage, range, cost, fireRate, tileLocation, image, projectileType, camoHittable, magicProofHittable, armourHittable);
         this.moneyGain = moneyGain;
         this.maxStoredMoney = maxStoredMoney;
         this.storedMoney = 0;
@@ -58,7 +58,7 @@ public class FarmTower extends Tower{
 
     @Override
     public FarmTower copy(IntCoord tileLocation){
-        return new FarmTower(this.damage, this.range, this.cost, this.fireRate, tileLocation, this.sprite, this.projectileType, this.moneyGain, this.maxStoredMoney);
+        return new FarmTower(this.damage, this.range, this.cost, this.fireRate, tileLocation, this.sprite, this.projectileType, this.moneyGain, this.maxStoredMoney, this.camoHittable, this.magicProofHittable, this.armourHittable);
     }
 
     public int getStoredMoney() {
