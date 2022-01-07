@@ -23,6 +23,7 @@ public class Enemy {
     private int maxHealth;
     private int size;
     private boolean active;
+    private int moneyGive;
 
     private double movementSpeed;
     private DoubleCoord position;
@@ -35,12 +36,14 @@ public class Enemy {
     protected boolean camo;
     protected boolean magicProof;
     protected boolean armoured;
+    private boolean isFlipped;
 
-    public Enemy(int maxHealth, double movementSpeed, int size, BufferedImage image, boolean camo, boolean magicProof, boolean armoured) {
+    public Enemy(int maxHealth, double movementSpeed, int size, BufferedImage image, boolean camo, boolean magicProof, boolean armoured, int moneyGive) {
         this.maxHealth = maxHealth;
         this.health = maxHealth;
         this.movementSpeed = movementSpeed;
         this.size = size;
+        this.moneyGive = moneyGive;
 
         this.active = true;
 
@@ -49,15 +52,17 @@ public class Enemy {
         this.camo = camo;
         this.magicProof = magicProof;
         this.armoured = armoured;
+        this.isFlipped = false;
     }
 
-    public Enemy(int maxHealth, double movementSpeed, DoubleCoord position, Direction direction, int size, BufferedImage image, boolean camo, boolean magicProof, boolean armoured) {
+    public Enemy(int maxHealth, double movementSpeed, DoubleCoord position, Direction direction, int size, BufferedImage image, boolean camo, boolean magicProof, boolean armoured, int moneyGive) {
         this.maxHealth = maxHealth;
         this.health = maxHealth;
         this.movementSpeed = movementSpeed;
         this.position = position.copy();
         this.direction = direction;
         this.size = size;
+        this.moneyGive = moneyGive;
 
         this.active = true;
 
@@ -66,6 +71,7 @@ public class Enemy {
         this.camo = camo;
         this.magicProof = magicProof;
         this.armoured = armoured;
+        this.isFlipped = false;
     }
 
     public void takeDamage(int damage){
@@ -93,6 +99,12 @@ public class Enemy {
         else if(this.position.y < this.target.y){
             this.position.y = Math.min(this.position.y + this.movementSpeed, this.target.y);
         }
+        if(this.direction == Direction.RIGHT) {
+            isFlipped = false;
+        }
+        else if(this.direction == Direction.LEFT) {
+            isFlipped = true;
+        }
     }
 
     public void paint(Graphics2D g){
@@ -100,7 +112,13 @@ public class Enemy {
             double heightOffset = Map.TILE_SIZE / 2.0 - this.sprite.getHeight() / 2.0;
             double widthOffset = Map.TILE_SIZE / 2.0 - this.sprite.getWidth() / 2.0;
 
-            g.drawImage(this.sprite, (int) Math.round(position.x + widthOffset), (int) Math.round(position.y + heightOffset), null);
+            if(isFlipped){
+                g.drawImage(sprite, (int) Math.round(position.x + widthOffset) + sprite.getWidth(), (int) Math.round(position.y + heightOffset), -sprite.getWidth(), sprite.getHeight(), null);
+            }
+            else {
+                g.drawImage(this.sprite, (int) Math.round(position.x + widthOffset), (int) Math.round(position.y + heightOffset), null);
+            }
+
 
             Rectangle2D rect2 = new Rectangle((int) Math.round(position.x), (int) Math.round(position.y - HEALTH_OFFSET + heightOffset), Map.TILE_SIZE, HEALTH_HEIGHT);
             g.setPaint(Color.red);
@@ -155,8 +173,8 @@ public class Enemy {
         }
     }
 
-    public Enemy copy(DoubleCoord position, Direction direction){
-        return new Enemy(this.maxHealth, this.movementSpeed, position, direction, this.size, this.sprite, this.camo, this.magicProof, this.armoured);
+    public Enemy copy(DoubleCoord position, Direction direction, double movementMultiplier){
+        return new Enemy(this.maxHealth, this.movementSpeed * movementMultiplier, position, direction, this.size, this.sprite, this.camo, this.magicProof, this.armoured, this.moneyGive);
     }
 
     public int getHealth() {
@@ -181,6 +199,10 @@ public class Enemy {
 
     public double getRadius() {
         return this.size / SQRT_TWO;
+    }
+
+    public int getMoneyGive() {
+        return this.moneyGive;
     }
 
     public boolean isActive() {

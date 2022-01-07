@@ -1,4 +1,16 @@
-GameSettings 100 1000 20
-LargeGoblin 50 SmallGoblin 48 Splunky 2 10
-LargeGoblin 25 SmallGoblin 25 Splunky 50 18
-LargeGoblin 10 SmallGoblin 10 Splunky 20 Thief 60 16
+100 1000 15 0.9 0.9
+10 MadCow 50 MadBunny 50
+12 MadCow 25 MadBunny 25 MadWolf 50
+10 MadWolf 25 SmallSkeleton 50 Skeleton 25
+15 SmallSkeleton 25 Skeleton 25 SkeletonHead 50
+20 SmallSkeleton 10 Skeleton 10 SmallGoblin 25 LargeGoblin 15 SkeletonHead 40
+15 SkeletonHead 90 Splunky 10
+10 SmallAttackSkeleton 40 AttackSkeleton 30 Splunky 10 Thief 20
+30 SmallSkeleton 20 Skeleton 20 SmallAttackSkeleton 20 AttackSkeleton 20 SkeletonHead 10 MadWolf 10
+15 AttackSmallGoblin 20 AttackLargeGoblin 20 Thief 40 SkeletonHead 20
+15 DarkMage 80 AttackLargeGoblin 20
+50 AttackSmallGoblin 30 AttackLargeGoblin 30 Splunky 20 SkeletonHead 20
+10 Ogre 80 DarkMage 20
+20 DarkMage 40 Thief 50 NotSplunky 10
+25 Ogre 50 Thief 40 DarkMage 10
+1 HeadlessMan 100

@@ -31,8 +31,8 @@ public class MortarTower extends Tower{
     }
 
     @Override
-    public MortarTower copy(IntCoord tileLocation){
-        return new MortarTower(this.damage, this.range, this.cost, this.fireRate, tileLocation, this.sprite, this.projectileType, this.target, this.camoHittable, this.magicProofHittable, this.armourHittable);
+    public MortarTower copy(IntCoord tileLocation, double moneyMultiplier){
+        return new MortarTower(this.damage, this.range, (int)Math.round(this.cost * moneyMultiplier), this.fireRate, tileLocation, this.sprite, this.projectileType, this.target, this.camoHittable, this.magicProofHittable, this.armourHittable);
     }
 
     @Override

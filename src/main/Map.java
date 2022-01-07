@@ -1,10 +1,8 @@
 package main;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -23,22 +21,18 @@ public class Map {
     public static final int TOWER = 3;
     public static final int OBSTACLE = 4;
 
-    private BufferedImage EasyMap1;
+    private BufferedImage mapSprite;
+    private BufferedImage mapSpriteOverlay;
 
     private int[][] map;
 
     public Map(){
         this.map = new int[MAP_WIDTH][MAP_HEIGHT];
-
-        try {
-            EasyMap1 = ImageIO.read(new File("assets/sprites/easymap1.png"));
-        }
-        catch (IOException ex) {
-        }
-
     }
 
     public void loadMap(String path) throws IOException {
+        mapSprite = ImageIO.read(new File("assets/sprites/" + path + ".png"));
+        mapSpriteOverlay = ImageIO.read(new File("assets/sprites/" + path + "Overlay.png"));
         Path file = Path.of("assets/maps/" + path + ".txt");
         List<String> content = Files.readAllLines(file);
         for(int i = 0; i < map[0].length; i++){
@@ -50,7 +44,11 @@ public class Map {
     }
 
     public void paint(Graphics2D g){
-        g.drawImage(EasyMap1, 0, 0, null);
+        g.drawImage(mapSprite, 0, 0, null);
+    }
+
+    public void postDraw(Graphics2D g) {
+        g.drawImage(mapSpriteOverlay, 0, 0, null);
     }
 
     public int[][] getMap() {

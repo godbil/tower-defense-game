@@ -3,28 +3,23 @@ package main;
 import main.enemy.EnemyManager;
 import main.tower.TowerManager;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
-public class Game extends JPanel implements ActionListener, KeyListener {
+public class Game extends JPanel implements ActionListener {
     public static final int WIDTH = Map.MAP_WIDTH * Map.TILE_SIZE + UI.UI_WIDTH;
     public static final int HEIGHT = Math.max(Map.MAP_HEIGHT * Map.TILE_SIZE, UI.UI_HEIGHT);
 
     public static final int FPS = 60;
     public static final int TIMER = 1000 / FPS;
 
-    private Map map;
-    private EnemyManager enemyManager;
-    private TowerManager towerManager;
-    private UI ui;
-    private GameState gameState;
-
-    private BufferedImage rock;
+    private final Map map;
+    private final EnemyManager enemyManager;
+    private final TowerManager towerManager;
+    private final UI ui;
+    private final GameState gameState;
 
     public Game(){
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -37,12 +32,6 @@ public class Game extends JPanel implements ActionListener, KeyListener {
         this.enemyManager = new EnemyManager(this.gameState);
         this.ui = new UI(this.map, this.towerManager, this.gameState);
 
-        try {
-            rock = ImageIO.read(new File("assets/sprites/rock.png"));
-        }
-        catch (IOException ignored) {
-
-        }
     }
 
     private void init() {
@@ -60,18 +49,12 @@ public class Game extends JPanel implements ActionListener, KeyListener {
     @Override
     public void addNotify() {
         super.addNotify();
-
-        this.addKeyListener(this);
         this.ui.addNotify(this);
 
         // Initialize a timer which calls actionPerformed method every TIMER amount of milliseconds
         Timer timer = new Timer(TIMER, this);
         timer.start();
         this.init();
-    }
-
-    private void input() {
-
     }
 
     private void update() {
@@ -90,30 +73,14 @@ public class Game extends JPanel implements ActionListener, KeyListener {
         towerManager.paint(g2);
         enemyManager.paint(g2);
         ui.paint(g2);
-
-        g.drawImage(rock, -10, 3 * Map.TILE_SIZE, null);
+        map.postDraw(g2);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        this.input();
         this.update();
         this.repaint();
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
-    }
 
 }

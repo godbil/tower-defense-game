@@ -1,7 +1,18 @@
-SmallGoblin Enemy 5 2 32 goblin1 false false false
-LargeGoblin Enemy 15 1 64 goblin2 false false false
-Splunky Enemy 1 4 16 splunky false false false
-HeadlessMan Enemy 100 2 106 headlessman true true true
-Ogre Enemy 50 0.5 64 shrek false false true
-DarkMage Enemy 30 2 64 darkmage false true false
-Thief Enemy 15 3 64 thief true false false
+MadBunny Enemy 1 1.8 32 madbunny false false false 10
+MadCow Enemy 2 1 32 madcow false false false 15
+MadWolf Enemy 3 2 32 madwolf false false false 20
+SkeletonHead Enemy 2 4 16 skeletonhead false false false 25
+SmallSkeleton Enemy 5 1.2 32 smallskeleton false false false 30
+Skeleton Enemy 8 1.2 32 skeleton false false false 35
+SmallGoblin Enemy 10 1.2 32 goblin1 false false false 40
+LargeGoblin Enemy 15 1 64 goblin2 false false false 45
+SmallAttackSkeleton Enemy 12 2.2 32 smallattackskeleton false false false 50
+AttackSkeleton Enemy 18 2.4 32 attackskeleton false false false 60
+AttackSmallGoblin Enemy 18 2.6 32 attackgoblin1 false false false 70
+AttackLargeGoblin Enemy 25 2.8 64 attackgoblin2 false false false 80
+Splunky Enemy 4 4 16 splunky false false false 40
+NotSplunky Enemy 30 3 64 notsplunky false false false 100
+Thief Enemy 15 4 64 thief true false false 110
+DarkMage Enemy 35 2.5 64 darkmage false true false 115
+Ogre Enemy 80 0.8 64 shrek false false true 150
+HeadlessMan Enemy 200 2 106 headlessman false true true 300

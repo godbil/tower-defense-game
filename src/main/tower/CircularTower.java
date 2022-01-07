@@ -21,8 +21,8 @@ public class CircularTower extends Tower {
     }
 
     @Override
-    public CircularTower copy(IntCoord tileLocation){
-        return new CircularTower(this.damage, this.range, this.cost, this.fireRate, tileLocation, this.sprite, this.projectileType, this.projectileCount, this.camoHittable, this.magicProofHittable, this.armourHittable);
+    public CircularTower copy(IntCoord tileLocation, double moneyMultiplier){
+        return new CircularTower(this.damage, this.range, (int)Math.round(this.cost * moneyMultiplier), this.fireRate, tileLocation, this.sprite, this.projectileType, this.projectileCount, this.camoHittable, this.magicProofHittable, this.armourHittable);
     }
 
     @Override

@@ -83,8 +83,8 @@ public class TowerManager {
                 }
             }
         }
-        catch (IOException exception) {
-            exception.printStackTrace();
+        catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

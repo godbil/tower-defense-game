@@ -106,7 +106,7 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
     public void init() {
         this.displayTower = null;
         this.selectedTower = null;
-        this.isValid = true;
+        this.isValid = false;
     }
 
     public void paint(Graphics2D g) {
@@ -125,15 +125,15 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
         g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
         g.drawString("Health: " + this.gameState.getHealth(), Map.TILE_SIZE / 4, Map.TILE_SIZE / 2);
         g.drawString("Money: $" + this.gameState.getMoney(), 2 * Map.TILE_SIZE, Map.TILE_SIZE / 2);
-        g.drawString("Wave: " + gameState.getWave() + " / " + gameState.MAX_WAVE, 19 * Map.TILE_SIZE, Map.TILE_SIZE / 2);
-        g.drawString("$" + towerManager.getTower("AttackMage").getCost(), 22 * Map.TILE_SIZE - 25,3 * Map.TILE_SIZE - 5);
-        g.drawString("$" + towerManager.getTower("SupportMage").getCost(), 24 * Map.TILE_SIZE - 20,3 * Map.TILE_SIZE - 5);
-        g.drawString("$" + towerManager.getTower("Warrior").getCost(), 22 * Map.TILE_SIZE - 20,5 * Map.TILE_SIZE - 5);
-        g.drawString("$" + towerManager.getTower("Catapult").getCost(), 24 * Map.TILE_SIZE - 20,5 * Map.TILE_SIZE - 5);
-        g.drawString("$" + towerManager.getTower("TackShooter").getCost(), 22 * Map.TILE_SIZE - 20,7 * Map.TILE_SIZE - 5);
-        g.drawString("$" + towerManager.getTower("Mortar").getCost(), 24 * Map.TILE_SIZE - 20,7 * Map.TILE_SIZE - 5);
-        g.drawString("$" + towerManager.getTower("Farm").getCost(), 22 * Map.TILE_SIZE - 20,9 * Map.TILE_SIZE - 5);
-        g.drawString("$" + towerManager.getTower("Ballista").getCost(), 24 * Map.TILE_SIZE - 20,9 * Map.TILE_SIZE - 5);
+        g.drawString("Wave: " + gameState.getWave() + " / " + gameState.getMaxWave(), 19 * Map.TILE_SIZE, Map.TILE_SIZE / 2);
+        g.drawString("$" + Math.round(towerManager.getTower("AttackMage").getCost() * gameState.getMoneyMultiplier()), 22 * Map.TILE_SIZE - 25,3 * Map.TILE_SIZE - 5);
+        g.drawString("$" + Math.round(towerManager.getTower("SupportMage").getCost() * gameState.getMoneyMultiplier()), 24 * Map.TILE_SIZE - 20,3 * Map.TILE_SIZE - 5);
+        g.drawString("$" + Math.round(towerManager.getTower("Warrior").getCost() * gameState.getMoneyMultiplier()), 22 * Map.TILE_SIZE - 20,5 * Map.TILE_SIZE - 5);
+        g.drawString("$" + Math.round(towerManager.getTower("Catapult").getCost() * gameState.getMoneyMultiplier()), 24 * Map.TILE_SIZE - 20,5 * Map.TILE_SIZE - 5);
+        g.drawString("$" + Math.round(towerManager.getTower("TackShooter").getCost() * gameState.getMoneyMultiplier()), 22 * Map.TILE_SIZE - 20,7 * Map.TILE_SIZE - 5);
+        g.drawString("$" + Math.round(towerManager.getTower("Mortar").getCost() * gameState.getMoneyMultiplier()), 24 * Map.TILE_SIZE - 20,7 * Map.TILE_SIZE - 5);
+        g.drawString("$" + Math.round(towerManager.getTower("Farm").getCost() * gameState.getMoneyMultiplier()), 22 * Map.TILE_SIZE - 20,9 * Map.TILE_SIZE - 5);
+        g.drawString("$" + Math.round(towerManager.getTower("Ballista").getCost() * gameState.getMoneyMultiplier()), 24 * Map.TILE_SIZE - 20,9 * Map.TILE_SIZE - 5);
         if(moneyShowTimer > 0 && moneyGain > 0) {
             g.drawString("+$" + moneyGain, 3 * Map.TILE_SIZE, Map.TILE_SIZE);
             moneyShowTimer--;
@@ -153,6 +153,9 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
                 displayTower.setTileLocation(new IntCoord(e.getX() / Map.TILE_SIZE, e.getY() / Map.TILE_SIZE));
             }
             this.towerManager.setMousePosition(e);
+        }
+        else if(displayTower != null) {
+            isValid = false;
         }
     }
 
@@ -188,6 +191,7 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
         }
         if(e.getButton() == MouseEvent.BUTTON3) {
             displayTower = null;
+            isValid = true;
         }
     }
 
@@ -212,68 +216,35 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        Tower temp = null;
         if(e.getSource() == this.attackMageButton) {
-            Tower temp = towerManager.getTower("AttackMage");
-            if(this.gameState.getMoney() >= temp.getCost()) {
-                this.displayTower = temp.copy(new IntCoord(Map.MAP_WIDTH * Map.TILE_SIZE, 0));
-                this.selectedTower = null;
-            }
+            temp = towerManager.getTower("AttackMage");
+        }
+        else if(e.getSource() == this.supportMageButton) {
+            temp = towerManager.getTower("SupportMage");
+        }
+        else if(e.getSource() == this.warriorButton) {
+            temp = towerManager.getTower("Warrior");
+        }
+        else if(e.getSource() == this.catapultButton) {
+            temp = towerManager.getTower("Catapult");
+        }
+        else if(e.getSource() == this.tackShooterButton) {
+            temp = towerManager.getTower("TackShooter");
+        }
+        else if(e.getSource() == this.mortarButton) {
+            temp = towerManager.getTower("Mortar");
+        }
+        else if(e.getSource() == this.farmButton) {
+            temp = towerManager.getTower("Farm");
+        }
+        else if(e.getSource() == this.ballistaButton) {
+            temp = towerManager.getTower("Ballista");
         }
 
-        if(e.getSource() == this.supportMageButton) {
-            Tower temp = towerManager.getTower("SupportMage");
-            if(this.gameState.getMoney() >= temp.getCost()) {
-                this.displayTower = temp.copy(new IntCoord(Map.MAP_WIDTH * Map.TILE_SIZE, 0));
-                this.selectedTower = null;
-            }
-        }
-
-        if(e.getSource() == this.warriorButton) {
-            Tower temp = towerManager.getTower("Warrior");
-            if(this.gameState.getMoney() >= temp.getCost()) {
-                this.displayTower = temp.copy(new IntCoord(Map.MAP_WIDTH * Map.TILE_SIZE, 0));
-                this.selectedTower = null;
-            }
-        }
-
-        if(e.getSource() == this.catapultButton) {
-            Tower temp = towerManager.getTower("Catapult");
-            if(this.gameState.getMoney() >= temp.getCost()) {
-                this.displayTower = temp.copy(new IntCoord(Map.MAP_WIDTH * Map.TILE_SIZE, 0));
-                this.selectedTower = null;
-            }
-        }
-
-        if(e.getSource() == this.tackShooterButton) {
-            Tower temp = towerManager.getTower("TackShooter");
-            if(this.gameState.getMoney() >= temp.getCost()) {
-                this.displayTower = temp.copy(new IntCoord(Map.MAP_WIDTH * Map.TILE_SIZE, 0));
-                this.selectedTower = null;
-            }
-        }
-
-        if(e.getSource() == this.mortarButton) {
-            Tower temp = towerManager.getTower("Mortar");
-            if(this.gameState.getMoney() >= temp.getCost()) {
-                this.displayTower = temp.copy(new IntCoord(Map.MAP_WIDTH * Map.TILE_SIZE, 0));
-                this.selectedTower = null;
-            }
-        }
-
-        if(e.getSource() == this.farmButton) {
-            Tower temp = towerManager.getTower("Farm");
-            if(this.gameState.getMoney() >= temp.getCost()) {
-                this.displayTower = temp.copy(new IntCoord(Map.MAP_WIDTH * Map.TILE_SIZE, 0));
-                this.selectedTower = null;
-            }
-        }
-
-        if(e.getSource() == this.ballistaButton) {
-            Tower temp = towerManager.getTower("Ballista");
-            if(this.gameState.getMoney() >= temp.getCost()) {
-                this.displayTower = temp.copy(new IntCoord(Map.MAP_WIDTH * Map.TILE_SIZE, 0));
-                this.selectedTower = null;
-            }
+        if(temp != null && this.gameState.getMoney() >= Math.round(temp.getCost() * gameState.getMoneyMultiplier())) {
+            this.displayTower = temp.copy(new IntCoord(Map.MAP_WIDTH * Map.TILE_SIZE, 0), gameState.getMoneyMultiplier());
+            this.selectedTower = null;
         }
 
         if(e.getSource() == this.mortarRetargetButton) {

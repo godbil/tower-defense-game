@@ -57,8 +57,8 @@ public class FarmTower extends Tower{
     }
 
     @Override
-    public FarmTower copy(IntCoord tileLocation){
-        return new FarmTower(this.damage, this.range, this.cost, this.fireRate, tileLocation, this.sprite, this.projectileType, this.moneyGain, this.maxStoredMoney, this.camoHittable, this.magicProofHittable, this.armourHittable);
+    public FarmTower copy(IntCoord tileLocation, double moneyMultiplier){
+        return new FarmTower(this.damage, this.range, (int)Math.round(this.cost * moneyMultiplier), this.fireRate, tileLocation, this.sprite, this.projectileType, this.moneyGain, this.maxStoredMoney, this.camoHittable, this.magicProofHittable, this.armourHittable);
     }
 
     public int getStoredMoney() {
