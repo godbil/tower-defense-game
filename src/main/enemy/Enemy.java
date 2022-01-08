@@ -19,24 +19,24 @@ public class Enemy {
     private static final int HEALTH_OFFSET = 20;
     private static final double SQRT_TWO = Math.sqrt(2);
 
-    private int health;
-    private int maxHealth;
-    private int size;
-    private boolean active;
-    private int moneyGive;
+    protected int health;
+    protected int maxHealth;
+    protected int size;
+    protected boolean active;
+    protected int moneyGive;
 
-    private double movementSpeed;
-    private DoubleCoord position;
-    private IntCoord target;
+    protected double movementSpeed;
+    protected DoubleCoord position;
+    protected IntCoord target;
 
-    private Direction direction;
+    protected Direction direction;
 
-    private BufferedImage sprite;
+    protected BufferedImage sprite;
 
     protected boolean camo;
     protected boolean magicProof;
     protected boolean armoured;
-    private boolean isFlipped;
+    protected boolean isFlipped;
 
     public Enemy(int maxHealth, double movementSpeed, int size, BufferedImage image, boolean camo, boolean magicProof, boolean armoured, int moneyGive) {
         this.maxHealth = maxHealth;
@@ -195,6 +195,10 @@ public class Enemy {
 
     public DoubleCoord getCenter() {
         return new DoubleCoord(position.x + Map.TILE_SIZE / 2.0, position.y + Map.TILE_SIZE / 2.0);
+    }
+
+    public double getMovementSpeed(){
+        return this.movementSpeed;
     }
 
     public double getRadius() {

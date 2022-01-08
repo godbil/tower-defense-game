@@ -40,6 +40,10 @@ public class EnemyManager {
                     BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[5] + ".png"));
                     enemyTypes.put(param[0], new Enemy(Integer.parseInt(param[2]), Double.parseDouble(param[3]), Integer.parseInt(param[4]), sprite, Boolean.parseBoolean(param[6]), Boolean.parseBoolean(param[7]), Boolean.parseBoolean(param[8]), Integer.parseInt(param[9])));
                 }
+                if (param[1].equals("SpawnerEnemy")) {
+                    BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[5] + ".png"));
+                    enemyTypes.put(param[0], new SpawnerEnemy(Integer.parseInt(param[2]), Double.parseDouble(param[3]), Integer.parseInt(param[4]), sprite, Boolean.parseBoolean(param[6]), Boolean.parseBoolean(param[7]), Boolean.parseBoolean(param[8]), Integer.parseInt(param[9]), enemyTypes.get(param[10]), Integer.parseInt(param[11]), Integer.parseInt(param[12])));
+                }
             }
         }
         catch (IOException e) {
@@ -81,8 +85,11 @@ public class EnemyManager {
     }
 
     public void update(int[][] map){
-        for (Enemy enemy : enemies) {
-            enemy.move(map);
+        for (int i = 0; i < enemies.size(); i++) {
+            enemies.get(i).move(map);
+            if(enemies.get(i) instanceof SpawnerEnemy) {
+                ((SpawnerEnemy) enemies.get(i)).spawnEnemy(gameState, enemies);
+            }
         }
         enemies.removeIf(enemy -> {
             if(!enemy.isActive()) {

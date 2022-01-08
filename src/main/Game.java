@@ -81,6 +81,4 @@ public class Game extends JPanel implements ActionListener {
         this.update();
         this.repaint();
     }
-
-
 }

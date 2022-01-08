@@ -1,4 +1,4 @@
-Slime Enemy 1 2 16 slime false false false 1
+Slime Enemy 1 3 16 slime false false false 1
 MadBunny Enemy 1 1.8 32 madbunny false false false 5
 MadCow Enemy 2 1 32 madcow false false false 10
 MadWolf Enemy 3 2 32 madwolf false false false 15
@@ -13,8 +13,8 @@ ArmouredSkeleton Enemy 20 1.8 64 armouredskeleton false false true 45
 ArmouredAttackSkeleton Enemy 30 2 64 armouredattackskeleton false false true 50
 SneakySkeleton Enemy 6 2.8 64 sneakyskeleton true false false 45
 SneakyAttackSkeleton Enemy 10 3 64 sneakyattackskeleton true false false 50
-MageSkeleton Enemy 15 2.4 64 mageskeleton false true false 45
-MageAttackSkeleton Enemy 18 2.6 64 mageattackskeleton false true false 50
+MageSkeleton SpawnerEnemy 10 2.4 64 mageskeleton false true false 45 Slime 300 1
+MageAttackSkeleton SpawnerEnemy 14 2.6 64 mageattackskeleton false true false 50 Slime 300 2
 AttackSmallGoblin Enemy 18 2.6 32 attackgoblin1 false false false 45
 AttackLargeGoblin Enemy 25 2.8 64 attackgoblin2 false false false 50
 Splunky Enemy 4 4 16 splunky false false false 25
