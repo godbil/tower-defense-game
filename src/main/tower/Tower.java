@@ -30,7 +30,9 @@ public class Tower {
     protected boolean magicProofHittable;
     protected boolean armourHittable;
 
-    public Tower(int damage, int range, int cost, int fireRate, BufferedImage image, Projectile projectileType, boolean camoHittable, boolean magicProofHittable, boolean armourHittable) {
+    protected final ArrayList<String> towerUpgradePaths;
+
+    public Tower(int damage, int range, int cost, int fireRate, BufferedImage image, Projectile projectileType, boolean camoHittable, boolean magicProofHittable, boolean armourHittable, ArrayList<String> towerUpgradePaths) {
         this.damage = damage;
         this.range = range;
         this.cost = cost;
@@ -46,9 +48,11 @@ public class Tower {
         this.camoHittable = camoHittable;
         this.magicProofHittable = magicProofHittable;
         this.armourHittable = armourHittable;
+
+        this.towerUpgradePaths = towerUpgradePaths;
     }
 
-    public Tower(int damage, int range, int cost, int fireRate, IntCoord tileLocation, BufferedImage image, Projectile projectileType, boolean camoHittable, boolean magicProofHittable, boolean armourHittable) {
+    public Tower(int damage, int range, int cost, int fireRate, IntCoord tileLocation, BufferedImage image, Projectile projectileType, boolean camoHittable, boolean magicProofHittable, boolean armourHittable, ArrayList<String> towerUpgradePaths) {
         this.damage = damage;
         this.range = range;
         this.cost = cost;
@@ -65,6 +69,8 @@ public class Tower {
         this.camoHittable = camoHittable;
         this.magicProofHittable = magicProofHittable;
         this.armourHittable = armourHittable;
+
+        this.towerUpgradePaths = towerUpgradePaths;
     }
 
     public void update(ArrayList<Enemy> enemies) {
@@ -158,7 +164,7 @@ public class Tower {
     }
 
     public Tower copy(IntCoord tileLocation, double moneyMultiplier){
-        return new Tower(this.damage, this.range, (int)Math.round(this.cost * moneyMultiplier), this.fireRate, tileLocation, this.sprite, this.projectileType, this.camoHittable, this.magicProofHittable, this.armourHittable);
+        return new Tower(this.damage, this.range, (int)Math.round(this.cost * moneyMultiplier), this.fireRate, tileLocation, this.sprite, this.projectileType, this.camoHittable, this.magicProofHittable, this.armourHittable, this.towerUpgradePaths);
     }
 
     public BufferedImage getSprite() {
@@ -170,6 +176,10 @@ public class Tower {
         Projectile projectile = this.projectileType.copy(this.getCenter(), enemy.getCenter());
         projectiles.add(projectile);
         return true;
+    }
+
+    public ArrayList<String> getUpgradePath(){
+        return this.towerUpgradePaths;
     }
 
     protected DoubleCoord getCenter(){

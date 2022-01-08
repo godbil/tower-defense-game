@@ -15,16 +15,16 @@ public class FarmTower extends Tower{
     private final int maxStoredMoney;
     private int moneyShowTimer;
 
-    public FarmTower(int damage, int range, int cost, int fireRate, BufferedImage image, Projectile projectileType, int moneyGain, int maxStoredMoney, boolean camoHittable, boolean magicProofHittable, boolean armourHittable) {
-        super(damage, range, cost, fireRate, image, projectileType, camoHittable, magicProofHittable, armourHittable);
+    public FarmTower(int damage, int range, int cost, int fireRate, BufferedImage image, Projectile projectileType, int moneyGain, int maxStoredMoney, boolean camoHittable, boolean magicProofHittable, boolean armourHittable, ArrayList<String> towerUpgradePaths) {
+        super(damage, range, cost, fireRate, image, projectileType, camoHittable, magicProofHittable, armourHittable, towerUpgradePaths);
         this.moneyGain = moneyGain;
         this.maxStoredMoney = maxStoredMoney;
         this.storedMoney = 0;
         this.moneyShowTimer = 0;
     }
 
-    public FarmTower(int damage, int range, int cost, int fireRate, IntCoord tileLocation, BufferedImage image, Projectile projectileType, int moneyGain, int maxStoredMoney, boolean camoHittable, boolean magicProofHittable, boolean armourHittable) {
-        super(damage, range, cost, fireRate, tileLocation, image, projectileType, camoHittable, magicProofHittable, armourHittable);
+    public FarmTower(int damage, int range, int cost, int fireRate, IntCoord tileLocation, BufferedImage image, Projectile projectileType, int moneyGain, int maxStoredMoney, boolean camoHittable, boolean magicProofHittable, boolean armourHittable, ArrayList<String> towerUpgradePaths) {
+        super(damage, range, cost, fireRate, tileLocation, image, projectileType, camoHittable, magicProofHittable, armourHittable, towerUpgradePaths);
         this.moneyGain = moneyGain;
         this.maxStoredMoney = maxStoredMoney;
         this.storedMoney = 0;
@@ -58,7 +58,7 @@ public class FarmTower extends Tower{
 
     @Override
     public FarmTower copy(IntCoord tileLocation, double moneyMultiplier){
-        return new FarmTower(this.damage, this.range, (int)Math.round(this.cost * moneyMultiplier), this.fireRate, tileLocation, this.sprite, this.projectileType, this.moneyGain, this.maxStoredMoney, this.camoHittable, this.magicProofHittable, this.armourHittable);
+        return new FarmTower(this.damage, this.range, (int)Math.round(this.cost * moneyMultiplier), this.fireRate, tileLocation, this.sprite, this.projectileType, this.moneyGain, this.maxStoredMoney, this.camoHittable, this.magicProofHittable, this.armourHittable, this.towerUpgradePaths);
     }
 
     public int getStoredMoney() {

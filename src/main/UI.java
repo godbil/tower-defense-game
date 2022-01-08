@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
 
 public class UI implements ActionListener, MouseMotionListener, MouseListener {
     public static final int UI_WIDTH = 256;
@@ -29,6 +30,8 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
     JButton farmButton;
     JButton ballistaButton;
     JButton mortarRetargetButton;
+    JButton upgradeButton1;
+    JButton upgradeButton2;
 
     private int moneyShowTimer;
     private int moneyGain;
@@ -74,6 +77,12 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
         this.mortarRetargetButton = new JButton("Target Mortar");
         this.mortarRetargetButton.setBounds(22 * Map.TILE_SIZE - Map.TILE_SIZE / 2,11 * Map.TILE_SIZE,192,64);
 
+        this.upgradeButton1 = new JButton();
+        this.upgradeButton1.setBounds(22 * Map.TILE_SIZE,3 * Map.TILE_SIZE,128,128);
+
+        this.upgradeButton2 = new JButton();
+        this.upgradeButton2.setBounds(22 * Map.TILE_SIZE,7 * Map.TILE_SIZE,128,128);
+
         this.moneyShowTimer = 0;
         this.moneyGain = 0;
     }
@@ -90,6 +99,8 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
         this.farmButton.addActionListener(this);
         this.ballistaButton.addActionListener(this);
         this.mortarRetargetButton.addActionListener(this);
+        this.upgradeButton1.addActionListener(this);
+        this.upgradeButton2.addActionListener(this);
         panel.setLayout(null);
         panel.add(this.attackMageButton);
         panel.add(this.supportMageButton);
@@ -100,7 +111,11 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
         panel.add(this.farmButton);
         panel.add(this.ballistaButton);
         panel.add(this.mortarRetargetButton);
+        panel.add(this.upgradeButton1);
+        panel.add(this.upgradeButton2);
         mortarRetargetButton.setVisible(false);
+        upgradeButton1.setVisible(false);
+        upgradeButton2.setVisible(false);
     }
 
     public void init() {
@@ -137,6 +152,41 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
         if(moneyShowTimer > 0 && moneyGain > 0) {
             g.drawString("+$" + moneyGain, 3 * Map.TILE_SIZE, Map.TILE_SIZE);
             moneyShowTimer--;
+        }
+        if(selectedTower != null) {
+            Rectangle2D.Double towerMenu = new Rectangle2D.Double(Map.MAP_WIDTH * Map.TILE_SIZE, 0, UI_WIDTH, UI_HEIGHT);
+            g.draw(towerMenu);
+            g.setPaint(Color.DARK_GRAY);
+            g.fill(towerMenu);
+            attackMageButton.setVisible(false);
+            supportMageButton.setVisible(false);
+            warriorButton.setVisible(false);
+            catapultButton.setVisible(false);
+            tackShooterButton.setVisible(false);
+            mortarButton.setVisible(false);
+            farmButton.setVisible(false);
+            ballistaButton.setVisible(false);
+            upgradeButton1.setVisible(true);
+            upgradeButton2.setVisible(true);
+            if(selectedTower.getUpgradePath().size() > 1) {
+                this.upgradeButton1.setIcon(new ImageIcon(towerManager.getTower(selectedTower.getUpgradePath().get(0)).getSprite()));
+                this.upgradeButton2.setIcon(new ImageIcon(towerManager.getTower(selectedTower.getUpgradePath().get(1)).getSprite()));
+            }
+            else {
+                this.upgradeButton1.setIcon(new ImageIcon(towerManager.getTower(selectedTower.getUpgradePath().get(0)).getSprite()));
+            }
+        }
+        else{
+            attackMageButton.setVisible(true);
+            supportMageButton.setVisible(true);
+            warriorButton.setVisible(true);
+            catapultButton.setVisible(true);
+            tackShooterButton.setVisible(true);
+            mortarButton.setVisible(true);
+            farmButton.setVisible(true);
+            ballistaButton.setVisible(true);
+            upgradeButton1.setVisible(false);
+            upgradeButton2.setVisible(false);
         }
     }
 
