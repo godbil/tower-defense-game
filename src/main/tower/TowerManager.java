@@ -134,6 +134,12 @@ public class TowerManager {
         }
     }
 
+    public void upgrade(Tower upgradingTower, int path, double moneyMultiplier) {
+        Tower tower = towerTypes.get(upgradingTower.towerUpgradePaths.get(path)).copy(upgradingTower.getTileLocation(), moneyMultiplier);
+        towers.remove(upgradingTower);
+        towers.add(tower);
+    }
+
     public Tower getTower(String towerName) {
         return towerTypes.get(towerName);
     }

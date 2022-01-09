@@ -171,9 +171,24 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
             if(selectedTower.getUpgradePath().size() > 1) {
                 this.upgradeButton1.setIcon(new ImageIcon(towerManager.getTower(selectedTower.getUpgradePath().get(0)).getSprite()));
                 this.upgradeButton2.setIcon(new ImageIcon(towerManager.getTower(selectedTower.getUpgradePath().get(1)).getSprite()));
+                g.setPaint(Color.white);
+                g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
+                g.drawString("$" + Math.round(towerManager.getTower(selectedTower.getUpgradePath().get(0)).getCost() * gameState.getMoneyMultiplier()), 23 * Map.TILE_SIZE - 20,3 * Map.TILE_SIZE - 10);
+                g.drawString("$" + Math.round(towerManager.getTower(selectedTower.getUpgradePath().get(1)).getCost() * gameState.getMoneyMultiplier()), 23 * Map.TILE_SIZE - 20,7 * Map.TILE_SIZE - 10);
+                this.upgradeButton1.setVisible(true);
+                this.upgradeButton2.setVisible(true);
             }
-            else {
+            else if(selectedTower.getUpgradePath().size() > 0){
                 this.upgradeButton1.setIcon(new ImageIcon(towerManager.getTower(selectedTower.getUpgradePath().get(0)).getSprite()));
+                g.setPaint(Color.white);
+                g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
+                g.drawString("$" + Math.round(towerManager.getTower(selectedTower.getUpgradePath().get(0)).getCost() * gameState.getMoneyMultiplier()), 23 * Map.TILE_SIZE - 20,3 * Map.TILE_SIZE - 10);
+                this.upgradeButton1.setVisible(true);
+                this.upgradeButton2.setVisible(false);
+            }
+            else{
+                this.upgradeButton1.setVisible(false);
+                this.upgradeButton2.setVisible(false);
             }
         }
         else{
@@ -301,5 +316,23 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
             this.retarget = !this.retarget;
         }
         mortarRetargetButton.setVisible(this.selectedTower instanceof MortarTower);
+
+        if(e.getSource() == this.upgradeButton1) {
+            if(selectedTower != null && this.gameState.getMoney() >= Math.round(towerManager.getTower(selectedTower.getUpgradePath().get(0)).getCost() * gameState.getMoneyMultiplier())) {
+                towerManager.upgrade(selectedTower, 0, gameState.getMoneyMultiplier());
+                this.gameState.subtractMoney((int) Math.round(towerManager.getTower(selectedTower.getUpgradePath().get(0)).getCost() * gameState.getMoneyMultiplier()));
+                selectedTower = null;
+            }
+        }
+
+        if(e.getSource() == this.upgradeButton2) {
+            if(selectedTower != null && selectedTower.getUpgradePath().size() > 1) {
+                if(this.gameState.getMoney() >= Math.round(towerManager.getTower(selectedTower.getUpgradePath().get(1)).getCost() * gameState.getMoneyMultiplier())) {
+                    towerManager.upgrade(selectedTower, 1, gameState.getMoneyMultiplier());
+                    this.gameState.subtractMoney((int) Math.round(towerManager.getTower(selectedTower.getUpgradePath().get(1)).getCost() * gameState.getMoneyMultiplier()));
+                    selectedTower = null;
+                }
+            }
+        }
     }
 }

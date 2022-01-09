@@ -1,8 +1,24 @@
 AttackMagicBall Projectile 8 16 attackmagicball
+AttackFireBall Projectile 8 16 attackmagicball
+AttackLightningBolt Projectile 12 16 attackmagicball
 SupportMagicBall Projectile 4 16 supportmagicball
+SupportIceBeam Projectile 8 16 supportmagicball
+SupportWaterBall Projectile 6 16 supportmagicball
+SupportTidalWave PierceProjectile 10 16 supportmagicball 3
 WarriorSlash RotatableProjectile 6 16 warriorslash
+WarriorCircleSlash RotatableProjectile 10 16 warriorslash
+WarriorBroadSlash RotatableProjectile 6 32 warriorslash
+WarriorEarthSlash RotatableProjectile 6 32 warriorslash
 CatapultRock Projectile 10 16 catapultrock 
-Tack Projectile 8 8 tack 4
+CatapultFireRock PierceProjectile 12 16 catapultrock 5
+CatapultJuggernautRock SplashProjectile 10 32 catapultrock
+Tack Projectile 8 8 tack
+AquaTack Projectile 8 8 tack
 MortarBomb MortarProjectile 20 32 mortarbomb mortarexplosion 5
+MortarFastBomb MortarProjectile 40 32 mortarbomb mortarexplosion 5
+MortarBigBomb MortarProjectile 25 64 mortarbomb mortarexplosion 5
+MortarBigBomb MortarProjectile 25 64 mortarbomb mortarexplosion 5
 FarmCow PierceProjectile 2 16 farmcow 10000
 BallistaArrow RotatableProjectile 20 16 ballistaarrow
+BallistaLaserArrow RotatableProjectile 25 16 ballistaarrow
+BallistaExplosiveArrow RotatableProjectile 20 16 ballistaarrow

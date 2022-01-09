@@ -164,7 +164,7 @@ public class Tower {
     }
 
     public Tower copy(IntCoord tileLocation, double moneyMultiplier){
-        return new Tower(this.damage, this.range, (int)Math.round(this.cost * moneyMultiplier), this.fireRate, tileLocation, this.sprite, this.projectileType, this.camoHittable, this.magicProofHittable, this.armourHittable, this.towerUpgradePaths);
+        return new Tower(this.damage, this.range, (int) Math.round(this.cost * moneyMultiplier), this.fireRate, tileLocation, this.sprite, this.projectileType, this.camoHittable, this.magicProofHittable, this.armourHittable, this.towerUpgradePaths);
     }
 
     public BufferedImage getSprite() {

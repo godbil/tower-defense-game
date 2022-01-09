@@ -3,7 +3,7 @@ AttackMageFireball Tower 2 150 300 60 attackmage1 AttackFireBall true false true
 AttackMageFastFire Tower 2 150 450 30 attackmage1 AttackFireBall true false true 1 AttackMageWallOfFire 
 AttackMageWallOfFire Tower 2 150 1100 30 attackmage1 AttackMagicBall true false true 1 AttackMageMasterOfFire 
 AttackMageMasterOfFire Tower 3 150 5200 10 attackmage1 AttackMagicBall true false true 0
-AttackMageEnhancedEyesight Tower 1 200 150 60 attackmage1 AttackMagicBall true false true 1 AttackMageLightningBolt 
+AttackMageEnhancedEyesight Tower 1 200 150 60 head AttackMagicBall true false true 1 AttackMageLightningBolt 
 AttackMageLightningBolt Tower 2 200 500 45 attackmage1 AttackLightningBolt true false true 1 AttackMageDualLightning 
 AttackMageDualLightning Tower 2 200 1300 45 attackmage1 AttackLightningBolt true false true 1 AttackMageMasterOfLightning 
 AttackMageMasterOfLightning Tower 2 250 5500 45 attackmage1 AttackLightningBolt true false true 0
@@ -46,12 +46,12 @@ TackShooterTackZone CircularTower 1 200 6200 15 tackshooter1 Tack 8 false true f
 Mortar MortarTower 2 64 750 110 mortar1 MortarBomb mortartarget false true true 2 MortarFasterReload MortarStrongerBombs 
 MortarFasterReload MortarTower 2 64 300 95 mortar1 MortarBomb mortartarget true true true 1 MortarRapidReload 
 MortarRapidReload MortarTower 2 64 410 80 mortar1 MortarBomb mortartarget true true true 1 MortarDualBombing 
-MortarDualBombing MortarTower 2 64 2000 60 mortar1 MortarBomb mortartarget true true true 1 MortarArtilleryBattery 
-MortarArtilleryBattery MortarTower 2 64 5200 40 mortar1 MortarBomb mortartarget true true true 0
+MortarDualBombing MortarTower 2 64 2000 60 mortar1 MortarFastBomb mortartarget true true true 1 MortarArtilleryBattery 
+MortarArtilleryBattery MortarTower 2 64 5200 40 mortar1 MortarFastBomb mortartarget true true true 0
 MortarStrongerBombs MortarTower 3 64 310 110 mortar1 MortarBomb mortartarget true true true 1 MortarBiggerBlast 
 MortarBiggerBlast MortarTower 4 64 430 95 mortar1 MortarBomb mortartarget true true true 1 MortarTheBigOne 
-MortarTheBigOne MortarTower 6 64 1800 95 mortar1 MortarBomb mortartarget true true true 1 MortarTheBiggestOne 
-MortarTheBiggestOne MortarTower 10 64 5800 90 mortar1 MortarBomb mortartarget true true true 0
+MortarTheBigOne MortarTower 6 64 1800 95 mortar1 MortarBiggestBomb mortartarget true true true 1 MortarTheBiggestOne 
+MortarTheBiggestOne MortarTower 10 64 5800 90 mortar1 MortarBigBomb mortartarget true true true 0
 Farm FarmTower 0 100 1100 300 farm1 farmcow 40 400 false false false 2 FarmValuableCarrots FarmQuickHarvest 
 FarmValuableCarrots FarmTower 0 100 2000 300 farm1 farmcow 60 800 false false false 1 FarmBigCarrots 
 FarmBigCarrots FarmTower 0 100 3500 300 farm1 farmcow 80 1600 false false false 1 FarmCarrotResearchCenter 
