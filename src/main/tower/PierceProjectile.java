@@ -4,7 +4,7 @@ import main.DoubleCoord;
 
 import java.awt.image.BufferedImage;
 
-public class PierceProjectile extends Projectile {
+public class PierceProjectile extends RotatableProjectile {
     private int pierceCap;
 
     public PierceProjectile(double speed, int size, BufferedImage sprite, int pierceCap) {

@@ -21,7 +21,7 @@ public class SpawnerEnemy extends Enemy{
         this.spawnTimer = spawnTimer;
         this.spawnAmount = spawnAmount;
         this.tempTimer = spawnTimer;
-        this.timer = Game.FPS;
+        this.timer = 0;
         this.spawnQuota = spawnAmount;
     }
 
@@ -31,7 +31,7 @@ public class SpawnerEnemy extends Enemy{
         this.spawnTimer = spawnTimer;
         this.spawnAmount = spawnAmount;
         this.tempTimer = spawnTimer;
-        this.timer = Game.FPS;
+        this.timer = 0;
         this.spawnQuota = spawnAmount;
     }
 

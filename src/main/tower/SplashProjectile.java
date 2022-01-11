@@ -4,7 +4,7 @@ import main.DoubleCoord;
 
 import java.awt.image.BufferedImage;
 
-public class SplashProjectile extends Projectile {
+public class SplashProjectile extends RotatableProjectile {
 
     public SplashProjectile(double speed, int size, BufferedImage sprite) {
         super(speed, size, sprite);

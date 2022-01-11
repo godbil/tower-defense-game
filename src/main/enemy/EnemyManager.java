@@ -44,6 +44,10 @@ public class EnemyManager {
                     BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[5] + ".png"));
                     enemyTypes.put(param[0], new SpawnerEnemy(Integer.parseInt(param[2]), Double.parseDouble(param[3]), Integer.parseInt(param[4]), sprite, Boolean.parseBoolean(param[6]), Boolean.parseBoolean(param[7]), Boolean.parseBoolean(param[8]), Integer.parseInt(param[9]), enemyTypes.get(param[10]), Integer.parseInt(param[11]), Integer.parseInt(param[12])));
                 }
+                if (param[1].equals("DeathSpawnerEnemy")) {
+                    BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[5] + ".png"));
+                    enemyTypes.put(param[0], new DeathSpawnerEnemy(Integer.parseInt(param[2]), Double.parseDouble(param[3]), Integer.parseInt(param[4]), sprite, Boolean.parseBoolean(param[6]), Boolean.parseBoolean(param[7]), Boolean.parseBoolean(param[8]), Integer.parseInt(param[9]), enemyTypes.get(param[10]), Integer.parseInt(param[11])));
+                }
             }
         }
         catch (IOException e) {
@@ -89,6 +93,9 @@ public class EnemyManager {
             enemies.get(i).move(map);
             if(enemies.get(i) instanceof SpawnerEnemy) {
                 ((SpawnerEnemy) enemies.get(i)).spawnEnemy(gameState, enemies);
+            }
+            if(enemies.get(i) instanceof DeathSpawnerEnemy) {
+                ((DeathSpawnerEnemy) enemies.get(i)).deathSpawnEnemy(gameState, enemies);
             }
         }
         enemies.removeIf(enemy -> {

@@ -1,24 +1,24 @@
-AttackMagicBall Projectile 8 16 attackmagicball
-AttackFireBall Projectile 8 16 attackmagicball
-AttackLightningBolt Projectile 12 16 attackmagicball
-SupportMagicBall Projectile 4 16 supportmagicball
-SupportIceBeam Projectile 8 16 supportmagicball
-SupportWaterBall Projectile 6 16 supportmagicball
-SupportTidalWave PierceProjectile 10 16 supportmagicball 3
+AttackMagicBall RotatableProjectile 8 16 attackmagicball
+AttackFireBall RotatableProjectile 8 16 attackfireball
+AttackLightningBolt RotatableProjectile 8 16 attacklightningbolt
+SupportMagicBall RotatableProjectile 4 16 supportmagicball
+SupportIceBeam RotatableProjectile 8 16 supporticebeam
+SupportWaterBall RotatableProjectile 6 16 supportwaterball
+SupportTidalWave PierceProjectile 10 16 supporttidalwave 3
 WarriorSlash RotatableProjectile 6 16 warriorslash
 WarriorCircleSlash RotatableProjectile 10 16 warriorslash
-WarriorBroadSlash RotatableProjectile 6 32 warriorslash
+WarriorBroadSlash RotatableProjectile 6 32 warriorbroadslash
 WarriorEarthSlash RotatableProjectile 6 32 warriorslash
 CatapultRock Projectile 10 16 catapultrock 
-CatapultFireRock PierceProjectile 12 16 catapultrock 5
-CatapultJuggernautRock SplashProjectile 10 32 catapultrock
+CatapultFireRock PierceProjectile 12 16 catapultfirerock 5
+CatapultJuggernautRock SplashProjectile 10 32 catapultjuggernautrock
 Tack Projectile 8 8 tack
-AquaTack Projectile 8 8 tack
+AquaTack Projectile 8 8 aquatack
 MortarBomb MortarProjectile 20 32 mortarbomb mortarexplosion 5
-MortarFastBomb MortarProjectile 40 32 mortarbomb mortarexplosion 5
-MortarBigBomb MortarProjectile 25 64 mortarbomb mortarexplosion 5
-MortarBigBomb MortarProjectile 25 64 mortarbomb mortarexplosion 5
+MortarFastBomb MortarProjectile 40 32 mortarfastbomb mortarexplosion 5
+MortarBigBomb MortarProjectile 25 64 mortarbigbomb mortarexplosion 5
+MortarBiggestBomb MortarProjectile 25 128 mortarbigbomb mortarexplosion 5
 FarmCow PierceProjectile 2 16 farmcow 10000
 BallistaArrow RotatableProjectile 20 16 ballistaarrow
-BallistaLaserArrow RotatableProjectile 25 16 ballistaarrow
-BallistaExplosiveArrow RotatableProjectile 20 16 ballistaarrow
+BallistaLaserArrow PierceProjectile 30 16 ballistalaserarrow 4
+BallistaExplosiveArrow SplashProjectile 20 16 ballistaexplosivearrow 5

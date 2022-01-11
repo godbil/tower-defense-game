@@ -33,6 +33,9 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
     JButton upgradeButton1;
     JButton upgradeButton2;
 
+    JTextArea upgradeDescription1;
+    JTextArea upgradeDescription2;
+
     private int moneyShowTimer;
     private int moneyGain;
 
@@ -83,6 +86,14 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
         this.upgradeButton2 = new JButton();
         this.upgradeButton2.setBounds(22 * Map.TILE_SIZE,7 * Map.TILE_SIZE,128,128);
 
+        this.upgradeDescription1 = new JTextArea();
+        this.upgradeDescription1.setBounds(21 * Map.TILE_SIZE + 5,5 * Map.TILE_SIZE + 10, Map.TILE_SIZE * 4 - 10, 60);
+        this.upgradeDescription1.setFont(new Font("TimesRoman", Font.PLAIN, 12));
+
+        this.upgradeDescription2 = new JTextArea();
+        this.upgradeDescription2.setBounds(21 * Map.TILE_SIZE + 5,9 * Map.TILE_SIZE + 10, Map.TILE_SIZE * 4 - 10, 60);
+        this.upgradeDescription2.setFont(new Font("TimesRoman", Font.PLAIN, 12));
+
         this.moneyShowTimer = 0;
         this.moneyGain = 0;
     }
@@ -113,9 +124,15 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
         panel.add(this.mortarRetargetButton);
         panel.add(this.upgradeButton1);
         panel.add(this.upgradeButton2);
+        panel.add(this.upgradeDescription1);
+        panel.add(this.upgradeDescription2);
         mortarRetargetButton.setVisible(false);
         upgradeButton1.setVisible(false);
         upgradeButton2.setVisible(false);
+        upgradeDescription1.setVisible(false);
+        upgradeDescription2.setVisible(false);
+        upgradeDescription1.setLineWrap(true);
+        upgradeDescription2.setLineWrap(true);
     }
 
     public void init() {
@@ -158,16 +175,18 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
             g.draw(towerMenu);
             g.setPaint(Color.DARK_GRAY);
             g.fill(towerMenu);
-            attackMageButton.setVisible(false);
-            supportMageButton.setVisible(false);
-            warriorButton.setVisible(false);
-            catapultButton.setVisible(false);
-            tackShooterButton.setVisible(false);
-            mortarButton.setVisible(false);
-            farmButton.setVisible(false);
-            ballistaButton.setVisible(false);
-            upgradeButton1.setVisible(true);
-            upgradeButton2.setVisible(true);
+            this.attackMageButton.setVisible(false);
+            this.supportMageButton.setVisible(false);
+            this.warriorButton.setVisible(false);
+            this.catapultButton.setVisible(false);
+            this.tackShooterButton.setVisible(false);
+            this.mortarButton.setVisible(false);
+            this.farmButton.setVisible(false);
+            this.ballistaButton.setVisible(false);
+            this.upgradeButton1.setVisible(true);
+            this.upgradeButton2.setVisible(true);
+            this.upgradeDescription1.setVisible(true);
+            this.upgradeDescription2.setVisible(true);
             if(selectedTower.getUpgradePath().size() > 1) {
                 this.upgradeButton1.setIcon(new ImageIcon(towerManager.getTower(selectedTower.getUpgradePath().get(0)).getSprite()));
                 this.upgradeButton2.setIcon(new ImageIcon(towerManager.getTower(selectedTower.getUpgradePath().get(1)).getSprite()));
@@ -175,33 +194,44 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
                 g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
                 g.drawString("$" + Math.round(towerManager.getTower(selectedTower.getUpgradePath().get(0)).getCost() * gameState.getMoneyMultiplier()), 23 * Map.TILE_SIZE - 20,3 * Map.TILE_SIZE - 10);
                 g.drawString("$" + Math.round(towerManager.getTower(selectedTower.getUpgradePath().get(1)).getCost() * gameState.getMoneyMultiplier()), 23 * Map.TILE_SIZE - 20,7 * Map.TILE_SIZE - 10);
+                upgradeDescription1.setText(towerManager.getDescription(selectedTower.getUpgradePath().get(0)));
+                upgradeDescription2.setText(towerManager.getDescription(selectedTower.getUpgradePath().get(1)));
                 this.upgradeButton1.setVisible(true);
                 this.upgradeButton2.setVisible(true);
+                this.upgradeDescription1.setVisible(true);
+                this.upgradeDescription2.setVisible(true);
             }
             else if(selectedTower.getUpgradePath().size() > 0){
                 this.upgradeButton1.setIcon(new ImageIcon(towerManager.getTower(selectedTower.getUpgradePath().get(0)).getSprite()));
                 g.setPaint(Color.white);
                 g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
                 g.drawString("$" + Math.round(towerManager.getTower(selectedTower.getUpgradePath().get(0)).getCost() * gameState.getMoneyMultiplier()), 23 * Map.TILE_SIZE - 20,3 * Map.TILE_SIZE - 10);
+                upgradeDescription1.setText(towerManager.getDescription(selectedTower.getUpgradePath().get(0)));
                 this.upgradeButton1.setVisible(true);
                 this.upgradeButton2.setVisible(false);
+                this.upgradeDescription1.setVisible(true);
+                this.upgradeDescription2.setVisible(false);
             }
             else{
                 this.upgradeButton1.setVisible(false);
                 this.upgradeButton2.setVisible(false);
+                this.upgradeDescription1.setVisible(false);
+                this.upgradeDescription2.setVisible(false);
             }
         }
         else{
-            attackMageButton.setVisible(true);
-            supportMageButton.setVisible(true);
-            warriorButton.setVisible(true);
-            catapultButton.setVisible(true);
-            tackShooterButton.setVisible(true);
-            mortarButton.setVisible(true);
-            farmButton.setVisible(true);
-            ballistaButton.setVisible(true);
-            upgradeButton1.setVisible(false);
-            upgradeButton2.setVisible(false);
+            this.attackMageButton.setVisible(true);
+            this.supportMageButton.setVisible(true);
+            this.warriorButton.setVisible(true);
+            this.catapultButton.setVisible(true);
+            this.tackShooterButton.setVisible(true);
+            this.mortarButton.setVisible(true);
+            this.farmButton.setVisible(true);
+            this.ballistaButton.setVisible(true);
+            this.upgradeButton1.setVisible(false);
+            this.upgradeButton2.setVisible(false);
+            this.upgradeDescription1.setVisible(false);
+            this.upgradeDescription2.setVisible(false);
         }
     }
 

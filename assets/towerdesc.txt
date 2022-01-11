@@ -1,0 +1,72 @@
+AttackMage Trained at the Mage Tower, the Attack Mages are proficient with big damage magic.
+AttackMageFireball Fireball. Attacks with fire magic, dealing more damage.
+AttackMageFastFire Fast Fire. Improves fire magic, shooting much faster.
+AttackMageWallOfFire Wall of Fire. Gains more mana, allowing the mage to place walls of fire.
+AttackMageMasterOfFire Master of Fire. The strongest fire mage, nothing will get past him.
+AttackMageEnhancedEyesight Enhanced Eyesight. Improves his range using wizard eyes.
+AttackMageLightningBolt Lightning Bolt. Attacks with lightning magic, dealing more damage and attacking faster.
+AttackMageDualLightning Daul Lightning. Increased mana allows for two lightning bolts to be fired.
+AttackMageMasterOfLightning Master of Lightning. The strongest lightning mage sends lightning in all directions.
+SupportMage Trained at the Mage Tower, the Support Mages help other towers with their magic elements.
+SupportMageWizardEyes Wizard Eyes. Learns the wizard eyes technique, gaining range.
+SupportMageIceBeam Ice Beam. Attacks with ice magic, inceasing damage.
+SupportMageDeepFreeze Deep Freeze. Freezes enemies for a short amount of time.
+SupportMageMasterOfIce Master of Ice. Take them back to the ice age.
+SupportMageQuickerHands Quicker Hands. Trains the mage's body to allow faster shooting.
+SupportMageEnhancedWaterMagic Enhanced Water Magic. Enhances all areas of magic, increasing range and fire rate.
+SupportMageTidalWave Tidal Wave. Creates a piercing tidal wave which slows all enemies on hit.
+SupportMageMasterOfWater Master of Water. Tsunamis will completely destroy all enemy rushs.
+Warrior Through vigorous training, the Warriors have become one with their blade.
+WarriorFasterSlashing Faster Slashing. Hones in to training sword mastery to increase fire rate.
+WarriorEvenFasterSlashing Even Faster Slashing. Harder trainer strengthens the Warrior's bond with their sword.
+WarriorCircleSlash Circle Slash. Uses his sword to create a circle slash, damaging anything in his range.
+WarriorBladeLord Blade Lord. Nothing will get past his blade.
+WarriorPowerfulSlashing Powerful Slashing. Hones in to training powerful swings, increasing damage.
+WarriorBroadSword Broad Sword. Wields a large sword which increases slashs.
+WarriorEarthStomp Earth Stomp. Large stomps deal massive amounts of damage every so often.
+WarriorEarthChampion Earth Champion. The strongest Warrior on Earth, can destroy anything in his path.
+Catapult Part of the 4 War Machines. Hurls large boulders at enemies to destroy pushs.
+CatapultEnhancedFiring Enhanced Firing. Upgrades the catapult to shoot faster and further.
+CatapultEliteCatapult Elite Catapult. The most elite catapults can shoot even faster and further.
+CatapultFireBlast Fire Blast. Covers the boulders in fire, blasting through multiple enemies.
+CatapultBallOfDeath Ball of Death. Hurls death towards enemies.
+CatapultPowerfulRocks Powerful Rocks. Makes the boulders stronger, dealing more damage.
+CatapultEvenStrongerRocks Even Stronger Rocks. Further increases the strength of rocks.
+CatapultJuggernaut Juggernaut. Huge juggernaut boulders will destroy multiple enemies at a time.
+CatapultUltraJuggernaut Ultra Juggernaut. Massive boulders obliterate any pack of enemies.
+TackShooter Part of the 4 War Machines. Shoots four tacks to hit enemies at all directions.
+TackShooterPowerfulTacks Powerful Tacks. Reinforced tacks will deal even more damage to enemies.
+TackShooterAquaTacks Aqua Tacks. Improved magic infused tacks which deal more damage and destroy armour.
+TackShooterRingOfWater Ring of Water. Circular water destruction which happens every so often.
+TackShooterAquaRing Aqua Ring. Constant destruction to enemies in the range, firing huge aqua meteors.
+TackShooterQuickerTacks Quicker Tacks. Tack shooters are upgraded to fire tacks faster.
+TackShooterEvenQuickerTacks Even Quicker Tacks. Tack shooters get upgrades to an elite war machine.
+TackShooterTackSprayer Tack Sprayer. Fires more tacks in all directions, firing even faster.
+TackShooterTackZone Tack Zone. If you are in this zone, you are dead.
+Mortar Part of the 4 War Machines. Launches bombs which deals splash damage.
+MortarFasterReload Faster Reload. Upgraded mortars can fire faster.
+MortarRapidReload Rapid Reload. These elite mortars are able to fire even faster than before.
+MortarDualBombing Dual Bombing. Fires two bombs each time, dealing twice as much destruction.
+MortarArtilleryBattery Artillery Battery. Everything will be blown to bits.
+MortarStrongerBombs Stronger Bombs. Upgraded bombs allow for even more destruction.
+MortarBiggerBlast Bigger Blast. Elite bombs provide bigger blasts, dealing more damage.
+MortarTheBigOne The Big One. Nukes everything in the path of the bombs.
+MortarTheBiggestOne The Biggest One. Annihilation for all enemies.
+Farm Produces carrots which are sold for $40 every so often.
+FarmValuableCarrots Valuable Carrots. Carrots are even more valuable and sold for more money.
+FarmBigCarrots Big Carrots. Produces large carrots which give much more money.
+FarmCarrotResearchCenter Carrot Research Center. Researches carrots to allow for more expensive carrots.
+FarmCarrotCentral Carrot Central. Money will no longer be a problem.
+FarmQuickHarvest Quick Harvest. Carrots are able to be harvested faster than usual. 
+FarmExtremelyQuickHarvest Extremely Quick Harvest. Farms are improved to help carrots grow even faster.
+FarmCarrotOverflow Carrot Overflow. Huge amounts of carrots are produced, automatically going to your money.
+FarmCarrotRiver Carrot River. Money will no longer be a problem.
+Ballista Part of the 4 War Machines. Shoots a fast arrow to any enemy that is chosen.
+BallistaFasterFiring Faster Firing. Improves the ballista to shoot faster.
+BallistaEvenFasterFiring  Even Faster Firing. Upgrades to the elite ballista which fires much faster.
+BallistaLaserCannon Laser Cannon. Arrows are coated with laser allowing them to pierce enemies.
+BallistaRayOfDoom Ray of Doom. Anything in the path of this ray with be melted.
+BallistaPowerfulArrows Powerful Arrows. Improves arrows to deal even more damage.
+BallistaEnhancedShooting Enhanced Shooting. Allows for faster shooting which causes more damage as well.
+BallistaExplosiveArrows Explosive Arrows. Arrows blow up on contact, dealing destructive splash damage.
+BallistaRocketDemon Rocket Demon. The Rocket Demon will blow up everything in its path.
