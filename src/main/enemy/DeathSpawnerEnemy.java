@@ -35,17 +35,10 @@ public class DeathSpawnerEnemy extends Enemy{
 
     public void deathSpawnEnemy(GameState gameState, ArrayList<Enemy> enemies) {
         if(this.health <= 0) {
-            if(spawnQuota > 0 && timer <= 0) {
-                timer = 10;
+            while(spawnQuota > 0) {
                 spawnQuota--;
                 Enemy enemy = spawnedEnemy.copy(position, direction, gameState.getMovementMultiplier());
                 enemies.add(enemy);
-            }
-            else if (timer > 0){
-                timer--;
-            }
-            else {
-                spawnQuota = spawnAmount;
             }
         }
     }
