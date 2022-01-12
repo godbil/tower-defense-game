@@ -2,9 +2,11 @@ package main.tower;
 
 import main.DoubleCoord;
 import main.Game;
+import main.Map;
 import main.enemy.Enemy;
 
 import java.awt.*;
+import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 
 public class Projectile {
@@ -47,11 +49,11 @@ public class Projectile {
     }
 
     public void paint(Graphics2D g) {
-        g.drawImage(this.sprite, (int)this.position.x - this.size, (int)this.position.y - this.size, null);
+        g.drawImage(this.sprite, (int)Math.round(this.position.x - this.sprite.getWidth() / 2.0), (int)Math.round(this.position.y - this.sprite.getHeight() / 2.0), null);
     }
 
     public boolean collision(Enemy enemy) {
-        double distance = Math.pow(enemy.getCenter().x - this.position.x, 2) + Math.pow(enemy.getCenter().y - this.position.y, 2);
+        double distance = Math.pow(enemy.getCenter().x - this.position.x - this.sprite.getWidth() / 2.0, 2) + Math.pow(enemy.getCenter().y - this.position.y - this.sprite.getHeight() / 2.0, 2);
         return distance < Math.pow(enemy.getRadius() + size, 2);
     }
 

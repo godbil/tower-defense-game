@@ -42,7 +42,7 @@ public class TowerManager {
                 }
                 else if(param[1].equals("SplashProjectile")) {
                     BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[4] + ".png"));
-                    projectileTypes.put(param[0], new SplashProjectile(Double.parseDouble(param[2]), Integer.parseInt(param[3]), sprite));
+                    projectileTypes.put(param[0], new SplashProjectile(Double.parseDouble(param[2]), Integer.parseInt(param[3]), sprite, Integer.parseInt(param[5])));
                 }
                 else if(param[1].equals("PierceProjectile")) {
                     BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[4] + ".png"));

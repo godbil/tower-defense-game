@@ -20,7 +20,7 @@ Warrior Tower 2 100 360 80 warrior1 WarriorSlash false true false 2 WarriorFaste
 WarriorFasterSlashing Tower 2 140 360 60 warrior1 WarriorSlash false true false 1 WarriorEvenFasterSlashing 
 WarriorEvenFasterSlashing Tower 2 180 520 30 warrior1 WarriorSlash false true false 1 WarriorCircleSlash 
 WarriorCircleSlash Tower 2 220 1500 30 warrior1 WarriorCircleSlash false true false 1 WarriorBladeLord 
-WarriorBladeLord Tower 4 250 4800 5 warrior1 WarriorCircleSlash false true false 0
+WarriorBladeLord Tower 2 250 4800 5 warrior1 WarriorCircleSlash false true false 0
 WarriorPowerfulSlashing Tower 3 150 260 80 warrior1 WarriorSlash false true false 1 WarriorBroadSword 
 WarriorBroadSword Tower 4 180 460 80 warrior1 WarriorBroadSlash false true true 1 WarriorEarthStomp 
 WarriorEarthStomp Tower 6 220 1150 70 warrior1 WarriorEarthSlash false true true 1 WarriorEarthChampion 
@@ -46,15 +46,15 @@ TackShooterTackZone CircularTower 1 220 7200 10 tackshootertackzone Tack 12 fals
 Mortar MortarTower 2 64 750 100 mortar1 MortarBomb mortartarget false true true 1 2 MortarFasterReload MortarStrongerBombs 
 MortarFasterReload MortarTower 2 64 300 80 mortar1 MortarBomb mortartarget true true true 1 1 MortarRapidReload 
 MortarRapidReload MortarTower 2 64 410 70 mortar1 MortarBomb mortartarget true true true 1 1 MortarDualBombing 
-MortarDualBombing MortarTower 2 64 2000 50 mortar1 MortarFastBomb mortartarget true true true 2 1 MortarArtilleryBattery 
-MortarArtilleryBattery MortarTower 5 64 5600 20 mortar1 MortarFastBomb mortartarget true true true 3 0
+MortarDualBombing MortarTower 2 64 2000 50 mortar1 MortarBomb mortartarget true true true 2 1 MortarArtilleryBattery 
+MortarArtilleryBattery MortarTower 5 64 5600 10 mortar1 MortarBomb mortartarget true true true 3 0
 MortarStrongerBombs MortarTower 3 64 310 100 mortar1 MortarBomb mortartarget true true true 1 1 MortarBiggerBlast 
-MortarBiggerBlast MortarTower 5 64 430 90 mortar1 MortarBomb mortartarget true true true 1 1 MortarTheBigOne 
-MortarTheBigOne MortarTower 10 64 1800 80 mortar1 MortarBigBomb mortartarget true true true 1 1 MortarTheBiggestOne 
-MortarTheBiggestOne MortarTower 30 64 5800 60 mortar1 MortarBiggestBomb mortartarget true true true 1 0
-Farm FarmTower 0 100 1100 10 farm1 farmcow 10000 100000000 false false false 2 FarmValuableCarrots FarmQuickHarvest 
-FarmValuableCarrots FarmTower 0 100 2000 200 farm1 farmcow 120 800 false false false 1 FarmBigCarrots 
-FarmBigCarrots FarmTower 0 100 3500 200 farm1 farmcow 300 1600 false false false 1 FarmCarrotResearchCenter 
+MortarBiggerBlast MortarTower 5 64 430 100 mortar1 MortarBomb mortartarget true true true 1 1 MortarTheBigOne 
+MortarTheBigOne MortarTower 10 64 1800 90 mortar1 MortarBigBomb mortartarget true true true 1 1 MortarTheBiggestOne 
+MortarTheBiggestOne MortarTower 20 64 6200 90 mortar1 MortarBiggestBomb mortartarget true true true 1 0
+Farm FarmTower 0 100 1100 200 farm1 farmcow 80 800 false false false 2 FarmValuableCarrots FarmQuickHarvest 
+FarmValuableCarrots FarmTower 0 100 2000 200 farm1 farmcow 120 2400 false false false 1 FarmBigCarrots 
+FarmBigCarrots FarmTower 0 100 3500 200 farm1 farmcow 300 6000 false false false 1 FarmCarrotResearchCenter 
 FarmCarrotResearchCenter FarmTower 0 100 5500 200 farm1 farmcow 650 50000 false false false 1 FarmCarrotCentral 
 FarmCarrotCentral FarmTower 0 100 12000 200 farm1 farmcow 1400 100000 false false false 0
 FarmQuickHarvest FarmTower 0 100 1800 150 farm1 farmcow 40 800 false false false 1 FarmExtremelyQuickHarvest 
@@ -69,4 +69,4 @@ BallistaRayOfDoom BallistaTower 2 64 6500 20 ballista1 BallistaLaserArrow true t
 BallistaPowerfulArrows BallistaTower 3 64 340 90 ballista1 BallistaArrow true true false 1 BallistaEnhancedShooting 
 BallistaEnhancedShooting BallistaTower 6 64 560 90 ballista1 BallistaArrow true true false 1 BallistaExplosiveArrows 
 BallistaExplosiveArrows BallistaTower 10 64 1750 90 ballista1 BallistaExplosiveArrow true true true 1 BallistaRocketDemon 
-BallistaRocketDemon BallistaTower 28 64 6200 70 ballista1 BallistaExplosiveArrow true true true 0
+BallistaRocketDemon BallistaTower 25 64 6200 70 ballista1 BallistaExplosiveArrow true true true 0

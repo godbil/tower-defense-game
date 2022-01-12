@@ -64,10 +64,10 @@ public class MortarProjectile extends Projectile{
             g.drawImage(this.explosion, (int) this.stageTarget[2].x - this.explosion.getWidth() / 2, (int) this.stageTarget[2].y  - this.explosion.getHeight() / 2, null);
         }
         else if(isFlipped){
-            g.drawImage(this.sprite, (int)this.position.x - this.size, (int)this.position.y - this.size, sprite.getWidth(), -sprite.getHeight(), null);
+            g.drawImage(this.sprite, (int)Math.round(this.position.x - this.sprite.getWidth() / 2.0), (int)Math.round(this.position.y - this.sprite.getHeight() / 2.0), sprite.getWidth(), -sprite.getHeight(), null);
         }
         else {
-            g.drawImage(this.sprite, (int)this.position.x - this.size, (int)this.position.y - this.size, null);
+            g.drawImage(this.sprite, (int)Math.round(this.position.x - this.sprite.getWidth() / 2.0), (int)Math.round(this.position.y - this.sprite.getHeight() / 2.0), null);
         }
     }
 
