@@ -36,7 +36,7 @@ public class Game extends JPanel implements ActionListener {
 
     private void init() {
         try {
-            this.map.loadMap("AdvMap");
+            this.map.loadMap("EasyMap2");
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -17,6 +17,8 @@ CatapultJuggernautRock SplashProjectile 10 16 catapultjuggernautrock 32
 CatapultUltraJuggernautRock SplashProjectile 10 32 catapultultrajuggernautrock 64
 Tack Projectile 8 8 tack
 AquaTack Projectile 8 8 aquatack
+RingOfWaterBall Projectile 8 16 ringofwaterball
+AquaRingWaterBall RotatableProjectile 10 32 aquaringwaterball 
 MortarBomb MortarProjectile 20 32 mortarbomb mortarexplosion 5
 MortarBigBomb MortarProjectile 25 64 mortarbigbomb mortarbigexplosion 5
 MortarBiggestBomb MortarProjectile 25 128 mortarbigbomb mortarbiggestexplosion 5
@@ -24,3 +26,4 @@ FarmCow PierceProjectile 2 16 farmcow 10000
 BallistaArrow RotatableProjectile 20 16 ballistaarrow
 BallistaLaserArrow PierceProjectile 30 16 ballistalaserarrow 4
 BallistaExplosiveArrow SplashProjectile 20 16 ballistaexplosivearrow 32
+BallistaExplosiveDemonArrow SplashProjectile 20 16 ballistaexplosivedemonarrow 50

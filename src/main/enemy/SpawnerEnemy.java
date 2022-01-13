@@ -20,7 +20,7 @@ public class SpawnerEnemy extends Enemy{
         this.spawnedEnemy = spawnedEnemy;
         this.spawnTimer = spawnTimer;
         this.spawnAmount = spawnAmount;
-        this.tempTimer = spawnTimer;
+        this.tempTimer = 0;
         this.timer = 0;
         this.spawnQuota = spawnAmount;
     }
@@ -30,7 +30,7 @@ public class SpawnerEnemy extends Enemy{
         this.spawnedEnemy = spawnedEnemy;
         this.spawnTimer = spawnTimer;
         this.spawnAmount = spawnAmount;
-        this.tempTimer = spawnTimer;
+        this.tempTimer = 0;
         this.timer = 0;
         this.spawnQuota = spawnAmount;
     }

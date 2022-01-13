@@ -111,6 +111,14 @@ public class TowerManager {
                     BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[6] + ".png"));
                     towerTypes.put(param[0], new MultiHitTower(Integer.parseInt(param[2]), Integer.parseInt(param[3]), Integer.parseInt(param[4]), Integer.parseInt(param[5]), new IntCoord(0,0), sprite, projectileTypes.get(param[7]), Boolean.parseBoolean(param[8]), Boolean.parseBoolean(param[9]), Boolean.parseBoolean(param[10]), Integer.parseInt(param[11]), towerUpgradePaths));
                 }
+                if(param[1].equals("AquaRingTower")) {
+                    BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[6] + ".png"));
+                    ArrayList<String> towerUpgradePaths = new ArrayList<>();
+                    for(int i = 0; i < Integer.parseInt(param[13]); i++){
+                        towerUpgradePaths.add(param[i + 14]);
+                    }
+                    towerTypes.put(param[0], new AquaRingTower(Integer.parseInt(param[2]), Integer.parseInt(param[3]), Integer.parseInt(param[4]), Integer.parseInt(param[5]), new IntCoord(0,0), sprite, projectileTypes.get(param[7]), Boolean.parseBoolean(param[8]), Boolean.parseBoolean(param[9]), Boolean.parseBoolean(param[10]), Integer.parseInt(param[11]), Integer.parseInt(param[12]), towerUpgradePaths));
+                }
             }
             file = Path.of("assets/towerdesc.txt");
             content = Files.readAllLines(file);
