@@ -52,7 +52,7 @@ MortarStrongerBombs MortarTower 3 64 310 100 mortarstrongerbombs MortarBomb mort
 MortarBiggerBlast MortarTower 5 64 430 100 mortarbiggerblast MortarBomb mortartarget true true true 1 1 MortarTheBigOne 
 MortarTheBigOne MortarTower 10 64 1800 90 mortarthebigone MortarBigBomb mortartarget true true true 1 1 MortarTheBiggestOne 
 MortarTheBiggestOne MortarTower 20 64 6200 100 mortarthebiggestone MortarBiggestBomb mortartarget true true true 1 0
-Farm FarmTower 0 100 1100 2 farm1 farmcow 8000 8000000 false false false 2 FarmValuableCarrots FarmQuickHarvest 
+Farm FarmTower 0 100 1100 200 farm1 farmcow 80 800 false false false 2 FarmValuableCarrots FarmQuickHarvest 
 FarmValuableCarrots FarmTower 0 100 2000 200 farm1 farmcow 120 2400 false false false 1 FarmBigCarrots 
 FarmBigCarrots FarmTower 0 100 3500 200 farm1 farmcow 300 6000 false false false 1 FarmCarrotResearchCenter 
 FarmCarrotResearchCenter FarmTower 0 100 5500 200 farm1 farmcow 650 50000 false false false 1 FarmCarrotCentral 
