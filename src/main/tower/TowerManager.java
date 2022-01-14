@@ -63,61 +63,93 @@ public class TowerManager {
             for(String line : content) {
                 String[] param = line.split(" ");
                 if(param[1].equals("Tower")) {
-                    BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[6] + ".png"));
+                    BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[7] + ".png"));
                     ArrayList<String> towerUpgradePaths = new ArrayList<>();
-                    for(int i = 0; i < Integer.parseInt(param[11]); i++){
-                        towerUpgradePaths.add(param[i + 12]);
+                    for(int i = 0; i < Integer.parseInt(param[12]); i++){
+                        towerUpgradePaths.add(param[i + 13]);
                     }
-                    towerTypes.put(param[0], new Tower(Integer.parseInt(param[2]), Integer.parseInt(param[3]), Integer.parseInt(param[4]), Integer.parseInt(param[5]), new IntCoord(0,0), sprite, projectileTypes.get(param[7]), Boolean.parseBoolean(param[8]), Boolean.parseBoolean(param[9]), Boolean.parseBoolean(param[10]), towerUpgradePaths));
+                    towerTypes.put(param[0], new Tower(Integer.parseInt(param[2]), Integer.parseInt(param[3]), Integer.parseInt(param[4]), Integer.parseInt(param[5]), Integer.parseInt(param[6]), new IntCoord(0,0), sprite, projectileTypes.get(param[8]), Boolean.parseBoolean(param[9]), Boolean.parseBoolean(param[10]), Boolean.parseBoolean(param[11]), towerUpgradePaths));
                 }
                 else if(param[1].equals("CircularTower")) {
                     ArrayList<String> towerUpgradePaths = new ArrayList<>();
-                    for(int i = 0; i < Integer.parseInt(param[12]); i++){
-                        towerUpgradePaths.add(param[i + 13]);
+                    for(int i = 0; i < Integer.parseInt(param[13]); i++){
+                        towerUpgradePaths.add(param[i + 14]);
                     }
-                    BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[6] + ".png"));
-                    towerTypes.put(param[0], new CircularTower(Integer.parseInt(param[2]), Integer.parseInt(param[3]), Integer.parseInt(param[4]), Integer.parseInt(param[5]), new IntCoord(0,0), sprite, projectileTypes.get(param[7]), Integer.parseInt(param[8]), Boolean.parseBoolean(param[9]), Boolean.parseBoolean(param[10]), Boolean.parseBoolean(param[11]), towerUpgradePaths));
+                    BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[7] + ".png"));
+                    towerTypes.put(param[0], new CircularTower(Integer.parseInt(param[2]), Integer.parseInt(param[3]), Integer.parseInt(param[4]), Integer.parseInt(param[5]), Integer.parseInt(param[6]), new IntCoord(0,0), sprite, projectileTypes.get(param[8]), Integer.parseInt(param[9]), Boolean.parseBoolean(param[10]), Boolean.parseBoolean(param[11]), Boolean.parseBoolean(param[12]), towerUpgradePaths));
                 }
                 else if(param[1].equals("MortarTower")) {
                     ArrayList<String> towerUpgradePaths = new ArrayList<>();
-                    for(int i = 0; i < Integer.parseInt(param[13]); i++){
-                        towerUpgradePaths.add(param[i + 14]);
+                    for(int i = 0; i < Integer.parseInt(param[14]); i++){
+                        towerUpgradePaths.add(param[i + 15]);
                     }
-                    BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[6] + ".png"));
-                    BufferedImage target = ImageIO.read(new File("assets/sprites/" + param[8] + ".png"));
-                    towerTypes.put(param[0], new MortarTower(Integer.parseInt(param[2]), Integer.parseInt(param[3]), Integer.parseInt(param[4]), Integer.parseInt(param[5]), new IntCoord(0,0), sprite, projectileTypes.get(param[7]), target, Boolean.parseBoolean(param[9]), Boolean.parseBoolean(param[10]), Boolean.parseBoolean(param[11]), Integer.parseInt(param[12]), towerUpgradePaths));
+                    BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[7] + ".png"));
+                    BufferedImage target = ImageIO.read(new File("assets/sprites/" + param[9] + ".png"));
+                    towerTypes.put(param[0], new MortarTower(Integer.parseInt(param[2]), Integer.parseInt(param[3]), Integer.parseInt(param[4]), Integer.parseInt(param[5]), Integer.parseInt(param[6]), new IntCoord(0,0), sprite, projectileTypes.get(param[8]), target, Boolean.parseBoolean(param[10]), Boolean.parseBoolean(param[11]), Boolean.parseBoolean(param[12]), Integer.parseInt(param[13]), towerUpgradePaths));
                 }
                 else if(param[1].equals("BallistaTower")) {
-                    ArrayList<String> towerUpgradePaths = new ArrayList<>();
-                    for(int i = 0; i < Integer.parseInt(param[11]); i++){
-                        towerUpgradePaths.add(param[i + 12]);
-                    }
-                    BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[6] + ".png"));
-                    towerTypes.put(param[0], new BallistaTower(Integer.parseInt(param[2]), Integer.parseInt(param[3]), Integer.parseInt(param[4]), Integer.parseInt(param[5]), new IntCoord(0,0), sprite, projectileTypes.get(param[7]), Boolean.parseBoolean(param[8]), Boolean.parseBoolean(param[9]), Boolean.parseBoolean(param[10]), towerUpgradePaths));
-                }
-                else if(param[1].equals("FarmTower")) {
-                    ArrayList<String> towerUpgradePaths = new ArrayList<>();
-                    for(int i = 0; i < Integer.parseInt(param[13]); i++){
-                        towerUpgradePaths.add(param[i + 14]);
-                    }
-                    BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[6] + ".png"));
-                    towerTypes.put(param[0], new FarmTower(Integer.parseInt(param[2]), Integer.parseInt(param[3]), Integer.parseInt(param[4]), Integer.parseInt(param[5]), new IntCoord(0,0), sprite, projectileTypes.get(param[7]), Integer.parseInt(param[8]), Integer.parseInt(param[9]), Boolean.parseBoolean(param[10]), Boolean.parseBoolean(param[11]), Boolean.parseBoolean(param[12]), towerUpgradePaths));
-                }
-                else if(param[1].equals("MultiHitTower")) {
                     ArrayList<String> towerUpgradePaths = new ArrayList<>();
                     for(int i = 0; i < Integer.parseInt(param[12]); i++){
                         towerUpgradePaths.add(param[i + 13]);
                     }
-                    BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[6] + ".png"));
-                    towerTypes.put(param[0], new MultiHitTower(Integer.parseInt(param[2]), Integer.parseInt(param[3]), Integer.parseInt(param[4]), Integer.parseInt(param[5]), new IntCoord(0,0), sprite, projectileTypes.get(param[7]), Boolean.parseBoolean(param[8]), Boolean.parseBoolean(param[9]), Boolean.parseBoolean(param[10]), Integer.parseInt(param[11]), towerUpgradePaths));
+                    BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[7] + ".png"));
+                    towerTypes.put(param[0], new BallistaTower(Integer.parseInt(param[2]), Integer.parseInt(param[3]), Integer.parseInt(param[4]), Integer.parseInt(param[5]), Integer.parseInt(param[6]), new IntCoord(0,0), sprite, projectileTypes.get(param[8]), Boolean.parseBoolean(param[9]), Boolean.parseBoolean(param[10]), Boolean.parseBoolean(param[11]), towerUpgradePaths));
                 }
-                if(param[1].equals("AquaRingTower")) {
-                    BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[6] + ".png"));
+                else if(param[1].equals("FarmTower")) {
+                    ArrayList<String> towerUpgradePaths = new ArrayList<>();
+                    for(int i = 0; i < Integer.parseInt(param[14]); i++){
+                        towerUpgradePaths.add(param[i + 15]);
+                    }
+                    BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[7] + ".png"));
+                    towerTypes.put(param[0], new FarmTower(Integer.parseInt(param[2]), Integer.parseInt(param[3]), Integer.parseInt(param[4]), Integer.parseInt(param[5]), Integer.parseInt(param[6]), new IntCoord(0,0), sprite, projectileTypes.get(param[8]), Integer.parseInt(param[9]), Integer.parseInt(param[10]), Boolean.parseBoolean(param[11]), Boolean.parseBoolean(param[12]), Boolean.parseBoolean(param[13]), towerUpgradePaths));
+                }
+                else if(param[1].equals("MultiHitTower")) {
                     ArrayList<String> towerUpgradePaths = new ArrayList<>();
                     for(int i = 0; i < Integer.parseInt(param[13]); i++){
                         towerUpgradePaths.add(param[i + 14]);
                     }
-                    towerTypes.put(param[0], new AquaRingTower(Integer.parseInt(param[2]), Integer.parseInt(param[3]), Integer.parseInt(param[4]), Integer.parseInt(param[5]), new IntCoord(0,0), sprite, projectileTypes.get(param[7]), Boolean.parseBoolean(param[8]), Boolean.parseBoolean(param[9]), Boolean.parseBoolean(param[10]), Integer.parseInt(param[11]), Integer.parseInt(param[12]), towerUpgradePaths));
+                    BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[7] + ".png"));
+                    towerTypes.put(param[0], new MultiHitTower(Integer.parseInt(param[2]), Integer.parseInt(param[3]), Integer.parseInt(param[4]), Integer.parseInt(param[5]), Integer.parseInt(param[6]), new IntCoord(0,0), sprite, projectileTypes.get(param[8]), Boolean.parseBoolean(param[9]), Boolean.parseBoolean(param[10]), Boolean.parseBoolean(param[11]), Integer.parseInt(param[12]), towerUpgradePaths));
+                }
+                if(param[1].equals("CircleShootingTower")) {
+                    BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[7] + ".png"));
+                    ArrayList<String> towerUpgradePaths = new ArrayList<>();
+                    for(int i = 0; i < Integer.parseInt(param[14]); i++){
+                        towerUpgradePaths.add(param[i + 15]);
+                    }
+                    towerTypes.put(param[0], new CircleShootingTower(Integer.parseInt(param[2]), Integer.parseInt(param[3]), Integer.parseInt(param[4]), Integer.parseInt(param[5]), Integer.parseInt(param[6]), new IntCoord(0,0), sprite, projectileTypes.get(param[8]), Boolean.parseBoolean(param[9]), Boolean.parseBoolean(param[10]), Boolean.parseBoolean(param[11]), Integer.parseInt(param[12]), Integer.parseInt(param[13]), towerUpgradePaths));
+                }
+                if(param[1].equals("AquaRingTower")) {
+                    BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[7] + ".png"));
+                    ArrayList<String> towerUpgradePaths = new ArrayList<>();
+                    for(int i = 0; i < Integer.parseInt(param[14]); i++){
+                        towerUpgradePaths.add(param[i + 15]);
+                    }
+                    towerTypes.put(param[0], new AquaRingTower(Integer.parseInt(param[2]), Integer.parseInt(param[3]), Integer.parseInt(param[4]), Integer.parseInt(param[5]), Integer.parseInt(param[6]), new IntCoord(0,0), sprite, projectileTypes.get(param[8]), Boolean.parseBoolean(param[9]), Boolean.parseBoolean(param[10]), Boolean.parseBoolean(param[11]), Integer.parseInt(param[12]), Integer.parseInt(param[13]), towerUpgradePaths));
+                }
+                if(param[1].equals("EarthStompTower")) {
+                    BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[7] + ".png"));
+                    ArrayList<String> towerUpgradePaths = new ArrayList<>();
+                    for(int i = 0; i < Integer.parseInt(param[13]); i++){
+                        towerUpgradePaths.add(param[i + 14]);
+                    }
+                    towerTypes.put(param[0], new EarthStompTower(Integer.parseInt(param[2]), Integer.parseInt(param[3]), Integer.parseInt(param[4]), Integer.parseInt(param[5]), Integer.parseInt(param[6]), new IntCoord(0,0), sprite, projectileTypes.get(param[8]), Boolean.parseBoolean(param[9]), Boolean.parseBoolean(param[10]), Boolean.parseBoolean(param[11]), Integer.parseInt(param[12]), towerUpgradePaths));
+                }
+                if(param[1].equals("SlowTower")) {
+                    BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[7] + ".png"));
+                    ArrayList<String> towerUpgradePaths = new ArrayList<>();
+                    for(int i = 0; i < Integer.parseInt(param[13]); i++){
+                        towerUpgradePaths.add(param[i + 14]);
+                    }
+                    towerTypes.put(param[0], new SlowTower(Integer.parseInt(param[2]), Integer.parseInt(param[3]), Integer.parseInt(param[4]), Integer.parseInt(param[5]), Integer.parseInt(param[6]), new IntCoord(0,0), sprite, projectileTypes.get(param[8]), Boolean.parseBoolean(param[9]), Boolean.parseBoolean(param[10]), Boolean.parseBoolean(param[11]), Double.parseDouble(param[12]), towerUpgradePaths));
+                }
+                if(param[1].equals("FreezeTower")) {
+                    BufferedImage sprite = ImageIO.read(new File("assets/sprites/" + param[7] + ".png"));
+                    ArrayList<String> towerUpgradePaths = new ArrayList<>();
+                    for(int i = 0; i < Integer.parseInt(param[13]); i++){
+                        towerUpgradePaths.add(param[i + 14]);
+                    }
+                    towerTypes.put(param[0], new FreezeTower(Integer.parseInt(param[2]), Integer.parseInt(param[3]), Integer.parseInt(param[4]), Integer.parseInt(param[5]), Integer.parseInt(param[6]), new IntCoord(0,0), sprite, projectileTypes.get(param[8]), Boolean.parseBoolean(param[9]), Boolean.parseBoolean(param[10]), Boolean.parseBoolean(param[11]), Integer.parseInt(param[12]), towerUpgradePaths));
                 }
             }
             file = Path.of("assets/towerdesc.txt");
@@ -162,6 +194,10 @@ public class TowerManager {
         Tower tower = towerTypes.get(upgradingTower.towerUpgradePaths.get(path)).copy(upgradingTower.getTileLocation(), moneyMultiplier);
         towers.remove(upgradingTower);
         towers.add(tower);
+    }
+
+    public void sell(Tower tower) {
+        towers.remove(tower);
     }
 
     public Tower getTower(String towerName) {

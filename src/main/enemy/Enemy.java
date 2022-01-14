@@ -38,6 +38,11 @@ public class Enemy {
     protected boolean armoured;
     protected boolean isFlipped;
 
+    protected double slowPercent;
+    protected int slowTimer;
+    protected int freezeTime;
+    protected boolean isFrozen;
+
     public Enemy(int maxHealth, double movementSpeed, int size, BufferedImage image, boolean camo, boolean magicProof, boolean armoured, int moneyGive) {
         this.maxHealth = maxHealth;
         this.health = maxHealth;
@@ -53,6 +58,11 @@ public class Enemy {
         this.magicProof = magicProof;
         this.armoured = armoured;
         this.isFlipped = false;
+
+        this.slowPercent = 1;
+        this.slowTimer = 192;
+        this.freezeTime = 0;
+        this.isFrozen = false;
     }
 
     public Enemy(int maxHealth, double movementSpeed, DoubleCoord position, Direction direction, int size, BufferedImage image, boolean camo, boolean magicProof, boolean armoured, int moneyGive) {
@@ -72,6 +82,11 @@ public class Enemy {
         this.magicProof = magicProof;
         this.armoured = armoured;
         this.isFlipped = false;
+
+        this.slowPercent = 1;
+        this.slowTimer = 192;
+        this.freezeTime = 0;
+        this.isFrozen = false;
     }
 
     public void takeDamage(int damage){
@@ -81,29 +96,50 @@ public class Enemy {
         }
     }
 
+    public void setSlowPercent(double slowPercent){
+        this.slowPercent = slowPercent;
+    }
+
+    public void setFreezeTime(int freezeTime) {
+        this.freezeTime = freezeTime;
+        this.isFrozen = true;
+    }
+
     public void move(int[][] map) {
-        this.setTarget(map);
-        this.target.x *= Map.TILE_SIZE;
-        this.target.y *= Map.TILE_SIZE;
+        if(!isFrozen) {
+            this.setTarget(map);
+            this.target.x *= Map.TILE_SIZE;
+            this.target.y *= Map.TILE_SIZE;
 
-        if(this.position.x > this.target.x){
-            this.position.x = Math.max(this.position.x - this.movementSpeed, this.target.x);
-        }
-        else if(this.position.x < this.target.x){
-            this.position.x = Math.min(this.position.x + this.movementSpeed, this.target.x);
-        }
+            if (this.position.x > this.target.x) {
+                this.position.x = Math.max(this.position.x - this.movementSpeed * this.slowPercent, this.target.x);
+            } else if (this.position.x < this.target.x) {
+                this.position.x = Math.min(this.position.x + this.movementSpeed * this.slowPercent, this.target.x);
+            }
 
-        if(this.position.y > this.target.y){
-            this.position.y = Math.max(this.position.y - this.movementSpeed, this.target.y);
+            if (this.position.y > this.target.y) {
+                this.position.y = Math.max(this.position.y - this.movementSpeed * this.slowPercent, this.target.y);
+            } else if (this.position.y < this.target.y) {
+                this.position.y = Math.min(this.position.y + this.movementSpeed * this.slowPercent, this.target.y);
+            }
+            if (this.direction == Direction.RIGHT) {
+                isFlipped = false;
+            } else if (this.direction == Direction.LEFT) {
+                isFlipped = true;
+            }
         }
-        else if(this.position.y < this.target.y){
-            this.position.y = Math.min(this.position.y + this.movementSpeed, this.target.y);
+        else {
+            freezeTime--;
+            if(freezeTime <= 0) {
+                isFrozen = false;
+            }
         }
-        if(this.direction == Direction.RIGHT) {
-            isFlipped = false;
-        }
-        else if(this.direction == Direction.LEFT) {
-            isFlipped = true;
+        if(slowPercent != 1) {
+            slowTimer--;
+            if(slowTimer <= 0) {
+                slowPercent = 1;
+                slowTimer = 192;
+            }
         }
     }
 
@@ -113,10 +149,27 @@ public class Enemy {
             double widthOffset = Map.TILE_SIZE / 2.0 - this.sprite.getWidth() / 2.0;
 
             if(isFlipped){
-                g.drawImage(sprite, (int) Math.round(position.x + widthOffset) + sprite.getWidth(), (int) Math.round(position.y + heightOffset), -sprite.getWidth(), sprite.getHeight(), null);
+                if(slowPercent != 1) {
+                    g.drawImage(dye(sprite, new Color(0f, 0f, 0.6f, 0.4f)), (int) Math.round(position.x + widthOffset) + sprite.getWidth(), (int) Math.round(position.y + heightOffset), -sprite.getWidth(), sprite.getHeight(), null);
+                }
+                else if(isFrozen) {
+                    g.drawImage(dye(sprite, new Color(0f, 1f, 1f, 0.4f)), (int) Math.round(position.x + widthOffset) + sprite.getWidth(), (int) Math.round(position.y + heightOffset), -sprite.getWidth(), sprite.getHeight(), null);
+                }
+                else {
+                    g.drawImage(sprite, (int) Math.round(position.x + widthOffset) + sprite.getWidth(), (int) Math.round(position.y + heightOffset), -sprite.getWidth(), sprite.getHeight(), null);
+                }
             }
             else {
-                g.drawImage(this.sprite, (int) Math.round(position.x + widthOffset), (int) Math.round(position.y + heightOffset), null);
+                if(slowPercent != 1) {
+                    g.drawImage(dye(sprite, new Color(0f, 0f, 0.6f, 0.4f)), (int) Math.round(position.x + widthOffset), (int) Math.round(position.y + heightOffset), null);
+                }
+                else if(isFrozen) {
+
+                    g.drawImage(dye(sprite, new Color(0f, 1f, 1f, 0.4f)), (int) Math.round(position.x + widthOffset), (int) Math.round(position.y + heightOffset), null);
+                }
+                else {
+                    g.drawImage(this.sprite, (int) Math.round(position.x + widthOffset), (int) Math.round(position.y + heightOffset), null);
+                }
             }
 
 
@@ -197,10 +250,6 @@ public class Enemy {
         return new DoubleCoord(position.x + Map.TILE_SIZE / 2.0, position.y + Map.TILE_SIZE / 2.0);
     }
 
-    public double getMovementSpeed(){
-        return this.movementSpeed;
-    }
-
     public double getRadius() {
         return this.size / SQRT_TWO;
     }
@@ -215,5 +264,18 @@ public class Enemy {
 
     private IntCoord tileLocation() {
         return new IntCoord(position.convertToInt().x / Map.TILE_SIZE, position.convertToInt().y / Map.TILE_SIZE);
+    }
+
+    private BufferedImage dye(BufferedImage image, Color color) {
+        int w = image.getWidth();
+        int h = image.getHeight();
+        BufferedImage dyed = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g = dyed.createGraphics();
+        g.drawImage(image, 0, 0, null);
+        g.setComposite(AlphaComposite.SrcAtop);
+        g.setColor(color);
+        g.fillRect(0, 0, w, h);
+        g.dispose();
+        return dyed;
     }
 }

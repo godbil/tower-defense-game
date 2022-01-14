@@ -11,19 +11,19 @@ import java.util.ArrayList;
 public class CircularTower extends Tower {
     private int projectileCount;
 
-    public CircularTower(int damage, int range, int cost, int fireRate, BufferedImage image, Projectile projectileType, int projectileCount, boolean camoHittable, boolean magicProofHittable, boolean armourHittable, ArrayList<String> towerUpgradePaths) {
-        super(damage, range, cost, fireRate, image, projectileType, camoHittable, magicProofHittable, armourHittable, towerUpgradePaths);
+    public CircularTower(int damage, int range, int cost, int totalCost, int fireRate, BufferedImage image, Projectile projectileType, int projectileCount, boolean camoHittable, boolean magicProofHittable, boolean armourHittable, ArrayList<String> towerUpgradePaths) {
+        super(damage, range, cost, totalCost, fireRate, image, projectileType, camoHittable, magicProofHittable, armourHittable, towerUpgradePaths);
         this.projectileCount = projectileCount;
     }
 
-    public CircularTower(int damage, int range, int cost, int fireRate, IntCoord tileLocation, BufferedImage image, Projectile projectileType, int projectileCount, boolean camoHittable, boolean magicProofHittable, boolean armourHittable, ArrayList<String> towerUpgradePaths) {
-        super(damage, range, cost, fireRate, tileLocation, image, projectileType, camoHittable, magicProofHittable, armourHittable, towerUpgradePaths);
+    public CircularTower(int damage, int range, int cost, int totalCost, int fireRate, IntCoord tileLocation, BufferedImage image, Projectile projectileType, int projectileCount, boolean camoHittable, boolean magicProofHittable, boolean armourHittable, ArrayList<String> towerUpgradePaths) {
+        super(damage, range, cost, fireRate, totalCost, tileLocation, image, projectileType, camoHittable, magicProofHittable, armourHittable, towerUpgradePaths);
         this.projectileCount = projectileCount;
     }
 
     @Override
     public CircularTower copy(IntCoord tileLocation, double moneyMultiplier){
-        return new CircularTower(this.damage, this.range, (int)Math.round(this.cost * moneyMultiplier), this.fireRate, tileLocation, this.sprite, this.projectileType, this.projectileCount, this.camoHittable, this.magicProofHittable, this.armourHittable, this.towerUpgradePaths);
+        return new CircularTower(this.damage, this.range, (int)Math.round(this.cost * moneyMultiplier), (int)Math.round(this.totalCost * moneyMultiplier), this.fireRate, tileLocation, this.sprite, this.projectileType, this.projectileCount, this.camoHittable, this.magicProofHittable, this.armourHittable, this.towerUpgradePaths);
     }
 
     @Override

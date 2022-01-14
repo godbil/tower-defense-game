@@ -32,6 +32,7 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
     JButton mortarRetargetButton;
     JButton upgradeButton1;
     JButton upgradeButton2;
+    JButton sellButton;
 
     JTextArea upgradeDescription1;
     JTextArea upgradeDescription2;
@@ -78,13 +79,16 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
         this.ballistaButton.setBounds(24 * Map.TILE_SIZE - Map.TILE_SIZE / 2,9 * Map.TILE_SIZE,64,64);
 
         this.mortarRetargetButton = new JButton("Target Mortar");
-        this.mortarRetargetButton.setBounds(22 * Map.TILE_SIZE - Map.TILE_SIZE / 2,11 * Map.TILE_SIZE,192,64);
+        this.mortarRetargetButton.setBounds(22 * Map.TILE_SIZE - Map.TILE_SIZE / 2, Map.TILE_SIZE,192,64);
 
         this.upgradeButton1 = new JButton();
         this.upgradeButton1.setBounds(22 * Map.TILE_SIZE,3 * Map.TILE_SIZE,128,128);
 
         this.upgradeButton2 = new JButton();
         this.upgradeButton2.setBounds(22 * Map.TILE_SIZE,7 * Map.TILE_SIZE,128,128);
+
+        this.sellButton = new JButton("Sell");
+        this.sellButton.setBounds(22 * Map.TILE_SIZE,12 * Map.TILE_SIZE,128,64);
 
         this.upgradeDescription1 = new JTextArea();
         this.upgradeDescription1.setBounds(21 * Map.TILE_SIZE + 5,5 * Map.TILE_SIZE + 10, Map.TILE_SIZE * 4 - 10, 60);
@@ -112,6 +116,7 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
         this.mortarRetargetButton.addActionListener(this);
         this.upgradeButton1.addActionListener(this);
         this.upgradeButton2.addActionListener(this);
+        this.sellButton.addActionListener(this);
         panel.setLayout(null);
         panel.add(this.attackMageButton);
         panel.add(this.supportMageButton);
@@ -126,9 +131,11 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
         panel.add(this.upgradeButton2);
         panel.add(this.upgradeDescription1);
         panel.add(this.upgradeDescription2);
+        panel.add(this.sellButton);
         mortarRetargetButton.setVisible(false);
         upgradeButton1.setVisible(false);
         upgradeButton2.setVisible(false);
+        sellButton.setVisible(false);
         upgradeDescription1.setVisible(false);
         upgradeDescription2.setVisible(false);
         upgradeDescription1.setLineWrap(true);
@@ -185,6 +192,7 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
             this.ballistaButton.setVisible(false);
             this.upgradeButton1.setVisible(true);
             this.upgradeButton2.setVisible(true);
+            this.sellButton.setVisible(true);
             this.upgradeDescription1.setVisible(true);
             this.upgradeDescription2.setVisible(true);
             if(selectedTower.getUpgradePath().size() > 1) {
@@ -232,6 +240,7 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
             this.upgradeButton2.setVisible(false);
             this.upgradeDescription1.setVisible(false);
             this.upgradeDescription2.setVisible(false);
+            this.sellButton.setVisible(false);
         }
     }
 
@@ -354,7 +363,6 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
                 selectedTower = null;
             }
         }
-
         if(e.getSource() == this.upgradeButton2) {
             if(selectedTower != null && selectedTower.getUpgradePath().size() > 1) {
                 if(this.gameState.getMoney() >= Math.round(towerManager.getTower(selectedTower.getUpgradePath().get(1)).getCost() * gameState.getMoneyMultiplier())) {
@@ -363,6 +371,12 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
                     selectedTower = null;
                 }
             }
+        }
+
+        if(e.getSource() == this.sellButton) {
+            towerManager.sell(selectedTower);
+            gameState.addMoney((int)Math.round(selectedTower.getTotalCost() * 0.7));
+            selectedTower = null;
         }
     }
 }

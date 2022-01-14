@@ -1,72 +1,72 @@
-AttackMage Tower 1 150 300 60 attackmage1 AttackMagicBall true false true 2 AttackMageFireball AttackMageEnhancedEyesight 
-AttackMageFireball Tower 2 170 300 60 attackmagefireball AttackFireBall true false true 1 AttackMageFastFire 
-AttackMageFastFire Tower 2 180 450 30 attackmagefastfire AttackFireBall true false true 1 AttackMageWallOfFire 
-AttackMageWallOfFire Tower 2 180 1100 20 attackmagewalloffire AttackFireBlast true false true 1 AttackMageMasterOfFire 
-AttackMageMasterOfFire Tower 4 240 5200 10 attackmagemasteroffire AttackFireBlast true false true 0
-AttackMageEnhancedEyesight Tower 1 200 150 60 attackmageenhancedeyesight AttackMagicBall true false true 1 AttackMageLightningBolt 
-AttackMageLightningBolt Tower 2 220 500 45 attackmagelightningbolt AttackLightningBolt true false true 1 AttackMageDualLightning 
-AttackMageDualLightning MultiHitTower 3 240 1300 30 attackmageduallightning AttackLightningBolt true false true 2 1 AttackMageMasterOfLightning 
-AttackMageMasterOfLightning MultiHitTower 6 300 5500 20 attackmagemasteroflightning AttackLightningBolt true false true 8 0
-SupportMage Tower 1 120 200 80 supportmage1 SupportMagicBall true false false 2 SupportMageWizardEyes SupportMageQuickerHands 
-SupportMageWizardEyes Tower 1 220 180 80 supportmage1 SupportMagicBall true false false 1 SupportMageIceBeam 
-SupportMageIceBeam Tower 2 250 320 80 supportmage1 SupportIceBeam true false true 1 SupportMageDeepFreeze 
-SupportMageDeepFreeze Tower 2 300 950 70 supportmage1 SupportIceBeam true false true 1 SupportMageMasterOfIce 
-SupportMageMasterOfIce Tower 3 350 5000 40 supportmage1 SupportIceBeam true false true 0
-SupportMageQuickerHands Tower 1 150 220 60 supportmage1 SupportMagicBall true false false 1 SupportMageEnhancedWaterMagic 
-SupportMageEnhancedWaterMagic Tower 1 200 500 45 supportmage1 SupportWaterBall true false true 1 SupportMageTidalWave 
-SupportMageTidalWave Tower 1 240 1200 35 supportmage1 SupportTidalWave true false true 1 SupportMageMasterOfWater 
-SupportMageMasterOfWater Tower 2 300 5200 25 supportmage1 SupportTidalWave true false true 0
-Warrior Tower 2 100 360 80 warrior1 WarriorSlash false true false 2 WarriorFasterSlashing WarriorPowerfulSlashing 
-WarriorFasterSlashing Tower 2 140 360 60 warriorfasterslashing WarriorSlash false true false 1 WarriorEvenFasterSlashing 
-WarriorEvenFasterSlashing Tower 2 180 520 30 warriorevenfasterslashing WarriorSlash false true false 1 WarriorCircleSlash 
-WarriorCircleSlash Tower 2 220 1500 30 warriorcircleslash WarriorCircleSlash false true false 1 WarriorBladeLord 
-WarriorBladeLord Tower 2 250 4800 5 warriorbladelord WarriorCircleSlash false true false 0
-WarriorPowerfulSlashing Tower 3 150 260 80 warriorpowerfulslashing WarriorSlash false true false 1 WarriorBroadSword 
-WarriorBroadSword Tower 4 180 460 80 warriorbroadsword WarriorBroadSlash false true true 1 WarriorEarthStomp 
-WarriorEarthStomp Tower 6 220 1150 70 warriorearthstomp WarriorEarthSlash false true true 1 WarriorEarthChampion 
-WarriorEarthChampion Tower 18 280 5100 50 warriorearthchampion WarriorEarthSlash false true true 0
-Catapult Tower 2 200 720 110 catapult1 CatapultRock false true true 2 CatapultEnhancedFiring CatapultPowerfulRocks 
-CatapultEnhancedFiring Tower 2 250 320 100 catapultenhancedfiring CatapultRock false true true 1 CatapultEliteCatapult 
-CatapultEliteCatapult Tower 2 280 400 90 catapultelitecatapult CatapultRock false true true 1 CatapultFireBlast 
-CatapultFireBlast Tower 2 280 1600 80 catapultfireblast CatapultFireRock false false true 1 CatapultBallOfDeath 
-CatapultBallOfDeath Tower 2 320 6200 70 catapultballofdeath CatapultBallOfDeath false false true 0
-CatapultPowerfulRocks Tower 3 250 360 110 catapultpowerfulrocks CatapultRock false true true 1 CatapultEvenStrongerRocks 
-CatapultEvenStrongerRocks Tower 4 280 600 100 catapultevenstrongerrocks CatapultRock false true true 1 CatapultJuggernaut 
-CatapultJuggernaut Tower 8 320 1300 90 catapultjuggernaut CatapultJuggernautRock false true true 1 CatapultUltraJuggernaut 
-CatapultUltraJuggernaut Tower 28 360 5800 70 catapultultrajuggernaut CatapultUltraJuggernautRock false true true 0
-TackShooter CircularTower 1 100 250 80 tackshooter1 Tack 4 false true false 2 TackShooterPowerfulTacks TackShooterQuickerTacks 
-TackShooterPowerfulTacks CircularTower 2 140 200 80 tackshooterpowerfultacks Tack 4 false true false 1 TackShooterAquaTacks 
-TackShooterAquaTacks CircularTower 3 180 250 80 tackshooteraquatacks AquaTack 4 false false true 1 TackShooterRingOfWater 
-TackShooterRingOfWater CircularTower 5 200 1300 70 tackshooterringofwater RingOfWaterBall 4 false false true 1 TackShooterAquaRing 
-TackShooterAquaRing AquaRingTower 10 200 6200 80 tackshooteraquaring AquaRingWaterBall false false true 1 120 0
-TackShooterQuickerTacks CircularTower 1 140 250 70 tackshooterquickertacks Tack 4 false true false 1 TackShooterEvenQuickerTacks 
-TackShooterEvenQuickerTacks CircularTower 1 160 380 50 tackshooterevenquickertacks Tack 4 false true false 1 TackShooterTackSprayer 
-TackShooterTackSprayer CircularTower 1 180 1100 30 tackshootertacksprayer Tack 8 false true false 1 TackShooterTackZone 
-TackShooterTackZone CircularTower 1 220 7200 10 tackshootertackzone Tack 12 false true false 0
-Mortar MortarTower 2 64 750 100 mortar1 MortarBomb mortartarget false true true 1 2 MortarFasterReload MortarStrongerBombs 
-MortarFasterReload MortarTower 2 64 300 80 mortarfasterreload MortarBomb mortartarget true true true 1 1 MortarRapidReload 
-MortarRapidReload MortarTower 2 64 410 70 mortarrapidreload MortarBomb mortartarget true true true 1 1 MortarDualBombing 
-MortarDualBombing MortarTower 2 64 2000 50 mortardualbombing MortarBomb mortartarget true true true 2 1 MortarArtilleryBattery 
-MortarArtilleryBattery MortarTower 5 64 5600 10 mortarartillerybattery MortarBomb mortartarget true true true 3 0
-MortarStrongerBombs MortarTower 3 64 310 100 mortarstrongerbombs MortarBomb mortartarget true true true 1 1 MortarBiggerBlast 
-MortarBiggerBlast MortarTower 5 64 430 100 mortarbiggerblast MortarBomb mortartarget true true true 1 1 MortarTheBigOne 
-MortarTheBigOne MortarTower 10 64 1800 90 mortarthebigone MortarBigBomb mortartarget true true true 1 1 MortarTheBiggestOne 
-MortarTheBiggestOne MortarTower 20 64 6200 100 mortarthebiggestone MortarBiggestBomb mortartarget true true true 1 0
-Farm FarmTower 0 100 1100 200 farm1 farmcow 80 800 false false false 2 FarmValuableCarrots FarmQuickHarvest 
-FarmValuableCarrots FarmTower 0 100 2000 200 farm1 farmcow 120 2400 false false false 1 FarmBigCarrots 
-FarmBigCarrots FarmTower 0 100 3500 200 farm1 farmcow 300 6000 false false false 1 FarmCarrotResearchCenter 
-FarmCarrotResearchCenter FarmTower 0 100 5500 200 farm1 farmcow 650 50000 false false false 1 FarmCarrotCentral 
-FarmCarrotCentral FarmTower 0 100 12000 200 farm1 farmcow 1400 100000 false false false 0
-FarmQuickHarvest FarmTower 0 100 1800 150 farm1 farmcow 40 800 false false false 1 FarmExtremelyQuickHarvest 
-FarmExtremelyQuickHarvest FarmTower 0 100 3000 100 farm1 farmcow 50 3200 false false false 1 FarmCarrotOverflow 
-FarmCarrotOverflow FarmTower 0 100 5600 50 farm1 farmcow 60 10000 false false false 1 FarmCarrotRiver 
-FarmCarrotRiver FarmTower 0 100 11000 20 farm1 farmcow 80 100000 false false false 0
-Ballista BallistaTower 2 64 1000 100 ballista1 BallistaArrow true true false 2 BallistaFasterFiring BallistaPowerfulArrows 
-BallistaFasterFiring BallistaTower 2 64 320 90 ballistafasterfiring BallistaArrow true true false 1 BallistaEvenFasterFiring 
-BallistaEvenFasterFiring BallistaTower 2 64 450 70 ballistaevenfasterfiring BallistaArrow true true false 1 BallistaLaserCannon 
-BallistaLaserCannon BallistaTower 2 64 1800 50 ballistalasercannon BallistaLaserArrow true true true 1 BallistaRayOfDoom 
-BallistaRayOfDoom BallistaTower 2 64 6500 20 ballistarayofdoom BallistaLaserArrow true true true 0
-BallistaPowerfulArrows BallistaTower 3 64 340 90 ballistapowerfularrows BallistaArrow true true false 1 BallistaEnhancedShooting 
-BallistaEnhancedShooting BallistaTower 6 64 560 90 ballistaenhancedshooting BallistaArrow true true false 1 BallistaExplosiveArrows 
-BallistaExplosiveArrows BallistaTower 10 64 1750 90 ballistaexplosivearrows BallistaExplosiveArrow true true true 1 BallistaRocketDemon 
-BallistaRocketDemon BallistaTower 25 64 6200 70 ballistarocketdemon BallistaExplosiveDemonArrow true true true 0
+AttackMage Tower 1 150 300 300 60 attackmage1 AttackMagicBall true false true 2 AttackMageFireball AttackMageEnhancedEyesight 
+AttackMageFireball Tower 2 170 300 600 60 attackmagefireball AttackFireBall true false true 1 AttackMageFastFire 
+AttackMageFastFire Tower 2 180 450 1050 40 attackmagefastfire AttackFireBall true false true 1 AttackMageWallOfFire 
+AttackMageWallOfFire Tower 2 180 1100 2150 30 attackmagewalloffire AttackFireBlast true false true 1 AttackMageMasterOfFire 
+AttackMageMasterOfFire Tower 4 240 5200 7350 10 attackmagemasteroffire AttackFireBlast true false true 0
+AttackMageEnhancedEyesight Tower 1 200 150 450 60 attackmageenhancedeyesight AttackMagicBall true false true 1 AttackMageLightningBolt 
+AttackMageLightningBolt Tower 2 220 500 950 45 attackmagelightningbolt AttackLightningBolt true false true 1 AttackMageDualLightning 
+AttackMageDualLightning MultiHitTower 3 240 1300 2250 30 attackmageduallightning AttackLightningBolt true false true 2 1 AttackMageMasterOfLightning 
+AttackMageMasterOfLightning MultiHitTower 6 300 5500 7750 20 attackmagemasteroflightning AttackLightningBolt true false true 8 0
+SupportMage Tower 1 120 200 200 80 supportmage1 SupportMagicBall true false false 2 SupportMageWizardEyes SupportMageQuickerHands 
+SupportMageWizardEyes Tower 1 220 180 380 80 supportmagewizardeyes SupportMagicBall true false false 1 SupportMageIceBeam 
+SupportMageIceBeam Tower 2 250 320 700 80 supportmageicebeam SupportIceBeam true false true 1 SupportMageDeepFreeze 
+SupportMageDeepFreeze FreezeTower 2 300 950 1650 70 supportmagedeepfreeze SupportIceBeam true false true 60 1 SupportMageMasterOfIce 
+SupportMageMasterOfIce FreezeTower 2 350 5000 6650 40 supportmagemasterofice SupportIceBeam true false true 120 0
+SupportMageQuickerHands Tower 1 150 220 420 70 supportmagequickerhands SupportMagicBall true false false 1 SupportMageEnhancedWaterMagic 
+SupportMageEnhancedWaterMagic Tower 1 200 500 920 60 supportmageenhancedwatermagic SupportWaterBall true false true 1 SupportMageTidalWave 
+SupportMageTidalWave SlowTower 1 240 1200 2120 60 supportmagetidalwave SupportTidalWave true false true 0.8 1 SupportMageMasterOfWater 
+SupportMageMasterOfWater SlowTower 1 300 5200 7320 50 supportmagemasterofwater SupportTidalWave true false true 0.5 0
+Warrior Tower 2 100 360 360 80 warrior1 WarriorSlash false true false 2 WarriorFasterSlashing WarriorPowerfulSlashing 
+WarriorFasterSlashing Tower 2 140 360 720 70 warriorfasterslashing WarriorSlash false true false 1 WarriorEvenFasterSlashing 
+WarriorEvenFasterSlashing Tower 2 180 520 1240 60 warriorevenfasterslashing WarriorSlash false true false 1 WarriorCircleSlash 
+WarriorCircleSlash CircleShootingTower 2 200 1500 2740 50 warriorcircleslash WarriorCircleSlash false true false 1 192 1 WarriorBladeLord 
+WarriorBladeLord CircleShootingTower 2 200 5300 8040 45 warriorbladelord WarriorCircleSlash false true false 1 100 0
+WarriorPowerfulSlashing Tower 3 150 220 580 80 warriorpowerfulslashing WarriorSlash false true false 1 WarriorBroadSword 
+WarriorBroadSword Tower 4 180 460 1040 80 warriorbroadsword WarriorBroadSlash false true true 1 WarriorEarthStomp 
+WarriorEarthStomp EarthStompTower 6 220 1150 2190 70 warriorearthstomp WarriorEarthSlash false true true 120 1 WarriorEarthChampion 
+WarriorEarthChampion EarthStompTower 18 280 6500 8690 50 warriorearthchampion WarriorEarthSlash false true true 100 0
+Catapult Tower 2 200 720 720 110 catapult1 CatapultRock false true true 2 CatapultEnhancedFiring CatapultPowerfulRocks 
+CatapultEnhancedFiring Tower 2 250 320 1040 100 catapultenhancedfiring CatapultRock false true true 1 CatapultEliteCatapult 
+CatapultEliteCatapult Tower 2 280 400 1440 90 catapultelitecatapult CatapultRock false true true 1 CatapultFireBlast 
+CatapultFireBlast Tower 2 280 1600 3040 80 catapultfireblast CatapultFireRock false false true 1 CatapultBallOfDeath 
+CatapultBallOfDeath Tower 2 320 6200 9240 70 catapultballofdeath CatapultBallOfDeath false false true 0
+CatapultPowerfulRocks Tower 3 250 360 1080 110 catapultpowerfulrocks CatapultRock false true true 1 CatapultEvenStrongerRocks 
+CatapultEvenStrongerRocks Tower 4 280 600 1680 100 catapultevenstrongerrocks CatapultRock false true true 1 CatapultJuggernaut 
+CatapultJuggernaut Tower 8 320 1300 2980 90 catapultjuggernaut CatapultJuggernautRock false true true 1 CatapultUltraJuggernaut 
+CatapultUltraJuggernaut Tower 28 360 5800 8780 70 catapultultrajuggernaut CatapultUltraJuggernautRock false true true 0
+TackShooter CircularTower 1 100 250 250 80 tackshooter1 Tack 4 false true false 2 TackShooterPowerfulTacks TackShooterQuickerTacks 
+TackShooterPowerfulTacks CircularTower 2 140 200 450 80 tackshooterpowerfultacks Tack 4 false true false 1 TackShooterAquaTacks 
+TackShooterAquaTacks CircularTower 3 180 250 700 80 tackshooteraquatacks AquaTack 4 false false true 1 TackShooterRingOfWater 
+TackShooterRingOfWater CircularTower 5 200 1300 2000 70 tackshooterringofwater RingOfWaterBall 4 false false true 1 TackShooterAquaRing 
+TackShooterAquaRing AquaRingTower 10 200 6200 8200 80 tackshooteraquaring AquaRingWaterBall false false true 1 120 0
+TackShooterQuickerTacks CircularTower 1 140 250 500 70 tackshooterquickertacks Tack 4 false true false 1 TackShooterEvenQuickerTacks 
+TackShooterEvenQuickerTacks CircularTower 1 160 380 880 50 tackshooterevenquickertacks Tack 4 false true false 1 TackShooterTackSprayer 
+TackShooterTackSprayer CircularTower 1 180 1100 1980 30 tackshootertacksprayer Tack 8 false true false 1 TackShooterTackZone 
+TackShooterTackZone CircularTower 1 220 5800 7780 10 tackshootertackzone Tack 12 false true false 0
+Mortar MortarTower 2 64 700 700 100 mortar1 MortarBomb mortartarget false true true 1 2 MortarFasterReload MortarStrongerBombs 
+MortarFasterReload MortarTower 2 64 300 1000 80 mortarfasterreload MortarBomb mortartarget true true true 1 1 MortarRapidReload 
+MortarRapidReload MortarTower 2 64 410 1410 70 mortarrapidreload MortarBomb mortartarget true true true 1 1 MortarDualBombing 
+MortarDualBombing MortarTower 2 64 2000 3410 50 mortardualbombing MortarBomb mortartarget true true true 2 1 MortarArtilleryBattery 
+MortarArtilleryBattery MortarTower 5 64 5600 9010 10 mortarartillerybattery MortarBomb mortartarget true true true 3 0
+MortarStrongerBombs MortarTower 3 64 310 1010 100 mortarstrongerbombs MortarBomb mortartarget true true true 1 1 MortarBiggerBlast 
+MortarBiggerBlast MortarTower 5 64 430 1440 100 mortarbiggerblast MortarBomb mortartarget true true true 1 1 MortarTheBigOne 
+MortarTheBigOne MortarTower 10 64 1800 3240 90 mortarthebigone MortarBigBomb mortartarget true true true 1 1 MortarTheBiggestOne 
+MortarTheBiggestOne MortarTower 20 64 6200 9440 100 mortarthebiggestone MortarBiggestBomb mortartarget true true true 1 0
+Farm FarmTower 0 100 1100 1100 200 farm1 farmcow 80 800 false false false 2 FarmBigCarrots FarmQuickHarvest 
+FarmBigCarrots FarmTower 0 100 2000 3100 200 farmbigcarrots farmcow 120 2400 false false false 1 FarmValuableCarrots 
+FarmValuableCarrots FarmTower 0 100 3500 6600 200 farmvaluablecarrots farmcow 300 6000 false false false 1 FarmCarrotResearchCenter 
+FarmCarrotResearchCenter FarmTower 0 100 5500 12100 200 farmcarrotresearchcenter farmcow 650 50000 false false false 1 FarmCarrotCentral 
+FarmCarrotCentral FarmTower 0 100 12000 24100 200 farmcarrotcentral farmcow 1400 100000 false false false 0
+FarmQuickHarvest FarmTower 0 100 1800 2900 150 farmquickharvest farmcow 40 800 false false false 1 FarmExtremelyQuickHarvest 
+FarmExtremelyQuickHarvest FarmTower 0 100 3000 5900 100 farmextremelyquickharvest farmcow 50 3200 false false false 1 FarmCarrotMarketplace 
+FarmCarrotMarketplace FarmTower 0 100 5600 11500 50 farmcarrotmarketplace farmcow 60 10000 false false false 1 FarmCarrotOverflow 
+FarmCarrotOverflow FarmTower 0 100 11000 22500 20 farmcarrotoverflow farmcow 80 100000 false false false 0
+Ballista BallistaTower 2 64 1000 1000 100 ballista1 BallistaArrow true true false 2 BallistaFasterFiring BallistaPowerfulArrows 
+BallistaFasterFiring BallistaTower 2 64 320 1320 90 ballistafasterfiring BallistaArrow true true false 1 BallistaEvenFasterFiring 
+BallistaEvenFasterFiring BallistaTower 2 64 450 1770 70 ballistaevenfasterfiring BallistaArrow true true false 1 BallistaLaserCannon 
+BallistaLaserCannon BallistaTower 2 64 1800 3570 50 ballistalasercannon BallistaLaserArrow true true true 1 BallistaRayOfDoom 
+BallistaRayOfDoom BallistaTower 2 64 6500 10070 20 ballistarayofdoom BallistaLaserArrow true true true 0
+BallistaPowerfulArrows BallistaTower 3 64 340 1340 90 ballistapowerfularrows BallistaArrow true true false 1 BallistaEnhancedShooting 
+BallistaEnhancedShooting BallistaTower 6 64 560 1900 90 ballistaenhancedshooting BallistaArrow true true false 1 BallistaExplosiveArrows 
+BallistaExplosiveArrows BallistaTower 10 64 1750 3650 90 ballistaexplosivearrows BallistaExplosiveArrow true true true 1 BallistaRocketDemon 
+BallistaRocketDemon BallistaTower 25 64 6200 9850 70 ballistarocketdemon BallistaExplosiveDemonArrow true true true 0

@@ -17,8 +17,8 @@ public class MortarTower extends Tower{
     private int hitCount;
     private int spawnTimer;
 
-    public MortarTower(int damage, int range, int cost, int fireRate, BufferedImage sprite, Projectile projectileType, BufferedImage target, boolean camoHittable, boolean magicProofHittable, boolean armourHittable, int hitQuota, ArrayList<String> towerUpgradePaths) {
-        super(damage, range, cost, fireRate, sprite, projectileType, camoHittable, magicProofHittable, armourHittable, towerUpgradePaths);
+    public MortarTower(int damage, int range, int cost, int totalCost, int fireRate, BufferedImage sprite, Projectile projectileType, BufferedImage target, boolean camoHittable, boolean magicProofHittable, boolean armourHittable, int hitQuota, ArrayList<String> towerUpgradePaths) {
+        super(damage, range, cost, totalCost, fireRate, sprite, projectileType, camoHittable, magicProofHittable, armourHittable, towerUpgradePaths);
         this.target = target;
         targetPosition = new DoubleCoord(Map.TILE_SIZE + Map.TILE_SIZE / 2.0, 4 * Map.TILE_SIZE + Map.TILE_SIZE / 2.0);
         this.hitQuota = hitQuota;
@@ -26,8 +26,8 @@ public class MortarTower extends Tower{
         this.spawnTimer = 0;
     }
 
-    public MortarTower(int damage, int range, int cost, int fireRate, IntCoord tileLocation, BufferedImage sprite, Projectile projectileType, BufferedImage target, boolean camoHittable, boolean magicProofHittable, boolean armourHittable, int hitQuota, ArrayList<String> towerUpgradePaths) {
-        super(damage, range, cost, fireRate, tileLocation, sprite, projectileType, camoHittable, magicProofHittable, armourHittable, towerUpgradePaths);
+    public MortarTower(int damage, int range, int cost, int totalCost, int fireRate, IntCoord tileLocation, BufferedImage sprite, Projectile projectileType, BufferedImage target, boolean camoHittable, boolean magicProofHittable, boolean armourHittable, int hitQuota, ArrayList<String> towerUpgradePaths) {
+        super(damage, range, cost, totalCost, fireRate, tileLocation, sprite, projectileType, camoHittable, magicProofHittable, armourHittable, towerUpgradePaths);
         this.target = target;
         targetPosition = new DoubleCoord(Map.TILE_SIZE + Map.TILE_SIZE / 2.0, 4 * Map.TILE_SIZE + Map.TILE_SIZE / 2.0);
         this.hitQuota = hitQuota;
@@ -42,7 +42,7 @@ public class MortarTower extends Tower{
 
     @Override
     public MortarTower copy(IntCoord tileLocation, double moneyMultiplier){
-        return new MortarTower(this.damage, this.range, (int)Math.round(this.cost * moneyMultiplier), this.fireRate, tileLocation, this.sprite, this.projectileType, this.target, this.camoHittable, this.magicProofHittable, this.armourHittable, this.hitQuota, this.towerUpgradePaths);
+        return new MortarTower(this.damage, this.range, (int)Math.round(this.cost * moneyMultiplier), (int)Math.round(this.totalCost * moneyMultiplier), this.fireRate, tileLocation, this.sprite, this.projectileType, this.target, this.camoHittable, this.magicProofHittable, this.armourHittable, this.hitQuota, this.towerUpgradePaths);
     }
 
     @Override

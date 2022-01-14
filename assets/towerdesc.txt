@@ -1,7 +1,7 @@
 AttackMage Trained at the Mage Tower, the Attack Mages are proficient with big damage magic.
 AttackMageFireball Fireball. Attacks with fire magic, dealing more damage.
 AttackMageFastFire Fast Fire. Improves fire magic, shooting much faster.
-AttackMageWallOfFire Wall of Fire. Gains more mana, allowing the mage to place walls of fire.
+AttackMageWallOfFire Wall of Fire. Gains more mana, allowing the mage to shoot walls of fire.
 AttackMageMasterOfFire Master of Fire. The strongest fire mage, nothing will get past him.
 AttackMageEnhancedEyesight Enhanced Eyesight. Improves his range using wizard eyes.
 AttackMageLightningBolt Lightning Bolt. Attacks with lightning magic, dealing more damage and attacking faster.
@@ -53,14 +53,14 @@ MortarBiggerBlast Bigger Blast. Elite bombs provide bigger blasts, dealing more 
 MortarTheBigOne The Big One. Nukes everything in the path of the bombs.
 MortarTheBiggestOne The Biggest One. Annihilation for all enemies.
 Farm Produces carrots which are sold for $40 every so often.
-FarmValuableCarrots Valuable Carrots. Carrots are even more valuable and sold for more money.
-FarmBigCarrots Big Carrots. Produces large carrots which give much more money.
+FarmBigCarrots Big Carrots. Carrots are even more valuable and sold for more money.
+FarmValuableCarrots Valuable Carrots. Produces large carrots which give much more money.
 FarmCarrotResearchCenter Carrot Research Center. Researches carrots to allow for more expensive carrots.
 FarmCarrotCentral Carrot Central. Money will no longer be a problem.
 FarmQuickHarvest Quick Harvest. Carrots are able to be harvested faster than usual. 
 FarmExtremelyQuickHarvest Extremely Quick Harvest. Farms are improved to help carrots grow even faster.
-FarmCarrotOverflow Carrot Overflow. Huge amounts of carrots are produced, automatically going to your money.
-FarmCarrotRiver Carrot River. Money will no longer be a problem.
+FarmCarrotMarketplace Carrot Marketplace. Huge amounts of carrots are produced, automatically going to your money.
+FarmCarrotOverflow Carrot Overflow. Money will no longer be a problem.
 Ballista Part of the 4 War Machines. Shoots a fast arrow to any enemy that is chosen.
 BallistaFasterFiring Faster Firing. Improves the ballista to shoot faster.
 BallistaEvenFasterFiring  Even Faster Firing. Upgrades to the elite ballista which fires much faster.

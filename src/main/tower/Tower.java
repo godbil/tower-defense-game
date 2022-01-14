@@ -14,6 +14,7 @@ public class Tower {
     protected int damage;
     protected int range;
     protected int cost;
+    protected int totalCost;
 
     protected int fireRate;
     protected int timer;
@@ -32,10 +33,11 @@ public class Tower {
 
     protected final ArrayList<String> towerUpgradePaths;
 
-    public Tower(int damage, int range, int cost, int fireRate, BufferedImage image, Projectile projectileType, boolean camoHittable, boolean magicProofHittable, boolean armourHittable, ArrayList<String> towerUpgradePaths) {
+    public Tower(int damage, int range, int cost, int totalCost, int fireRate, BufferedImage image, Projectile projectileType, boolean camoHittable, boolean magicProofHittable, boolean armourHittable, ArrayList<String> towerUpgradePaths) {
         this.damage = damage;
         this.range = range;
         this.cost = cost;
+        this.totalCost = totalCost;
         this.fireRate = fireRate;
         this.timer = 0;
 
@@ -52,10 +54,11 @@ public class Tower {
         this.towerUpgradePaths = towerUpgradePaths;
     }
 
-    public Tower(int damage, int range, int cost, int fireRate, IntCoord tileLocation, BufferedImage image, Projectile projectileType, boolean camoHittable, boolean magicProofHittable, boolean armourHittable, ArrayList<String> towerUpgradePaths) {
+    public Tower(int damage, int range, int cost, int totalCost, int fireRate, IntCoord tileLocation, BufferedImage image, Projectile projectileType, boolean camoHittable, boolean magicProofHittable, boolean armourHittable, ArrayList<String> towerUpgradePaths) {
         this.damage = damage;
         this.range = range;
         this.cost = cost;
+        this.totalCost = totalCost;
         this.fireRate = fireRate;
         this.timer = 0;
         this.tileLocation = tileLocation;
@@ -159,12 +162,16 @@ public class Tower {
         return this.cost;
     }
 
+    public int getTotalCost() {
+        return this.totalCost;
+    }
+
     public IntCoord getTileLocation() {
         return this.tileLocation;
     }
 
     public Tower copy(IntCoord tileLocation, double moneyMultiplier){
-        return new Tower(this.damage, this.range, (int) Math.round(this.cost * moneyMultiplier), this.fireRate, tileLocation, this.sprite, this.projectileType, this.camoHittable, this.magicProofHittable, this.armourHittable, this.towerUpgradePaths);
+        return new Tower(this.damage, this.range, (int) Math.round(this.cost * moneyMultiplier), (int) Math.round(this.totalCost * moneyMultiplier), this.fireRate, tileLocation, this.sprite, this.projectileType, this.camoHittable, this.magicProofHittable, this.armourHittable, this.towerUpgradePaths);
     }
 
     public BufferedImage getSprite() {
