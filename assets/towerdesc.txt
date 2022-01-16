@@ -59,7 +59,7 @@ FarmCarrotResearchCenter Carrot Research Center. Researches carrots to allow for
 FarmCarrotCentral Carrot Central. Money will no longer be a problem.
 FarmQuickHarvest Quick Harvest. Carrots are able to be harvested faster than usual. 
 FarmExtremelyQuickHarvest Extremely Quick Harvest. Farms are improved to help carrots grow even faster.
-FarmCarrotMarketplace Carrot Marketplace. Huge amounts of carrots are produced, automatically going to your money.
+FarmCarrotMarketplace Carrot Marketplace. Huge amounts of carrots are produced.
 FarmCarrotOverflow Carrot Overflow. Money will no longer be a problem.
 Ballista Part of the 4 War Machines. Shoots a fast arrow to any enemy that is chosen.
 BallistaFasterFiring Faster Firing. Improves the ballista to shoot faster.
@@ -70,3 +70,6 @@ BallistaPowerfulArrows Powerful Arrows. Improves arrows to deal even more damage
 BallistaEnhancedShooting Enhanced Shooting. Allows for faster shooting which causes more damage as well.
 BallistaExplosiveArrows Explosive Arrows. Arrows blow up on contact, dealing destructive splash damage.
 BallistaRocketDemon Rocket Demon. The Rocket Demon will blow up everything in its path.
+FarmCow Farm Cow. It's a cow.
+CowBeast Cow Beast. A science experiment gone wrong. This creature is the attempt to combine cows and octopuses together.
+CowMan Cow Man. He's a man, but also a cow. Moo!

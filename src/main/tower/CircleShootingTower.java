@@ -38,22 +38,22 @@ public class CircleShootingTower extends Tower {
     public void update(ArrayList<Enemy> enemies) {
         super.update(enemies);
         aquaRingDamage(enemies);
+        if(isShooting && pulseSize <= this.range * 2) {
+            this.pulseSize += 10;
+        }
+        else {
+            isShooting = false;
+            this.pulseSize = 0;
+        }
     }
 
     @Override
     public void paint(Graphics2D g) {
         if(isShooting) {
-            if(pulseSize <= this.range * 2) {
-                this.pulseSize += 10;
-                Ellipse2D aquaPulse = new Ellipse2D.Double(this.getCenter().x - pulseSize / 2.0, this.getCenter().y - pulseSize / 2.0, pulseSize, pulseSize);
-                g.setPaint(new Color(0.5f, 0.5f, 0.5f, 0.6f));
-                g.draw(aquaPulse);
-                g.fill(aquaPulse);
-            }
-            else {
-                isShooting = false;
-                this.pulseSize = 0;
-            }
+            Ellipse2D aquaPulse = new Ellipse2D.Double(this.getCenter().x - pulseSize / 2.0, this.getCenter().y - pulseSize / 2.0, pulseSize, pulseSize);
+            g.setPaint(new Color(0.5f, 0.5f, 0.5f, 0.6f));
+            g.draw(aquaPulse);
+            g.fill(aquaPulse);
         }
         paint(g, false, false);
     }

@@ -25,3 +25,4 @@ DarkMage SpawnerEnemy 20 2.5 64 darkmage false true false 70 DarkSlime 500 1
 Ogre Enemy 80 0.8 64 shrek false false true 65
 Head Enemy 70 5 64 head false false false 50
 HeadlessMan DeathSpawnerEnemy 280 3 106 headlessman false false false 100 Head 4
+Puunky DeathSpawnerEnemy 2000 10 64 puunky false false false 100000 Splunky 1

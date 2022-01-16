@@ -42,7 +42,7 @@ TackShooterAquaRing AquaRingTower 10 200 6200 8200 80 tackshooteraquaring AquaRi
 TackShooterQuickerTacks CircularTower 1 140 250 500 70 tackshooterquickertacks Tack 4 false true false 1 TackShooterEvenQuickerTacks 
 TackShooterEvenQuickerTacks CircularTower 1 160 380 880 50 tackshooterevenquickertacks Tack 4 false true false 1 TackShooterTackSprayer 
 TackShooterTackSprayer CircularTower 1 180 1100 1980 30 tackshootertacksprayer Tack 8 false true false 1 TackShooterTackZone 
-TackShooterTackZone CircularTower 1 220 5800 7780 10 tackshootertackzone Tack 12 false true false 0
+TackShooterTackZone CircularTower 1 220 5800 7780 10 tackshootertackzone Tack 12 true true false 0
 Mortar MortarTower 2 64 700 700 100 mortar1 MortarBomb mortartarget false true true 1 2 MortarFasterReload MortarStrongerBombs 
 MortarFasterReload MortarTower 2 64 300 1000 80 mortarfasterreload MortarBomb mortartarget true true true 1 1 MortarRapidReload 
 MortarRapidReload MortarTower 2 64 410 1410 70 mortarrapidreload MortarBomb mortartarget true true true 1 1 MortarDualBombing 
@@ -52,7 +52,7 @@ MortarStrongerBombs MortarTower 3 64 310 1010 100 mortarstrongerbombs MortarBomb
 MortarBiggerBlast MortarTower 5 64 430 1440 100 mortarbiggerblast MortarBomb mortartarget true true true 1 1 MortarTheBigOne 
 MortarTheBigOne MortarTower 10 64 1800 3240 90 mortarthebigone MortarBigBomb mortartarget true true true 1 1 MortarTheBiggestOne 
 MortarTheBiggestOne MortarTower 20 64 6200 9440 100 mortarthebiggestone MortarBiggestBomb mortartarget true true true 1 0
-Farm FarmTower 0 100 1100 1100 200 farm1 farmcow 80 800 false false false 2 FarmBigCarrots FarmQuickHarvest 
+Farm FarmTower 0 100 1100 1100 2 farm1 farmcow 80000 80000000 false false false 2 FarmBigCarrots FarmQuickHarvest 
 FarmBigCarrots FarmTower 0 100 2000 3100 200 farmbigcarrots farmcow 120 2400 false false false 1 FarmValuableCarrots 
 FarmValuableCarrots FarmTower 0 100 3500 6600 200 farmvaluablecarrots farmcow 300 6000 false false false 1 FarmCarrotResearchCenter 
 FarmCarrotResearchCenter FarmTower 0 100 5500 12100 200 farmcarrotresearchcenter farmcow 650 50000 false false false 1 FarmCarrotCentral 
@@ -70,3 +70,6 @@ BallistaPowerfulArrows BallistaTower 3 64 340 1340 90 ballistapowerfularrows Bal
 BallistaEnhancedShooting BallistaTower 6 64 560 1900 90 ballistaenhancedshooting BallistaArrow true true false 1 BallistaExplosiveArrows 
 BallistaExplosiveArrows BallistaTower 10 64 1750 3650 90 ballistaexplosivearrows BallistaExplosiveArrow true true true 1 BallistaRocketDemon 
 BallistaRocketDemon BallistaTower 25 64 6200 9850 70 ballistarocketdemon BallistaExplosiveDemonArrow true true true 0
+FarmCow Tower 10 200 500000 500000 60 farmcow GrassBlade true true true 1 CowBeast
+CowBeast Tower 20 400 1 500001 30 cowbeast HeadOctopus true true true 1 CowMan
+CowMan Tower 40 800 1 500002 15 cowman Cow true true true 0 

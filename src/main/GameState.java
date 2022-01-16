@@ -17,9 +17,16 @@ public class GameState {
     private int[][] wavePercentages;
     private int[] waveAmounts;
 
-    public void init() {
+    public int gameState;
+    private boolean gameStateChange;
+
+    public GameState() {
+        this.gameState = 0;
+    }
+
+    public void init(String difficulty) {
         try {
-            Path file = Path.of("assets/easymode.txt");
+            Path file = Path.of("assets/" + difficulty + ".txt");
             List<String> content = Files.readAllLines(file);
             String[] param = content.get(0).split(" ");
             this.health = Integer.parseInt(param[0]);
@@ -71,15 +78,32 @@ public class GameState {
     }
 
     public int getWaveAmounts() {
-        return waveAmounts[wave];
+        return this.waveAmounts[wave];
     }
 
     public double getMovementMultiplier() {
-        return movementMultiplier;
+        return this.movementMultiplier;
     }
 
     public double getMoneyMultiplier() {
-        return moneyMultiplier;
+        return this.moneyMultiplier;
+    }
+
+    public int getGameState() {
+        return this.gameState;
+    }
+
+    public void nextState() {
+        this.gameStateChange = true;
+        this.gameState++;
+    }
+
+    public void setGameStateChange(boolean gameStateChange) {
+        this.gameStateChange = gameStateChange;
+    }
+
+    public boolean IsGameStateChange() {
+        return gameStateChange;
     }
 
     public void decrementWaveAmount() {

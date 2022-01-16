@@ -14,66 +14,87 @@ public class Game extends JPanel implements ActionListener {
 
     public static final int FPS = 60;
     public static final int TIMER = 1000 / FPS;
+    // Initialize a timer which calls actionPerformed method every TIMER amount of milliseconds
+    private Timer timer;
 
     private final Map map;
     private final EnemyManager enemyManager;
     private final TowerManager towerManager;
     private final UI ui;
     private final GameState gameState;
+    private final Menu menu;
 
     public Game(){
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.setFocusable(true);
         this.requestFocus();
 
+        this.timer = new Timer(TIMER, this);
+
         this.map = new Map();
         this.towerManager = new TowerManager();
         this.gameState = new GameState();
+        this.menu = new Menu(gameState);
         this.enemyManager = new EnemyManager(this.gameState);
         this.ui = new UI(this.map, this.towerManager, this.gameState);
-
     }
 
     private void init() {
-        try {
-            this.map.loadMap("EasyMap2");
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(gameState.getGameState() == 1) {
+            try {
+                this.map.loadMap(menu.getMap());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            this.gameState.init(this.menu.getDifficulty());
+            this.enemyManager.init(this.map.getMap());
+            this.towerManager.init();
+            this.ui.init();
         }
-        this.gameState.init();
-        this.enemyManager.init(this.map.getMap());
-        this.towerManager.init();
-        this.ui.init();
     }
 
     @Override
     public void addNotify() {
         super.addNotify();
-        this.ui.addNotify(this);
 
-        // Initialize a timer which calls actionPerformed method every TIMER amount of milliseconds
-        Timer timer = new Timer(TIMER, this);
+        if(gameState.getGameState() == 0) {
+            this.menu.addNotify(this);
+        }
+        if(gameState.getGameState() == 1) {
+            this.ui.addNotify(this);
+        }
         timer.start();
         this.init();
     }
 
     private void update() {
-        this.enemyManager.update(this.map.getMap());
-        this.towerManager.update(this.enemyManager.getEnemies());
-        if(this.gameState.getHealth() <= 0) {
-            this.init();
+        if(gameState.IsGameStateChange()) {
+            gameState.setGameStateChange(false);
+            this.removeAll();
+            this.addNotify();
+        }
+        if(gameState.getGameState() == 1) {
+            this.enemyManager.update(this.map.getMap());
+            this.towerManager.update(this.enemyManager.getEnemies());
+            if (this.gameState.getHealth() <= 0) {
+                this.init();
+            }
         }
     }
 
     @Override
     public void paintComponent(Graphics g){
         Graphics2D g2 = (Graphics2D) g;
-
-        map.paint(g2);
-        towerManager.paint(g2);
-        enemyManager.paint(g2);
-        ui.paint(g2);
-        map.postDraw(g2);
+        if(gameState.getGameState() == 0) {
+            menu.paint(g2);
+        }
+        else if(gameState.getGameState() == 1) {
+            map.paint(g2);
+            towerManager.paint(g2);
+            enemyManager.paint(g2);
+            ui.paint(g2);
+            map.postDraw(g2);
+        }
     }
 
     @Override

@@ -29,6 +29,7 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
     JButton mortarButton;
     JButton farmButton;
     JButton ballistaButton;
+    JButton cowButton;
     JButton mortarRetargetButton;
     JButton upgradeButton1;
     JButton upgradeButton2;
@@ -78,6 +79,10 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
         this.ballistaButton.setIcon(new ImageIcon(towerManager.getTower("Ballista").getSprite()));
         this.ballistaButton.setBounds(24 * Map.TILE_SIZE - Map.TILE_SIZE / 2,9 * Map.TILE_SIZE,64,64);
 
+        this.cowButton = new JButton();
+        this.cowButton.setIcon(new ImageIcon(towerManager.getTower("FarmCow").getSprite()));
+        this.cowButton.setBounds(21 * Map.TILE_SIZE - Map.TILE_SIZE / 2,12 * Map.TILE_SIZE,1,1);
+
         this.mortarRetargetButton = new JButton("Target Mortar");
         this.mortarRetargetButton.setBounds(22 * Map.TILE_SIZE - Map.TILE_SIZE / 2, Map.TILE_SIZE,192,64);
 
@@ -113,6 +118,7 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
         this.mortarButton.addActionListener(this);
         this.farmButton.addActionListener(this);
         this.ballistaButton.addActionListener(this);
+        this.cowButton.addActionListener(this);
         this.mortarRetargetButton.addActionListener(this);
         this.upgradeButton1.addActionListener(this);
         this.upgradeButton2.addActionListener(this);
@@ -126,6 +132,7 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
         panel.add(this.mortarButton);
         panel.add(this.farmButton);
         panel.add(this.ballistaButton);
+        panel.add(this.cowButton);
         panel.add(this.mortarRetargetButton);
         panel.add(this.upgradeButton1);
         panel.add(this.upgradeButton2);
@@ -190,6 +197,7 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
             this.mortarButton.setVisible(false);
             this.farmButton.setVisible(false);
             this.ballistaButton.setVisible(false);
+            this.cowButton.setVisible(false);
             this.upgradeButton1.setVisible(true);
             this.upgradeButton2.setVisible(true);
             this.sellButton.setVisible(true);
@@ -236,6 +244,7 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
             this.mortarButton.setVisible(true);
             this.farmButton.setVisible(true);
             this.ballistaButton.setVisible(true);
+            this.cowButton.setVisible(true);
             this.upgradeButton1.setVisible(false);
             this.upgradeButton2.setVisible(false);
             this.upgradeDescription1.setVisible(false);
@@ -345,6 +354,9 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
         else if(e.getSource() == this.ballistaButton) {
             temp = towerManager.getTower("Ballista");
         }
+        else if(e.getSource() == this.cowButton) {
+            temp = towerManager.getTower("FarmCow");
+        }
 
         if(temp != null && this.gameState.getMoney() >= Math.round(temp.getCost() * gameState.getMoneyMultiplier())) {
             this.displayTower = temp.copy(new IntCoord(Map.MAP_WIDTH * Map.TILE_SIZE, 0), gameState.getMoneyMultiplier());
@@ -374,6 +386,7 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
         }
 
         if(e.getSource() == this.sellButton) {
+            map.getMap()[selectedTower.getTileLocation().x][selectedTower.getTileLocation().y] = 0;
             towerManager.sell(selectedTower);
             gameState.addMoney((int)Math.round(selectedTower.getTotalCost() * 0.7));
             selectedTower = null;

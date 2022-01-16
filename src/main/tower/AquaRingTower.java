@@ -26,18 +26,15 @@ public class AquaRingTower extends CircleShootingTower{
     @Override
     public void paint(Graphics2D g) {
         if(isShooting) {
-            if(pulseSize <= this.range * 2) {
-                this.pulseSize += 10;
-                Ellipse2D aquaPulse = new Ellipse2D.Double(this.getCenter().x - pulseSize / 2.0, this.getCenter().y - pulseSize / 2.0, pulseSize, pulseSize);
-                g.setPaint(new Color(0.2f, 0.2f, 0.5f, 0.6f));
-                g.draw(aquaPulse);
-                g.fill(aquaPulse);
-            }
-            else {
-                isShooting = false;
-                this.pulseSize = 0;
-            }
+            Ellipse2D aquaPulse = new Ellipse2D.Double(this.getCenter().x - pulseSize / 2.0, this.getCenter().y - pulseSize / 2.0, pulseSize, pulseSize);
+            g.setPaint(new Color(0.2f, 0.2f, 0.5f, 0.6f));
+            g.draw(aquaPulse);
+            g.fill(aquaPulse);
         }
+        else {
+            isShooting = false;
+            this.pulseSize = 0;
+            }
         paint(g, false, false);
         double offset = Map.TILE_SIZE / 2.0 - this.range;
         Ellipse2D aquaRing = new Ellipse2D.Double(this.tileLocation.x * Map.TILE_SIZE + offset, this.tileLocation.y * Map.TILE_SIZE + offset, this.range * 2, this.range * 2);
