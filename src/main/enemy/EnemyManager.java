@@ -128,6 +128,9 @@ public class EnemyManager {
             this.gameState.nextWave();
             this.gameState.addMoney(this.gameState.getWave() * 100);
         }
+        else if(gameState.getWaveAmounts() == 0 && enemies.size() == 0 && this.gameState.getWave() == this.gameState.getMaxWave()) {
+            this.gameState.setVictory(true);
+        }
     }
 
     public void paint(Graphics2D g){

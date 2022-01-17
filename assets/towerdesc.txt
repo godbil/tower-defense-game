@@ -73,3 +73,5 @@ BallistaRocketDemon Rocket Demon. The Rocket Demon will blow up everything in it
 FarmCow Farm Cow. It's a cow.
 CowBeast Cow Beast. A science experiment gone wrong. This creature is the attempt to combine cows and octopuses together.
 CowMan Cow Man. He's a man, but also a cow. Moo!
+CowDemon Cow Demon. The third scariest creature in this universe, only beat by Puunky and THE ONE.
+CowManMAN Cow Man MAN. THE ONE.

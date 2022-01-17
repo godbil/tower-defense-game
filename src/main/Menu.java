@@ -137,6 +137,31 @@ public class Menu implements ActionListener {
         this.impossible.setVisible(false);
     }
 
+    public void removeNotify(JPanel panel) {
+        this.play.removeActionListener(this);
+        this.instructions.removeActionListener(this);
+        this.back.removeActionListener(this);
+        this.easyMap1.removeActionListener(this);
+        this.easyMap2.removeActionListener(this);
+        this.intMap.removeActionListener(this);
+        this.advMap.removeActionListener(this);
+        this.easy.removeActionListener(this);
+        this.normal.removeActionListener(this);
+        this.hard.removeActionListener(this);
+        this.impossible.removeActionListener(this);
+        panel.remove(play);
+        panel.remove(instructions);
+        panel.remove(back);
+        panel.remove(easyMap1);
+        panel.remove(easyMap2);
+        panel.remove(intMap);
+        panel.remove(advMap);
+        panel.remove(easy);
+        panel.remove(normal);
+        panel.remove(hard);
+        panel.remove(impossible);
+    }
+
     public void paint(Graphics2D g) {
         this.play.setVisible(true);
         this.instructions.setVisible(true);
@@ -266,20 +291,32 @@ public class Menu implements ActionListener {
         }
 
         if(e.getSource() == this.easy) {
-            gameState.nextState();
             this.difficulty = "easymode";
+            this.isInMapSelect = false;
+            this.isInDifficultySelect = false;
+            this.isInInstructions = false;
+            gameState.setState(1);
         }
         if(e.getSource() == this.normal) {
-            gameState.nextState();
             this.difficulty = "normalmode";
+            this.isInMapSelect = false;
+            this.isInDifficultySelect = false;
+            this.isInInstructions = false;
+            gameState.setState(1);
         }
         if(e.getSource() == this.hard) {
-            gameState.nextState();
             this.difficulty = "hardmode";
+            this.isInMapSelect = false;
+            this.isInDifficultySelect = false;
+            this.isInInstructions = false;
+            gameState.setState(1);
         }
         if(e.getSource() == this.impossible) {
-            gameState.nextState();
             this.difficulty = "impossiblemode";
+            this.isInMapSelect = false;
+            this.isInDifficultySelect = false;
+            this.isInInstructions = false;
+            gameState.setState(1);
         }
     }
 }

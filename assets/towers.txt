@@ -52,7 +52,7 @@ MortarStrongerBombs MortarTower 3 64 310 1010 100 mortarstrongerbombs MortarBomb
 MortarBiggerBlast MortarTower 5 64 430 1440 100 mortarbiggerblast MortarBomb mortartarget true true true 1 1 MortarTheBigOne 
 MortarTheBigOne MortarTower 10 64 1800 3240 90 mortarthebigone MortarBigBomb mortartarget true true true 1 1 MortarTheBiggestOne 
 MortarTheBiggestOne MortarTower 20 64 6200 9440 100 mortarthebiggestone MortarBiggestBomb mortartarget true true true 1 0
-Farm FarmTower 0 100 1100 1100 2 farm1 farmcow 80000 80000000 false false false 2 FarmBigCarrots FarmQuickHarvest 
+Farm FarmTower 0 100 1100 1100 200 farm1 farmcow 80 800 false false false 2 FarmBigCarrots FarmQuickHarvest 
 FarmBigCarrots FarmTower 0 100 2000 3100 200 farmbigcarrots farmcow 120 2400 false false false 1 FarmValuableCarrots 
 FarmValuableCarrots FarmTower 0 100 3500 6600 200 farmvaluablecarrots farmcow 300 6000 false false false 1 FarmCarrotResearchCenter 
 FarmCarrotResearchCenter FarmTower 0 100 5500 12100 200 farmcarrotresearchcenter farmcow 650 50000 false false false 1 FarmCarrotCentral 
@@ -72,4 +72,6 @@ BallistaExplosiveArrows BallistaTower 10 64 1750 3650 90 ballistaexplosivearrows
 BallistaRocketDemon BallistaTower 25 64 6200 9850 70 ballistarocketdemon BallistaExplosiveDemonArrow true true true 0
 FarmCow Tower 10 200 500000 500000 60 farmcow GrassBlade true true true 1 CowBeast
 CowBeast Tower 20 400 1 500001 30 cowbeast HeadOctopus true true true 1 CowMan
-CowMan Tower 40 800 1 500002 15 cowman Cow true true true 0 
+CowMan Tower 40 800 1 500002 15 cowman Cow true true true 1 CowDemon
+CowDemon Tower 80 1600 1 500003 5 cowdemon CowBeast true true true 1 CowManMAN
+CowManMAN Tower 1500 1600 280559 780562 3 cowmanMAN CowMan true true true 0 

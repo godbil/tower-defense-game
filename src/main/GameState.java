@@ -19,6 +19,8 @@ public class GameState {
 
     public int gameState;
     private boolean gameStateChange;
+    private boolean gameOver;
+    private boolean victory;
 
     public GameState() {
         this.gameState = 0;
@@ -59,6 +61,14 @@ public class GameState {
         }
 
         this.wave = 1;
+        this.gameOver = false;
+        this.victory = false;
+    }
+
+    public void checkGameOver() {
+        if(this.health <= 0 || victory) {
+            this.gameOver = true;
+        }
     }
 
     public int getMaxWave() {
@@ -93,17 +103,29 @@ public class GameState {
         return this.gameState;
     }
 
-    public void nextState() {
+    public void setState(int state) {
         this.gameStateChange = true;
-        this.gameState++;
+        this.gameState = state;
+    }
+
+    public void setGameOver(boolean gameOver){
+        this.gameOver = gameOver;
     }
 
     public void setGameStateChange(boolean gameStateChange) {
         this.gameStateChange = gameStateChange;
     }
 
-    public boolean IsGameStateChange() {
+    public boolean isGameStateChange() {
         return gameStateChange;
+    }
+
+    public boolean isGameOver() {
+        return this.gameOver;
+    }
+
+    public void setVictory(boolean victory) {
+        this.victory = victory;
     }
 
     public void decrementWaveAmount() {

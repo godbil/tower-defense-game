@@ -68,17 +68,16 @@ public class Game extends JPanel implements ActionListener {
     }
 
     private void update() {
-        if(gameState.IsGameStateChange()) {
+        if(gameState.isGameStateChange()) {
             gameState.setGameStateChange(false);
-            this.removeAll();
+            this.ui.removeNotify(this);
+            this.menu.removeNotify(this);
             this.addNotify();
         }
-        if(gameState.getGameState() == 1) {
+        if(gameState.getGameState() == 1 && gameState.getHealth() > 0) {
             this.enemyManager.update(this.map.getMap());
             this.towerManager.update(this.enemyManager.getEnemies());
-            if (this.gameState.getHealth() <= 0) {
-                this.init();
-            }
+            gameState.checkGameOver();
         }
     }
 

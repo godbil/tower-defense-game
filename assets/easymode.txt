@@ -13,4 +13,4 @@
 10 ArmouredSkeleton 50 ArmouredAttackSkeleton 30 MageSkeleton 10 MageAttackSkeleton 10
 40 ArmouredSkeleton 20 ArmouredAttackSkeleton 20 MageSkeleton 15 MageAttackSkeleton 15 SneakySkeleton 15 SneakyAttackSkeleton 15 
 25 Ogre 30 Thief 30 DarkMage 30 NotSplunky 10
-1 HeadlessMan 100
+1 Dragon 100

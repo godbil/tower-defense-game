@@ -22,10 +22,12 @@ AquaRingWaterBall RotatableProjectile 10 32 aquaringwaterball
 MortarBomb MortarProjectile 20 32 mortarbomb mortarexplosion 5
 MortarBigBomb MortarProjectile 25 64 mortarbigbomb mortarbigexplosion 5
 MortarBiggestBomb MortarProjectile 25 128 mortarbigbomb mortarbiggestexplosion 5
-Cow PierceProjectile 12 16 cowprojectile 12
 BallistaArrow RotatableProjectile 20 16 ballistaarrow
 BallistaLaserArrow PierceProjectile 30 16 ballistalaserarrow 4
 BallistaExplosiveArrow SplashProjectile 20 16 ballistaexplosivearrow 32
 BallistaExplosiveDemonArrow SplashProjectile 20 16 ballistaexplosivedemonarrow 50
 GrassBlade PierceProjectile 8 16 grassblade 4
 HeadOctopus PierceProjectile 10 32 headoctopus 8
+Cow PierceProjectile 12 16 cowprojectile 12
+CowBeast PierceProjectile 14 64 cowbeastprojectile 16
+CowMan PierceProjectile 16 64 cowmanprojectile 20

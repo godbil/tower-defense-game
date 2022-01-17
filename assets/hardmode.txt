@@ -1,2 +1,41 @@
-50 800 1 1.2 1.2
+50 800 40 1.2 1.2
+10 MadCow 50 MadBunny 50
+12 MadCow 25 MadBunny 25 MadWolf 50
+10 MadWolf 25 SmallSkeleton 50 Skeleton 25
+15 SmallSkeleton 25 Skeleton 25 SkeletonHead 50
+20 SmallSkeleton 10 Skeleton 10 SmallGoblin 25 LargeGoblin 15 SkeletonHead 40
+15 SkeletonHead 90 Splunky 10
+10 SmallAttackSkeleton 20 AttackSkeleton 15 Splunky 15 SneakySkeleton 30 SneakyAttackSkeleton 20
+30 SmallSkeleton 20 Skeleton 20 SmallAttackSkeleton 20 AttackSkeleton 20 SkeletonHead 10 MadWolf 10
+15 AttackSmallGoblin 20 AttackLargeGoblin 20 SneakySkeleton 10 SneakyAttackSkeleton 10 Thief 20 SkeletonHead 20
+15 MageSkeleton 35 MageAttackSkeleton 35 DarkMage 10 AttackLargeGoblin 20
+50 AttackSmallGoblin 30 AttackLargeGoblin 30 Splunky 20 SkeletonHead 20
+10 ArmouredSkeleton 50 ArmouredAttackSkeleton 30 MageSkeleton 10 MageAttackSkeleton 10
+40 ArmouredSkeleton 20 ArmouredAttackSkeleton 20 MageSkeleton 15 MageAttackSkeleton 15 SneakySkeleton 15 SneakyAttackSkeleton 15 
+25 Ogre 30 Thief 30 DarkMage 30 NotSplunky 10
+1 Dragon 100
+20 NotSplunky 70 Splunky 30
+50 AttackSmallGoblin 25 AttackLargeGoblin 25 Splunky 10 NotSplunky 40
+2 Dragon 100
+35 Thief 60 SneakyAttackSkeleton 30 SneakySkeleton 10
+40 Ogre 50 ArmouredAttackSkeleton 40 ArmouredSkeleton 10
+4 Dragon 100
+25 Ogre 20 Thief 20 DarkMage 20 NotSplunky 20 Dragon 20
+50 DarkMage 70 MageAttackSkeleton 30
+40 NotSplunky 60 Thief 10 DarkMage 10 NotSplunky 10 Dragon 10
+1 HeadlessMan 100
+100 AttackSmallGoblin 20 AttackLargeGoblin 20 Splunky 10 NotSplunky 50
+8 Dragon 100
+80 DarkMage 40 Thief 30 Ogre 20 NotSplunky 10
+10 Head 100
+100 Thief 70 DarkMage 30
+30 Spider 80 NotSplunky 20
+4 HeadlessMan 100 
+25 Dragon 60 Thief 10 Ogre 10 DarkMage 10 NotSplunky
+40 Head 50 Spider 50
+15 HeadlessMan 30 Dragon 70
+100 DarkMage 70 MageAttackSkeleton 30
+30 Dragon 100
+150 Thief 20 DarkMage 20 Ogre 20 NotSplunky 20 Head 20
 10 HeadlessMan 100
+1 SpiderGMAN 100

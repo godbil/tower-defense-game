@@ -2,11 +2,15 @@ package main;
 
 import main.tower.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.Rectangle2D;
-import java.util.ArrayList;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.Buffer;
 
 public class UI implements ActionListener, MouseMotionListener, MouseListener {
     public static final int UI_WIDTH = 256;
@@ -34,6 +38,8 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
     JButton upgradeButton1;
     JButton upgradeButton2;
     JButton sellButton;
+    JButton mainMenuButton;
+    JButton restartButton;
 
     JTextArea upgradeDescription1;
     JTextArea upgradeDescription2;
@@ -41,11 +47,23 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
     private int moneyShowTimer;
     private int moneyGain;
 
+    private BufferedImage victory;
+    private BufferedImage defeat;
+
     public UI(Map map, TowerManager towerManager, GameState gameState) {
         this.towerManager = towerManager;
         this.gameState = gameState;
         this.map = map;
         this.retarget = false;
+
+
+        try {
+            victory = ImageIO.read(new File("assets/sprites/victory.png"));
+            defeat = ImageIO.read(new File("assets/sprites/defeat.png"));
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
 
         this.attackMageButton = new JButton();
         this.attackMageButton.setIcon(new ImageIcon(towerManager.getTower("AttackMage").getSprite()));
@@ -95,6 +113,12 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
         this.sellButton = new JButton("Sell");
         this.sellButton.setBounds(22 * Map.TILE_SIZE,12 * Map.TILE_SIZE,128,64);
 
+        this.mainMenuButton = new JButton("Main Menu");
+        this.mainMenuButton.setBounds(0, 12 * Map.TILE_SIZE, 128, 64);
+
+        this.restartButton = new JButton("Restart");
+        this.restartButton.setBounds(14 * Map.TILE_SIZE,9 * Map.TILE_SIZE,128,64);
+
         this.upgradeDescription1 = new JTextArea();
         this.upgradeDescription1.setBounds(21 * Map.TILE_SIZE + 5,5 * Map.TILE_SIZE + 10, Map.TILE_SIZE * 4 - 10, 60);
         this.upgradeDescription1.setFont(new Font("TimesRoman", Font.PLAIN, 12));
@@ -123,6 +147,8 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
         this.upgradeButton1.addActionListener(this);
         this.upgradeButton2.addActionListener(this);
         this.sellButton.addActionListener(this);
+        this.mainMenuButton.addActionListener(this);
+        this.restartButton.addActionListener(this);
         panel.setLayout(null);
         panel.add(this.attackMageButton);
         panel.add(this.supportMageButton);
@@ -139,20 +165,62 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
         panel.add(this.upgradeDescription1);
         panel.add(this.upgradeDescription2);
         panel.add(this.sellButton);
-        mortarRetargetButton.setVisible(false);
-        upgradeButton1.setVisible(false);
-        upgradeButton2.setVisible(false);
-        sellButton.setVisible(false);
-        upgradeDescription1.setVisible(false);
-        upgradeDescription2.setVisible(false);
-        upgradeDescription1.setLineWrap(true);
-        upgradeDescription2.setLineWrap(true);
+        panel.add(this.mainMenuButton);
+        panel.add(this.restartButton);
+        this.mortarRetargetButton.setVisible(false);
+        this.upgradeButton1.setVisible(false);
+        this.upgradeButton2.setVisible(false);
+        this.sellButton.setVisible(false);
+        this.restartButton.setVisible(false);
+        this.upgradeDescription1.setVisible(false);
+        this.upgradeDescription2.setVisible(false);
+        this.upgradeDescription1.setLineWrap(true);
+        this.upgradeDescription2.setLineWrap(true);
+    }
+
+    public void removeNotify(JPanel panel) {
+        panel.removeMouseMotionListener(this);
+        panel.removeMouseListener(this);
+        this.attackMageButton.removeActionListener(this);
+        this.supportMageButton.removeActionListener(this);
+        this.warriorButton.removeActionListener(this);
+        this.catapultButton.removeActionListener(this);
+        this.tackShooterButton.removeActionListener(this);
+        this.mortarButton.removeActionListener(this);
+        this.farmButton.removeActionListener(this);
+        this.ballistaButton.removeActionListener(this);
+        this.cowButton.removeActionListener(this);
+        this.mortarRetargetButton.removeActionListener(this);
+        this.upgradeButton1.removeActionListener(this);
+        this.upgradeButton2.removeActionListener(this);
+        this.sellButton.removeActionListener(this);
+        this.mainMenuButton.removeActionListener(this);
+        this.restartButton.removeActionListener(this);
+        panel.remove(this.attackMageButton);
+        panel.remove(this.supportMageButton);
+        panel.remove(this.warriorButton);
+        panel.remove(this.catapultButton);
+        panel.remove(this.tackShooterButton);
+        panel.remove(this.mortarButton);
+        panel.remove(this.farmButton);
+        panel.remove(this.ballistaButton);
+        panel.remove(this.cowButton);
+        panel.remove(this.mortarRetargetButton);
+        panel.remove(this.upgradeButton1);
+        panel.remove(this.upgradeButton2);
+        panel.remove(this.upgradeDescription1);
+        panel.remove(this.upgradeDescription2);
+        panel.remove(this.sellButton);
+        panel.remove(this.mainMenuButton);
+        panel.remove(this.restartButton);
     }
 
     public void init() {
         this.displayTower = null;
         this.selectedTower = null;
         this.isValid = false;
+        moneyShowTimer = 0;
+        moneyGain = 0;
     }
 
     public void paint(Graphics2D g) {
@@ -163,8 +231,8 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
             selectedTower.paint(g, isValid, true);
         }
         Rectangle2D.Double UI = new Rectangle2D.Double(Map.MAP_WIDTH * Map.TILE_SIZE, 0, UI_WIDTH, UI_HEIGHT);
-        g.draw(UI);
         g.setPaint(Color.DARK_GRAY);
+        g.draw(UI);
         g.fill(UI);
 
         g.setPaint(Color.white);
@@ -181,13 +249,14 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
         g.drawString("$" + Math.round(towerManager.getTower("Farm").getCost() * gameState.getMoneyMultiplier()), 22 * Map.TILE_SIZE - 20,9 * Map.TILE_SIZE - 5);
         g.drawString("$" + Math.round(towerManager.getTower("Ballista").getCost() * gameState.getMoneyMultiplier()), 24 * Map.TILE_SIZE - 20,9 * Map.TILE_SIZE - 5);
         if(moneyShowTimer > 0 && moneyGain > 0) {
+            System.out.println("has");
             g.drawString("+$" + moneyGain, 3 * Map.TILE_SIZE, Map.TILE_SIZE);
             moneyShowTimer--;
         }
         if(selectedTower != null) {
             Rectangle2D.Double towerMenu = new Rectangle2D.Double(Map.MAP_WIDTH * Map.TILE_SIZE, 0, UI_WIDTH, UI_HEIGHT);
-            g.draw(towerMenu);
             g.setPaint(Color.DARK_GRAY);
+            g.draw(towerMenu);
             g.fill(towerMenu);
             this.attackMageButton.setVisible(false);
             this.supportMageButton.setVisible(false);
@@ -250,6 +319,44 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
             this.upgradeDescription1.setVisible(false);
             this.upgradeDescription2.setVisible(false);
             this.sellButton.setVisible(false);
+        }
+
+        if(gameState.isGameOver()) {
+            if(gameState.getHealth() <= 0) {
+                this.mainMenuButton.setBounds(5 * Map.TILE_SIZE,9 * Map.TILE_SIZE,128,64);
+                this.restartButton.setVisible(true);
+                Rectangle2D.Double end = new Rectangle2D.Double(3 * Map.TILE_SIZE, 3 * Map.TILE_SIZE, 15 * Map.TILE_SIZE, 7 * Map.TILE_SIZE);
+                Rectangle2D.Double round = new Rectangle2D.Double(5 * Map.TILE_SIZE, 5 * Map.TILE_SIZE, 11 * Map.TILE_SIZE, 3 * Map.TILE_SIZE);
+                g.setPaint(Color.GRAY);
+                g.draw(end);
+                g.fill(end);
+                g.setPaint(Color.DARK_GRAY);
+                g.draw(round);
+                g.fill(round);
+                g.drawImage(defeat, 8 * Map.TILE_SIZE, 3 * Map.TILE_SIZE + Map.TILE_SIZE / 2, null);
+                g.setPaint(Color.white);
+                g.setFont(new Font("TimesRoman", Font.PLAIN, 60));
+                g.drawString("You lost on: Wave " + gameState.getWave(), 6 * Map.TILE_SIZE, 7 * Map.TILE_SIZE);
+            }
+            else{
+                this.mainMenuButton.setBounds(5 * Map.TILE_SIZE,9 * Map.TILE_SIZE,128,64);
+                this.restartButton.setVisible(true);
+                Rectangle2D.Double end = new Rectangle2D.Double(3 * Map.TILE_SIZE, 3 * Map.TILE_SIZE, 15 * Map.TILE_SIZE, 7 * Map.TILE_SIZE);
+                Rectangle2D.Double round = new Rectangle2D.Double(5 * Map.TILE_SIZE, 5 * Map.TILE_SIZE, 11 * Map.TILE_SIZE, 3 * Map.TILE_SIZE);
+                g.setPaint(Color.GRAY);
+                g.draw(end);
+                g.fill(end);
+                g.setPaint(Color.DARK_GRAY);
+                g.draw(round);
+                g.fill(round);
+                g.drawImage(victory, 7 * Map.TILE_SIZE + 30, 3 * Map.TILE_SIZE + Map.TILE_SIZE / 2, null);
+                g.setPaint(Color.white);
+                g.setFont(new Font("TimesRoman", Font.PLAIN, 60));
+                g.drawString("Congratulation! You won!", 5 * Map.TILE_SIZE + 10, 7 * Map.TILE_SIZE);
+            }
+        }
+        else {
+            this.mainMenuButton.setBounds(0, 12 * Map.TILE_SIZE, 128, 64);
         }
     }
 
@@ -390,6 +497,15 @@ public class UI implements ActionListener, MouseMotionListener, MouseListener {
             towerManager.sell(selectedTower);
             gameState.addMoney((int)Math.round(selectedTower.getTotalCost() * 0.7));
             selectedTower = null;
+        }
+
+        if(e.getSource() == this.mainMenuButton) {
+            gameState.setGameOver(false);
+            gameState.setState(0);
+        }
+        if(e.getSource() == this.restartButton) {
+            gameState.setGameOver(false);
+            gameState.setState(1);
         }
     }
 }

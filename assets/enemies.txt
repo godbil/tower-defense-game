@@ -3,7 +3,7 @@ DarkSlime Enemy 2 3 16 darkslime false false false 2
 MadBunny Enemy 1 1.8 32 madbunny false false false 5
 MadCow Enemy 2 1 32 madcow false false false 10
 MadWolf Enemy 3 2 32 madwolf false false false 15
-SkeletonHead Enemy 2 4 16 skeletonhead false false false 10
+SkeletonHead Enemy 2 3.5 16 skeletonhead false false false 10
 SmallSkeleton Enemy 5 1.2 32 smallskeleton false false false 20
 Skeleton Enemy 8 1.2 64 skeleton false false false 25
 SmallGoblin Enemy 10 1.2 32 goblin1 false false false 25
@@ -19,10 +19,13 @@ MageAttackSkeleton SpawnerEnemy 12 2.4 64 mageattackskeleton false true false 50
 AttackSmallGoblin Enemy 18 2.6 32 attackgoblin1 false false false 45
 AttackLargeGoblin Enemy 25 2.8 64 attackgoblin2 false false false 50
 Splunky Enemy 4 4 16 splunky false false false 25
-NotSplunky Enemy 30 3 64 notsplunky false false false 60
+NotSplunky Enemy 40 3.5 64 notsplunky false false false 60
 Thief Enemy 15 4 64 thief true false false 65
 DarkMage SpawnerEnemy 20 2.5 64 darkmage false true false 70 DarkSlime 500 1
-Ogre Enemy 80 0.8 64 shrek false false true 65
+Ogre Enemy 80 1.2 64 shrek false false true 65
+Dragon Enemy 260 3 128 dragon false false false 75
 Head Enemy 70 5 64 head false false false 50
-HeadlessMan DeathSpawnerEnemy 280 3 106 headlessman false false false 100 Head 4
-Puunky DeathSpawnerEnemy 2000 10 64 puunky false false false 100000 Splunky 1
+HeadlessMan DeathSpawnerEnemy 780 3 106 headlessman false false false 100 Head 4
+Spider Enemy 120 3 16 spider false false false 120
+SpiderGMAN SpawnerEnemy 2800 1.6 128 spidergman false false false 100 Spider 5000 1
+Puunky DeathSpawnerEnemy 100000 8 64 puunky false false false 100000 Splunky 1
