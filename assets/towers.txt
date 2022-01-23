@@ -74,4 +74,4 @@ FarmCow Tower 10 200 500000 500000 60 farmcow GrassBlade true true true 1 CowBea
 CowBeast Tower 20 400 1 500001 30 cowbeast HeadOctopus true true true 1 CowMan
 CowMan Tower 40 800 1 500002 15 cowman Cow true true true 1 CowDemon
 CowDemon Tower 80 1600 1 500003 5 cowdemon CowBeast true true true 1 CowManMAN
-CowManMAN Tower 1500 1600 280559 780562 3 cowmanMAN CowMan true true true 0 
+CowManMAN Tower 1500 1600 187039 780562 3 cowmanMAN CowMan true true true 0 
